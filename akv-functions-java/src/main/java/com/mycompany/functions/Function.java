@@ -100,7 +100,7 @@ public class Function {
                         .body("Transaction failed: " + transactionReceipt.getStatus()).build();
             }
 
-            // return transaction hash
+            // return transaction receipt
             return request.createResponseBuilder(HttpStatus.OK).body(transactionReceipt.toString()).build();
         } catch (Exception e) {
             return request.createResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR)
