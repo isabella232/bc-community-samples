@@ -350,9 +350,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.5.0;\n\n/**\n * @title WeatherInsurance\n * @dev Base Class\n * This is the base class for Weather Insurance Contracts and should not be used directly\n */\n contract WeatherInsurance {\n    address payable public owner;\n    address public operator;\n    string public location;\n    uint32 public expirationTime; // UTC Unix timestamp\n    int32 public temperature; // Temperature \"strike\" in F\n    uint32 public valuationTime; // UTC Unix timestamp\n    int32 public forecast; // Temperature forecast at valuation time in F\n    uint32 public forecastRisk; // Variability of forecast - standard deviation as percent of temperature [%]\n    mapping(address => uint64) public positions;\n    uint256 public minimumPremium;\n    address[] private users;\n   \n    /**\n    * @dev Constructor\n    */\n    constructor() public {\n      owner = msg.sender;\n    }\n\n    /**************\n    * Modifiers\n    ***************/\n\n    modifier onlyOwner() {\n      require(msg.sender == owner, \"Not authorized.\");\n      _;\n    }\n\n    modifier onlyOwnerOrOperator() {\n      require(msg.sender == owner || msg.sender == operator, \"Not authorized.\");\n      _;\n    }\n\n    /**************\n    * Events\n    ***************/\n\n    event InsuranceBought(address user, uint64 notional, uint256 premium);\n    event InsurancePaid(address user, uint64 notional, uint256 amount);\n\n    /**************\n    * Restricted\n    ***************/\n\n    function getUsers() external view onlyOwnerOrOperator returns (address[] memory) {\n      return users;\n    }\n\n    function setMinimumPremium(uint256 premium) external onlyOwner {\n      require(premium > 0, \"Premium must be greater than zero.\");\n      minimumPremium = premium;\n    }\n\n    function updateForecast(uint32 currentTime, int32 currentForecast, uint32 currentRisk) external onlyOwnerOrOperator {\n      valuationTime = currentTime;\n      forecast = currentForecast;\n      forecastRisk = currentRisk;\n    }\n\n    function payOut(address payable user) external onlyOwner {\n      require(valuationTime >= expirationTime, \"Contract still active.\");\n      uint64 notional = positions[user];\n      uint256 amountToPay = getIntrinsicValue(notional);\n      // Clear position\n      positions[user] = 0;\n      // Pay if needed\n      if (amountToPay > 0) {\n        user.transfer(amountToPay);\n        emit InsurancePaid(user, notional, amountToPay);\n      }\n    }\n\n    function isSettled() public view onlyOwnerOrOperator returns(bool) {\n      for (uint i = 0; i < users.length; i++) {\n        if (positions[users[i]] > 0)\n          return false;\n      }\n      return true;\n    }\n\n    // return remaining balance to owner\n    function destroy() external onlyOwner {\n      require(valuationTime >= expirationTime, \"Contract still active.\");\n      require(isSettled(), \"All positions must be closed.\");\n      selfdestruct(owner);\n    }\n\n    /**************\n    * Public\n    ***************/\n\n    function getIntrinsicValue(uint64 notional) public view returns (uint256);\n\n    function getPremium(uint64 notional) public view returns (uint256) {\n      return getIntrinsicValue(notional) + notional * uint256(forecastRisk) / 100 + minimumPremium;\n    }\n\n    function buyInsurance(uint64 notional) payable external {\n      require(valuationTime > 0, \"Contract not active.\");\n      require(expirationTime >= valuationTime, \"Contract expired.\");\n      require(notional > 0, \"Notional must be greater than zero.\");\n      require(msg.value >= getPremium(notional), \"Insufficient premium.\");\n\n      // Register user\n      if (positions[msg.sender] == 0)\n        users.push(msg.sender);\n\n      positions[msg.sender] += notional;\n      emit InsuranceBought(msg.sender, notional, msg.value);\n    }\n\n    // Fallback - used by owner to fund contract\n    function fund() payable external {\n    }\n\n}",
-  "sourcePath": "/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/contracts/WeatherInsurance.sol",
+  "sourcePath": "/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Contracts/contracts/WeatherInsurance.sol",
   "ast": {
-    "absolutePath": "/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/contracts/WeatherInsurance.sol",
+    "absolutePath": "/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Contracts/contracts/WeatherInsurance.sol",
     "exportedSymbols": {
       "WeatherInsurance": [
         531
@@ -4759,7 +4759,7 @@
     "src": "0:3793:3"
   },
   "legacyAST": {
-    "absolutePath": "/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/contracts/WeatherInsurance.sol",
+    "absolutePath": "/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Contracts/contracts/WeatherInsurance.sol",
     "exportedSymbols": {
       "WeatherInsurance": [
         531
@@ -9171,7 +9171,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.1",
-  "updatedAt": "2019-04-17T09:29:52.324Z",
+  "updatedAt": "2019-04-17T17:46:08.350Z",
   "devdoc": {
     "details": "Base Class This is the base class for Weather Insurance Contracts and should not be used directly",
     "methods": {
