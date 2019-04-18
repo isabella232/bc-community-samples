@@ -1,5 +1,7 @@
 pragma solidity ^0.5.4;
 
+import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
+
 // The minimalist design of a container's smart contract.
 // Storage:
 //      Contract stores all possible items (pallet, box, item) in its own storage.
@@ -10,7 +12,7 @@ pragma solidity ^0.5.4;
 //      The contract contains a number of events which allows tracing of contract's changing without doing any calls to the contract.
 // Gas usage:
 //      The contract optimized by storage and gas usage. In the case of internal storage usage, it spends less gas, in comparison to external contracts execution.
-contract Container {
+contract Container is Ownable {
     // TODO: extend by owner
     struct Node {
         uint256 parentId;
@@ -35,7 +37,7 @@ contract Container {
     uint256 private itemIndex = 0;
     Leaf[] private items;
 
-    function addPallet() public returns(uint256 index) {
+    function addPallet() external onlyOwner returns(uint256 index) {
         pallets.push(Node({
             parentId: 0,
             childs: new uint256[](0)
@@ -46,7 +48,7 @@ contract Container {
         emit LogPallet(index);
     }
 
-    function addBox(uint256 _palletIndex) public returns(uint256 index) {
+    function addBox(uint256 _palletIndex) external onlyOwner returns(uint256 index) {
         require(_palletIndex < palletIndex);
 
         boxes.push(Node({
@@ -60,7 +62,7 @@ contract Container {
         emit LogBox(_palletIndex, index);
     }
 
-    function addItem(uint256 _boxIndex, uint256 _id) public returns(uint256 index) {
+    function addItem(uint256 _boxIndex, uint256 _id) external onlyOwner returns(uint256 index) {
         require(_boxIndex < boxIndex);
 
         items.push(Leaf({
