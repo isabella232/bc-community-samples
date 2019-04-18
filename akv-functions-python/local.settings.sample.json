@@ -1,0 +1,14 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+    "AzureWebJobsStorage": "{AzureWebJobsStorage}",
+    "ETH_JSON_RPC": "http://23.100.94.22:8540",
+    "VAULT_BASE_URL": "https://ethkeyvault20190417.vault.azure.net/",
+    "KEYSTORE_SECRET_NAME": "EthKeystore",
+    "KEYSTORE_SECRET_VERSION": "a5a3c651a93644a6aa92a48e0f05504a",
+    "PASSPHRASE_SECRET_NAME": "EthKeystorePassphrase",
+    "PASSPHRASE_SECRET_VERSION": "c932a4c793684901a33edf7033669484"
+  },
+  "ConnectionStrings": {}
+}
