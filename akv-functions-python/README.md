@@ -132,7 +132,7 @@ az keyvault show --name "$YourKeyVaultName" --query properties.vaultUri
 az keyvault secret list-versions --vault-name "$YourKeyVaultName" --name EthKeystore --query [-1].id | tr -d '"' | awk -F / '{print $NF}'
 ```
 
-**KEYSTORE_SECRET_VERSION**:
+**PASSPHRASE_SECRET_VERSION**:
 
 ```bash
 az keyvault secret list-versions --vault-name "$YourKeyVaultName" --name EthKeystorePassphrase --query [-1].id | tr -d '"' | awk -F / '{print $NF}'
