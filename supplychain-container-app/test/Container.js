@@ -89,4 +89,21 @@ contract('Container', (accounts) => {
             await shouldFail.reverting(container.addItem(0, 1, { from: accounts[1] }));
         });
     });
+
+    describe.only('Trace', function () {
+        before(async () => {
+            container = await Container.new({ from: accounts[0] });
+        });
+
+        it('should emit trace event', async () => {
+            // arrange
+            const state = "loading";
+
+            // act
+            const { logs } = await container.trace(state, { from: accounts[0] });
+
+            // assert
+            expectEvent.inLogs(logs, 'LogTrace', { _from: accounts[0], _msg: state });
+        });
+    });
 });

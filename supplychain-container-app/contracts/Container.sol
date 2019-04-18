@@ -10,8 +10,7 @@ import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 //      The structure is append-only.
 // Events:
 //      The contract contains a number of events which allows tracing of contract's changing without doing any calls to the contract.
-// Gas usage:
-//      The contract optimized by storage and gas usage. In the case of internal storage usage, it spends less gas, in comparison to external contracts execution.
+//      Log memory is cheap, it allows optimize gas usage as well.
 contract Container is Ownable {
     // TODO: extend by owner
     struct Node {
@@ -27,6 +26,7 @@ contract Container is Ownable {
     event LogPallet(uint256 indexed _index);
     event LogBox(uint256 indexed _palletIndex, uint256 indexed _index);
     event LogItem(uint256 indexed _boxIndex, uint256 indexed _index, uint256 indexed _id);
+    event LogTrace(address indexed _from, string _msg);
 
     uint256 private palletIndex = 0;
     Node[] private pallets;
@@ -74,6 +74,10 @@ contract Container is Ownable {
         itemIndex++;
 
         emit LogItem(_boxIndex, index, _id);
+    }
+
+    function trace(string memory _msg) public {
+        emit LogTrace(msg.sender, _msg);
     }
 
     function getPalletsCount() public view returns(uint256) {
