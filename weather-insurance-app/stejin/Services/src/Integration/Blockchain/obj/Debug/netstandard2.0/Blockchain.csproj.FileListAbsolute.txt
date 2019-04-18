@@ -1,0 +1,9 @@
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/obj/Debug/netstandard2.0/Blockchain.csprojAssemblyReference.cache
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/obj/Debug/netstandard2.0/Blockchain.csproj.CoreCompileInputs.cache
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/obj/Debug/netstandard2.0/Blockchain.AssemblyInfoInputs.cache
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/obj/Debug/netstandard2.0/Blockchain.AssemblyInfo.cs
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/bin/Debug/netstandard2.0/WeatherInsurance.Integration.Blockchain.deps.json
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/bin/Debug/netstandard2.0/WeatherInsurance.Integration.Blockchain.dll
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/bin/Debug/netstandard2.0/WeatherInsurance.Integration.Blockchain.pdb
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/obj/Debug/netstandard2.0/WeatherInsurance.Integration.Blockchain.dll
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/obj/Debug/netstandard2.0/WeatherInsurance.Integration.Blockchain.pdb

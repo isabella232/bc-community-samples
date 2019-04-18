@@ -1,0 +1,9 @@
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/obj/Debug/netstandard2.0/Database.csprojAssemblyReference.cache
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/obj/Debug/netstandard2.0/Database.csproj.CoreCompileInputs.cache
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/obj/Debug/netstandard2.0/Database.AssemblyInfoInputs.cache
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/obj/Debug/netstandard2.0/Database.AssemblyInfo.cs
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/bin/Debug/netstandard2.0/WeatherInsurance.Integration.Database.deps.json
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/bin/Debug/netstandard2.0/WeatherInsurance.Integration.Database.dll
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/bin/Debug/netstandard2.0/WeatherInsurance.Integration.Database.pdb
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/obj/Debug/netstandard2.0/WeatherInsurance.Integration.Database.dll
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/obj/Debug/netstandard2.0/WeatherInsurance.Integration.Database.pdb

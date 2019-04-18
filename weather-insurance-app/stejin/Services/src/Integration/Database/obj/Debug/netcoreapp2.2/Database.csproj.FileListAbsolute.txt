@@ -1,0 +1,14 @@
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/bin/Debug/netcoreapp2.2/WeatherInsurance.Integration.Database.deps.json
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/bin/Debug/netcoreapp2.2/WeatherInsurance.Integration.Database.dll
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/bin/Debug/netcoreapp2.2/WeatherInsurance.Integration.Database.pdb
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/obj/Debug/netcoreapp2.2/Database.csprojAssemblyReference.cache
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/obj/Debug/netcoreapp2.2/Database.csproj.CoreCompileInputs.cache
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/obj/Debug/netcoreapp2.2/Database.AssemblyInfoInputs.cache
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/obj/Debug/netcoreapp2.2/Database.AssemblyInfo.cs
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/obj/Debug/netcoreapp2.2/WeatherInsurance.Integration.Database.dll
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/obj/Debug/netcoreapp2.2/WeatherInsurance.Integration.Database.pdb
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/bin/Debug/netcoreapp2.2/WeatherInsurance.Integration.Database.runtimeconfig.json
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/bin/Debug/netcoreapp2.2/WeatherInsurance.Integration.Database.runtimeconfig.dev.json
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/bin/Debug/netcoreapp2.2/WeatherInsurance.Domain.Model.dll
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/bin/Debug/netcoreapp2.2/WeatherInsurance.Domain.Model.pdb
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/obj/Debug/netcoreapp2.2/Database.csproj.CopyComplete

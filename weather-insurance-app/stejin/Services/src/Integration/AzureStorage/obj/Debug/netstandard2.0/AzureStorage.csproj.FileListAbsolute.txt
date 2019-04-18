@@ -1,0 +1,12 @@
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/AzureStorage/obj/Debug/netstandard2.0/AzureStorage.csprojAssemblyReference.cache
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/AzureStorage/obj/Debug/netstandard2.0/AzureStorage.csproj.CoreCompileInputs.cache
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/AzureStorage/obj/Debug/netstandard2.0/AzureStorage.AssemblyInfoInputs.cache
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/AzureStorage/obj/Debug/netstandard2.0/AzureStorage.AssemblyInfo.cs
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/AzureStorage/bin/Debug/netstandard2.0/WeatherInsurance.Integration.AzureStorage.deps.json
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/AzureStorage/bin/Debug/netstandard2.0/WeatherInsurance.Integration.AzureStorage.dll
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/AzureStorage/bin/Debug/netstandard2.0/WeatherInsurance.Integration.AzureStorage.pdb
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/AzureStorage/obj/Debug/netstandard2.0/WeatherInsurance.Integration.AzureStorage.dll
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/AzureStorage/obj/Debug/netstandard2.0/WeatherInsurance.Integration.AzureStorage.pdb
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/AzureStorage/bin/output/WeatherInsurance.Integration.AzureStorage.deps.json
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/AzureStorage/bin/output/WeatherInsurance.Integration.AzureStorage.dll
+/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/AzureStorage/bin/output/WeatherInsurance.Integration.AzureStorage.pdb
