@@ -37,6 +37,12 @@ contract Container is Ownable {
     uint256 private itemIndex = 0;
     Leaf[] private items;
 
+    /**
+        @notice Adds pallet to the container
+        @dev MUST emit LogPallet event on success
+        @param _owner       Pallet's owner, the field cannot be empty
+        @return             Index of created pallet
+    */
     function addPallet(address _owner) external onlyOwner returns(uint256 index) {
         require(_owner != address(0x0), "_owner must be non-zero.");
 
@@ -51,6 +57,12 @@ contract Container is Ownable {
         emit LogPallet(index);
     }
 
+    /**
+        @notice Adds box linked to specified pallet
+        @dev MUST emit LogBox event on success
+        @param _palletIndex     Pallet's index, pallet should exists
+        @return                 Index of created box
+    */
     function addBox(uint256 _palletIndex) external onlyOwner returns(uint256 index) {
         require(_palletIndex < palletIndex);
 
@@ -65,6 +77,13 @@ contract Container is Ownable {
         emit LogBox(_palletIndex, index);
     }
 
+    /**
+        @notice Adds item linked to specified box
+        @dev MUST emit LogItem event on success
+        @param _boxIndex    Box's index, box should exists
+        @param _id          Item's identifier
+        @return             Index of created item
+    */
     function addItem(uint256 _boxIndex, uint256 _id) external onlyOwner returns(uint256 index) {
         require(_boxIndex < boxIndex);
 
@@ -79,6 +98,9 @@ contract Container is Ownable {
         emit LogItem(_boxIndex, index, _id);
     }
 
+    /**
+        @notice Adds data to the log. It allows store dynamic data.
+    */
     function trace(string memory _msg) public {
         emit LogTrace(msg.sender, _msg);
     }
