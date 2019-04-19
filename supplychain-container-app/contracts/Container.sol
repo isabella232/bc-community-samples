@@ -12,7 +12,6 @@ import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 //      The contract contains a number of events which allows tracing of contract's changing without doing any calls to the contract.
 //      Log memory is cheap, it allows optimize gas usage as well.
 contract Container is Ownable {
-    // TODO: extend by owner
     struct Node {
         uint256 parentId;
         uint256[] childs;
@@ -30,6 +29,7 @@ contract Container is Ownable {
 
     uint256 private palletIndex = 0;
     Node[] private pallets;
+    mapping(uint256 => address) palletOwners;
 
     uint256 private boxIndex = 0;
     Node[] private boxes;
@@ -37,12 +37,15 @@ contract Container is Ownable {
     uint256 private itemIndex = 0;
     Leaf[] private items;
 
-    function addPallet() external onlyOwner returns(uint256 index) {
+    function addPallet(address _owner) external onlyOwner returns(uint256 index) {
+        require(_owner != address(0x0), "_owner must be non-zero.");
+
         pallets.push(Node({
             parentId: 0,
             childs: new uint256[](0)
         }));
         index = palletIndex;
+        palletOwners[index] = _owner;
         palletIndex++;
 
         emit LogPallet(index);
@@ -92,9 +95,9 @@ contract Container is Ownable {
         return itemIndex;
     }
 
-    function getPallet(uint256 _index) public view returns(uint256, uint256[] memory) {
+    function getPallet(uint256 _index) public view returns(uint256, uint256[] memory, address) {
         require(_index < palletIndex);
-        return (pallets[_index].parentId, pallets[_index].childs);
+        return (pallets[_index].parentId, pallets[_index].childs, palletOwners[_index]);
     }
 
     function getBox(uint256 _index) public view returns(uint256, uint256[] memory) {
