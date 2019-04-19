@@ -2,6 +2,7 @@
 
 ## Table of Contents
 
+* [Table of Contents](#table-of-contents)
 * [Overview](#overview)
 * [Prerequisites](#prerequisites)
 * [Step 1 - Login to Azure](#step-1---login-to-azure)
@@ -11,9 +12,11 @@
 * [Step 5 - Store Ethereum Secrets on Azure Key Vault](#step-5---store-ethereum-secrets-on-azure-key-vault)
 * [Step 6 - List Stored Secrets on Azure Key Vault](#step-6---list-stored-secrets-on-azure-key-vault)
 * [Step 7 - Clone the Repo](#step-7---clone-the-repo)
-* [Step 8 - Configure Application Settings](#step-8---configure-application-settings)
-* [Step 9 - Test the Azure Function Locally](#step-9---test-the-azure-function-locally)
-* [Step 10 - Deploy the Azure Function to Azure Cloud](#step-10---deploy-the-azure-function-to-azure-cloud)
+* [Step 8 - Create and Activate a Python Virtual Environment](#step-8---create-and-activate-a-python-virtual-environment)
+* [Step 9 - Install Dependencies](#step-9---install-dependencies)
+* [Step 10 - Configure Application Settings](#step-10---configure-application-settings)
+* [Step 11 - Test the Azure Function Locally](#step-11---test-the-azure-function-locally)
+* [Step 12 - Deploy the Azure Function to Azure Cloud](#step-12---deploy-the-azure-function-to-azure-cloud)
 
 ## Overview
 
@@ -30,6 +33,7 @@ By following this solution, you will learn how to:
 * [Go Ethereum](https://geth.ethereum.org/)
 * [Python 3.6](https://www.python.org/downloads/release/python-368/)
 * [Git](https://www.git-scm.com/)
+* [Docker](https://docs.docker.com/install/)
 * [Curl](https://curl.haxx.se/download.html)
 * [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latest) 2.0.4 or later
 * [Azure Function Core Tools](https://github.com/Azure/azure-functions-core-tools)
@@ -107,10 +111,25 @@ Clone the repo in order to make a local copy for you to edit the source by runni
 
 ```
 git clone https://github.com/Azure-Samples/bc-community-samples.git
-cd akv-functions-python
+cd akv-functions-python 
 ```
 
-## Step 8 - Configure Application Settings 
+## Step 8 - Create and Activate a Python Virtual Environment
+
+It is required that you work in a Python 3.6 virtual environment. Run the following commands to create and activate a virtual environment named .env
+```bash
+python3.6 -m venv .env
+source .env/bin/activate
+```
+
+## Step 9 - Install Dependencies
+
+To install dependencies of this project, run:
+```bash
+pip install -r requirements.txt
+```
+
+## Step 10 - Configure Application Settings 
 
 Open [local.settings.json](./local.settings.json) and change the following values with the results from the Azure CLI commands:
 
@@ -138,7 +157,7 @@ az keyvault secret list-versions --vault-name "$YourKeyVaultName" --name EthKeys
 az keyvault secret list-versions --vault-name "$YourKeyVaultName" --name EthKeystorePassphrase --query [-1].id | tr -d '"' | awk -F / '{print $NF}'
 ``` 
 
-## Step 9 - Test the Azure Function Locally
+## Step 11 - Test the Azure Function Locally
 
 First, compile and run the Azure Function locally:
 
@@ -155,7 +174,7 @@ curl http://localhost:7071/api/send-test-transaction
 An Ethereum transaction receipt will be returned after a few seconds if the transaction is successfully sent to the PoA network. 
 
 
-## Step 10 - Deploy the Azure Function to Azure Cloud
+## Step 12 - Deploy the Azure Function to Azure Cloud
 
 To deploy the Azure Function to Azure Cloud, run the following commands:
 
