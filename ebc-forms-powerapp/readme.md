@@ -59,6 +59,7 @@ Can be removed in not important or too difficult to setup
 2. ReserveAssetFlow.zip - Microsoft Flow
 3. ReserveAssetApp.msapp - Microsoft PowerApp
 4. data.xlsx - example spreadsheet with data (in real world, use a database)
+5. test-approvals.js - Truffle test file to verify the approval workflow
 
 ---
 
@@ -67,24 +68,24 @@ Can be removed in not important or too difficult to setup
 see: ./Asset.sol
 
 - State
-  - StateType State;    //reserved or available
-  - string Description; //asset description
-  - address Owner;
-  - address ReservedBy;
-  - uint ReservedOn;
-  - uint ReservedDays;
-  - uint Longitude;
-  - uint Latitude;
+    string Description;
+    uint Latitude;
+    uint Longitude;
+    address Owner;
+    address RequestedBy;
+    uint ReservedDays;
+    uint ReservedOn;
+    StateType State;
 
 - Methods
 
   - RequestReservation(requestedBy, numberOfDays, latitude, longitude)
 
-  - RequestReservation(requestedBy, numberOfDays, latitude, longitude)
+  - ApproveReservation()
      - must be Owner of the Asset
 
   - ReleaseReservation()
-     - until the Reservation is complete, only the Reservation holder can release the reservation
+     - unless the Reservation period is over, only the Reservation holder can release the reservation
 
 ---
 
@@ -126,31 +127,29 @@ see: ./Asset.sol
 ## Screenshots
 
 ---
-![PowerApp - start with Asset Checkout](./b6.png)
+![PowerApp - start with Asset Checkout](./images/b6.png)
 
 ---
-![PowerApp - execute the Flow App](./b8.png)
+![PowerApp - execute the Flow App](./images/b8.png)
 
 ---
 
 ## Flow App
 
-![Create the flow and setup initial variables](./a1.png)
+![Create the flow and setup initial variables](./images/a1.png)
 
 ---
-![Get the properties from the input](./a2.png)
+![Get the properties from the input](./images/a2.png)
 
 ---
-![Get data from other sources](./a3.png)
+![Get data from other sources](./images/a3.png)
 
 ---
-![Setup approval workflows](./a4.png)
+![Setup approval workflows](./images/a4.png)
 
 ---
-![Execute Ethereum Smart Contract connector](./a5.png)
+![Execute Ethereum Smart Contract connector](./images/a5.png)
 
-
----
 
 # Setting up this Sample
 
@@ -218,3 +217,66 @@ For the purposes of demonstration, this sample pre-defines some data and stores 
 
          ReservationFlow_1.Run(Concatenate("{""days"": ", Text(reserveDays), ", ""productId"": """, Text(checkedout.ProductId), """,""user"":""", Text(User().Email), """, ""long"": """, Text(Location.Longitude), """, ""lat"": """, Text(Location.Latitude), """, ""photo"":""",filename,"""}"));
 
+
+---
+
+# Extra Credit 
+
+---
+
+## Take Photo in PowerApp and save it to Azure Blob
+
+   1. In the PowerApp, add AzureBlobStorage connector
+
+   - In Azure, setup a storage account and configure a block blob
+   - Enter the Access Key and storageaccountname in the connector setup
+
+   2. Insert Media/Camera object onto a screen in PowerApp
+   3. Save the Photo to a variable when an event occurs - simplest is the Camera OnSelect event (when the user taps the picture) 
+         set(myphoto, Camera1.Photo)
+
+   4. Send the Photo to Azure using the AzureBlobStorage connector
+
+      - set a filename that you can send to Flow later:
+
+         Set(filename, Concatenate(GUID(),".jpg"));
+      
+      - call CreateBlobBlob, with the 
+         
+         Set(success,AzureBlobStorage.CreateBlockBlob("$web/images",filename,Camera2.Photo,{'Content-Type':"image/jpg"}));
+
+   5. Send the Photo filename to the Flow you previously configured, as another key/value pair
+
+---
+
+## In Flow, get the Photo metadata to send to Blockchain
+
+   1. Make sure the same AzureBlobStorage connector is setup for Flow
+   2. Add a step to get the photo filename sent from the PowerApp
+   3. Add the "Azure Blob Storage / Get Blob Metadata using path" action
+   4. Configure the same path to the block blob you saved the file to, and add the filename variable from step 2:
+
+      $web/images/@{variables('photo')}
+
+   5. Configure the smart contract to receive the image ETag or other metadata as needed, from the Blob metadata action
+
+---
+
+## PowerApp - Camera
+
+---
+![Add blob storage account connector](./images/c9.png)
+
+---
+![Add Camera to a screen](./images/c10.png)
+
+---
+![Configure filename and image variables, and call AzureBlobStorage.CreateBlobBlob](./images/c12.png)
+
+
+## Flow - Photo metadata
+
+---
+![Get the Photo metadata](./images/c13.png)
+
+---
