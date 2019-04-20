@@ -1,4 +1,4 @@
-# Reservation Approval and Assignment on the Blockchain with Attestation and Location
+# Ethereum Blockchain Connector - Power App
 
 ## Table of contents
 
