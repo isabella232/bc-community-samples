@@ -124,7 +124,7 @@ see: ./Asset.sol
 
 ---
 
-## Screenshots
+# Screenshots
 
 ---
 ![PowerApp - start with Asset Checkout](./images/b6.png)
