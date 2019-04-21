@@ -4,20 +4,21 @@ pragma experimental ABIEncoderV2;
 contract MailingList {
     address public owner = msg.sender;
 
-    mapping(string => bool) MailAddresses;
+    mapping(string => bool) HashedMailAddresses;
 
-    string[] MailAddressesArray; // for quick enumeration of added mail addresses
+    string[] HashedMailAddressesArray; // for quick enumeration of added mail addresses
 
-    event MailAddressAdded(string mailAddress);
+    event HashedMailAddressAdded(string hashedMailAddress);
 
-    function addMailAddress(string memory mailAddress) public {
-        require(MailAddresses[mailAddress] == false); // check duplication
-        MailAddresses[mailAddress] = true;
-        MailAddressesArray.push(mailAddress);
-        emit MailAddressAdded(mailAddress);
+    // to be compliant with GDPR, only hashed mail addresses should be added
+    function addMailAddress(string memory hashedMailAddress) public {
+        require(HashedMailAddresses[hashedMailAddress] == false); // check duplication
+        HashedMailAddresses[hashedMailAddress] = true;
+        HashedMailAddressesArray.push(hashedMailAddress);
+        emit HashedMailAddressAdded(hashedMailAddress);
     }
 
-    function getMailAddresses() public view returns(string[] memory) {
-        return MailAddressesArray;
+    function getHashedMailAddressesArray() public view returns(string[] memory) {
+        return HashedMailAddressesArray;
     }
 }

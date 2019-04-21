@@ -169,13 +169,25 @@ To create a logic app connecting Microsoft Forms, Azure SQL Server and the Maili
 
 ![Step 4.11](https://i.imgur.com/ebT7nmd.png)
 
-12\. Choose `Execute smart contract function` as the next action:
+12\. To anonymize the input email for GDPR compliance, choose `Generate a SHA256 Hash from a string` as the next action:
 
-![Step 4.12](https://i.imgur.com/iEHrdKB.png)
+![Step 4.12](https://i.imgur.com/5ACtcGK.png)
+
+13\. Fill in the `Data` field with `Email address` dynamic content plus a secret salt to avoid de-anonymization:
+
+![Step 4.13](https://i.imgur.com/9ERYH8q.png)
+
+14\. Rename the action to `HashEmailAddress:
+
+![Step 4.14](https://i.imgur.com/aqgvjbw.png)
+
+15\. Choose `Execute smart contract function` as the next action:
+
+![Step 4.15](https://i.imgur.com/gIKErNq.png)
 
 Create a connection to the Ethereum PoA network by filling in the following parameters: 
 
-![Step 4.12](https://i.imgur.com/Cli7J7F.png)
+![Step 4.15](https://i.imgur.com/PRZ4w2U.png)
 
 |Input Name|Value|
 |----------|-----|
@@ -185,33 +197,45 @@ Create a connection to the Ethereum PoA network by filling in the following para
 
 After a connection is made, fill in the contract call parameters:
 
-![Step 4.12](https://i.imgur.com/6dBYdM2.png)
+![Step 4.15](https://i.imgur.com/Q0hIfFf.png)
 
 |Input Name|Value|
 |----------|-----|
 |Contract ABI|Go to `Compile` tab of Remix IDE then click `ABI` button to copy the value for this input.<br>![Step 4.16](https://i.imgur.com/4uUYgOE.png)|
 |Smart Contract Address|Go to `Run` tab of Remix IDE then click copy button next to the deployed MailingList contract to copy the value for this input.<br>![Step 4.16](https://i.imgur.com/WAFDcrO.png)|
 |Smart Contract Function Name|Choose `addMailAddress`|
-|mailAddress and hash|![Step 4.16](https://i.imgur.com/zWqQBSO.png)|
+|hashedMailAddress|![Step 4.15](https://i.imgur.com/SPnVKGT.png)|
 
 Next, add `Gas Price in Wei` parameter then set it to 0:
 
-![Step 4.12](https://i.imgur.com/09pkC5A.png)
+![Step 4.15](https://i.imgur.com/09pkC5A.png)
 
-![Step 4.12](https://i.imgur.com/YTGKCAB.png)
+![Step 4.15](https://i.imgur.com/YTGKCAB.png)
 
-13\. Click `Save` button then click `Run` button on the top-left of Logic app designer
+16\. Choose `Send an email` of Office 365 Outlook as the next action for sending a receipt to the responder:
 
-![Step 4.113(https://i.imgur.com/4kC838S.png)
+![Step 4.16](https://i.imgur.com/Y5Ju3R6.png)
 
-14\. Open the created form in Step 1 then send a test response
+17\. Fill in the parameters using dynamic contents as the following screenshot:
 
-![Step 4.14](https://i.imgur.com/v6eZrzL.png)
+![Step 4.17](https://i.imgur.com/nW5JEcJ.png)
 
-15\. The Logic App will be triggered then an Ethereum transaction hash will be returned from the last action:
+18\. Click `Save` button then click `Run` button on the top-left of Logic app designer
 
-![Step 4.15](https://i.imgur.com/N2KiLXv.png)
+![Step 4.18](https://i.imgur.com/4xA4Gka.png)
 
-16\. To check if the form response has been stored in Ethereum blockchain, open Remix IDE, navigate to `Run` tab, click the deployed `MailingList` contract, then query `getMailAddresses` function. After a few seconds, the stored form responses will be shown:
+19\. Open the created form in Step 1 then send a test response
 
-![Step 4.16](https://i.imgur.com/M927GoB.png) 
+![Step 4.19](https://i.imgur.com/v6eZrzL.png)
+
+20\. Login into Office 365 Outlook with your developer subscription:  
+
+![Step 4.20](https://i.imgur.com/O4VdOkF.png)
+
+then you will see the receipt email in your inbox with an Ethereum transaction hash and the anonymized email address:
+
+![Step 4.20](https://i.imgur.com/N4mkgwT.png)
+
+to check if the response has been recorded on blockchain, go to `Run` tab of Remix IDE, query `getHashedMailAddressArray` function, then you will see the anonymized email address in the returned array:
+
+![Step 4.20](https://i.imgur.com/yrD6sFM.png)
