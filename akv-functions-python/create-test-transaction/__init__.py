@@ -3,10 +3,9 @@ import os
 import traceback
 
 import azure.functions as func
-from azure.common.client_factory import get_client_from_cli_profile
 from azure.keyvault import KeyVaultClient
 from eth_keys import keys
-from msrestazure.azure_active_directory import MSIAuthentication
+from msrestazure.azure_active_directory import ServicePrincipalCredentials
 from web3 import Web3
 
 
@@ -25,8 +24,10 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         passphrase_secret_version = os.environ.get("PASSPHRASE_SECRET_VERSION")
 
         # Get Ethereum secrets
-        keystore_secret = key_vault_client.get_secret(vault_base_url, keystore_secret_name, keystore_secret_version).value
-        passphrase_secret = key_vault_client.get_secret(vault_base_url, passphrase_secret_name, passphrase_secret_version).value
+        keystore_secret = key_vault_client.get_secret(vault_base_url, keystore_secret_name,
+                                                      keystore_secret_version).value
+        passphrase_secret = key_vault_client.get_secret(vault_base_url, passphrase_secret_name,
+                                                        passphrase_secret_version).value
 
         # Connect to Ethereum JSON-RPC and Decrypt Ethereum keystore
         w3 = Web3(Web3.HTTPProvider(eth_json_rpc))
@@ -38,7 +39,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         transaction = {
             'to': address,
             'value': 0,
-            'gas': 2000000,
+            'gas': 21000,
             'gasPrice': 0,
             'nonce': w3.eth.getTransactionCount(address),
         }
@@ -55,9 +56,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
 
 def get_key_vault_client():
-    if "APPSETTING_WEBSITE_SITE_NAME" in os.environ:
-        return KeyVaultClient(MSIAuthentication(
-            resource='https://vault.azure.net'
-        ))
-    else:
-        return get_client_from_cli_profile(KeyVaultClient)
+    return KeyVaultClient(ServicePrincipalCredentials(
+        client_id=os.environ.get("CLIENT_ID"),
+        secret=os.environ.get("CLIENT_SECRET"),
+        tenant=os.environ.get("TENANT_ID"),
+        resource='https://vault.azure.net'
+    ))

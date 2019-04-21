@@ -15,8 +15,10 @@
 * [Step 8 - Create and Activate a Python Virtual Environment](#step-8---create-and-activate-a-python-virtual-environment)
 * [Step 9 - Install Dependencies](#step-9---install-dependencies)
 * [Step 10 - Configure Application Settings](#step-10---configure-application-settings)
-* [Step 11 - Test the Azure Function Locally](#step-11---test-the-azure-function-locally)
-* [Step 12 - Deploy the Azure Function to Azure Cloud](#step-12---deploy-the-azure-function-to-azure-cloud)
+* [Step 11 - Create an Azure Active Directory Service Principal](#step-11---create-an-azure-active-directory-service-principal)
+* [Step 12 - Test the Azure Function Locally](#step-12---test-the-azure-function-locally)
+* [Step 13 - Deploy the Azure Function to Azure Cloud](#step-13---deploy-the-azure-function-to-azure-cloud)
+* [Troubleshoot](#troubleshoot)
 
 ## Overview
 
@@ -32,6 +34,7 @@ By following this solution, you will learn how to:
 * POSIX compliant command line
 * [Go Ethereum](https://geth.ethereum.org/)
 * [Python 3.6](https://www.python.org/downloads/release/python-368/)
+* [Python venv](https://docs.python.org/3.6/library/venv.html)
 * [Git](https://www.git-scm.com/)
 * [Docker](https://docs.docker.com/install/)
 * [Curl](https://curl.haxx.se/download.html)
@@ -73,7 +76,7 @@ Next you create a Key Vault using the resource group created in the previous ste
 ```bash
 export YourKeyVaultName=<YourKeyVaultName>
 export YourResourceGroupName=<YourResourceGroupName>
-az keyvault create --name "$YourKeyVaultName" --resource-group "$YourResourceGroupName" --location "eastasia"
+az keyvault create --name "$YourKeyVaultName" --resource-group "$YourResourceGroupName" --location "westus"
 ```
 
 At this point, your Azure account is the only one authorized to perform any operations on this new vault.
@@ -131,33 +134,59 @@ pip install -r requirements.txt
 
 ## Step 10 - Configure Application Settings 
 
-Open [local.settings.json](./local.settings.json) and change the following values with the results from the Azure CLI commands:
-
-**ETH_JSON_RPC**:
+First, copy [local.settings.sample.json](./local.settings.sample.json) to [local.settings.json](local.settings.json) by running:
 
 ```bash
-echo "http://$(az network public-ip show --ids $(az network lb frontend-ip show --resource-group "ethdev" --lb-name $(az network lb list --query [0].name | tr -d '"') --name LBFrontEnd --query publicIpAddress.id | tr -d '"') --query ipAddress | tr -d '"'):8540"
+cp local.settings.sample.json local.settings.json
 ```
 
-**VAULT_BASE_URL**: 
+Second, open [local.settings.json](./local.settings.json) and change the following values with the results from the Azure CLI commands:
 
+|local.settings.json field|Azure CLI Command|
+|-------------------------|-----------------|
+|ETH_JSON_RPC|<code>echo "http://$(az network public-ip show --ids $(az network lb frontend-ip show --resource-group "$YourResourceGroupName" --lb-name $(az network lb list --query [0].name &#124; tr -d '"') --name LBFrontEnd --query publicIpAddress.id &#124; tr -d '"') --query ipAddress &#124; tr -d '"'):8540"</code>|
+|VAULT_BASE_URL|<code>az keyvault show --name "$YourKeyVaultName" --query properties.vaultUri</code>|
+|KEYSTORE_SECRET_VERSION|<code>az keyvault secret list-versions --vault-name "$YourKeyVaultName" --name EthKeystore --query [-1].id &#124; tr -d '"' &#124; awk -F / '{print $NF}'</code>|
+|PASSPHRASE_SECRET_VERSION|<code>az keyvault secret list-versions --vault-name "$YourKeyVaultName" --name EthKeystorePassphrase --query [-1].id &#124; tr -d '"' &#124; awk -F / '{print $NF}'</code>|
+
+## Step 11 - Create an Azure Active Directory Service Principal
+
+To authorize the function for reading the created key vault, a service principal needs to be created on Azure Cloud Active Directory.
+
+Run the following command to create a service principal scoped by the created key vault in Step 4:
 ```bash
-az keyvault show --name "$YourKeyVaultName" --query properties.vaultUri
+export YourKeyVaultId=$(az keyvault show --resource-group $YourResourceGroupName --name $YourKeyVaultName --query id | tr -d '"')
+az ad sp create-for-rbac --name "eth-vault-reader" --role reader --scopes "$YourKeyVaultId"
 ```
 
-**KEYSTORE_SECRET_VERSION**:
+After the command is successfully executed, you will receive a JSON response like this:
 
-```bash
-az keyvault secret list-versions --vault-name "$YourKeyVaultName" --name EthKeystore --query [-1].id | tr -d '"' | awk -F / '{print $NF}'
+```
+{
+  "appId": "470008ce-ce24-4390-9087-cf5ed6d7f426",
+  "displayName": "eth-vault-reader",
+  "name": "http://eth-vault-reader",
+  "password": "cded66ce-a1b9-48bf-b9d8-da44758d30bd",
+  "tenant": "834c5c99-707d-4d0d-a288-e1f0444ec17c"
+}
 ```
 
-**PASSPHRASE_SECRET_VERSION**:
+Open your [local.settings.json](./local.settings.json), then fill in the following fields with the values of the JSON response from service principal creation correspondingly: 
 
-```bash
-az keyvault secret list-versions --vault-name "$YourKeyVaultName" --name EthKeystorePassphrase --query [-1].id | tr -d '"' | awk -F / '{print $NF}'
-``` 
+|local.settings.json field|Service Principal JSON response field|
+|-------------------------|-------------------------------------|
+|CLIENT_ID|appId|
+|TENANT_ID|tenant|
+|CLIENT_SECRET|password|
 
-## Step 11 - Test the Azure Function Locally
+Next, create a readonly access policy to key vault for the service principal: 
+
+```
+export YourServicePrincipalObjectId=$(az ad sp show --id http://eth-vault-reader --query objectId | tr -d '"')
+az keyvault set-policy --name $YourKeyVaultName --object-id $YourServicePrincipalObjectId --secret-permissions get
+```
+
+## Step 12 - Test the Azure Function Locally
 
 First, compile and run the Azure Function locally:
 
@@ -173,35 +202,38 @@ curl http://localhost:7071/api/send-test-transaction
 
 An Ethereum transaction receipt will be returned after a few seconds if the transaction is successfully sent to the PoA network. 
 
-
-## Step 12 - Deploy the Azure Function to Azure Cloud
+## Step 13 - Deploy the Azure Function to Azure Cloud
 
 To deploy the Azure Function to Azure Cloud, run the following commands:
 
-Create a storage account for storing Azure Function artifacts:
-```bash
-az storage account create --name akvfunctionspython --location eastasia --resource-group $YourResourceGroupName --sku Standard_LRS
+Create a storage account for storing the artifacts of Azure Functions:
+```
+export YourFunctionName=akv-functions-python
+export YourStorageAccountName=akvfunctionspython
+az storage account create --name $YourStorageAccountName --location westus \
+    --resource-group $YourResourceGroupName --sku Standard_LRS
 ```
 
-Create a Linux function app with Python runtime:
-```bash
-az functionapp create --resource-group $YourResourceGroupName --os-type Linux --runtime python --consumption-plan-location eastasia --name akv-functions-python --storage-account akvfunctionspython
+Create a function app with `python` runtime under Linux OS:
+```
+az functionapp create --resource-group $YourResourceGroupName --consumption-plan-location westus \
+    --name $YourFunctionName --storage-account $YourStorageAccountName --os-type linux --runtime python 
 ```
 
-Assign readonly permissions of Azure Key Vault to the created function app: 
-```bash
-export YourFunctionName=$(az functionapp list --query [-1].name | tr -d '"')
-az functionapp identity assign --name $YourFunctionName --resource-group $YourResourceGroupName
-export YourFunctionObjectId=$(az functionapp identity show --resource-group $YourResourceGroupName --name $YourFunctionName --query principalId | tr -d '"')
-az keyvault set-policy --name $YourKeyVaultName --object-id $YourFunctionObjectId --secret-permissions get
+Last, bundle and publish the function with local settings:
+```
+func azure functionapp publish $YourFunctionName --publish-local-settings --overwrite-settings --build-native-deps
 ```
 
-Publish the function:
+To test the deployed Azure Function, run:
 ```bash
-func azure functionapp publish akv-functions-python --publish-local-settings --overwrite-settings --build-native-deps
+curl https://$YourFunctionName.azurewebsites.net/api/create-test-transaction
 ```
 
-To test the published Azure Function, run:
-```bash
-curl https://$YourFunctionName.azurewebsites.net/api/send-test-transaction
-```
+## Troubleshoot
+
+### Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock
+By default Docker only allows root user to connect to its daemon on Linux, follow [this guide](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user) to manage Docker as a non-root user.
+
+### There was an error restoring dependencies.ERROR: cannot install <package name - version> dependency: binary dependencies without wheels are not supported.
+Check [this link](https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference-python#publishing-to-azure).
