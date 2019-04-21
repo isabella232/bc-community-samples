@@ -237,3 +237,6 @@ By default Docker only allows root user to connect to its daemon on Linux, follo
 
 ### There was an error restoring dependencies.ERROR: cannot install <package name - version> dependency: binary dependencies without wheels are not supported.
 Check [this link](https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference-python#publishing-to-azure).
+
+### Preparing archive... Value cannot be null.
+This is a [known issue](https://github.com/Azure/azure-functions-python-worker/issues/387) that Azure Functions in Python cannot be re-published. Please delete the created function app before you re-publish your function. 
