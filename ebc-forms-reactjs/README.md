@@ -7,10 +7,14 @@ For CORS reasons it needs to run using an HTTP server (don't open using `file://
 Either:
 
 1. open it served on GitHub pages:  https://jakubner.github.io/bc-community-samples/ebc-forms-reactjs/app/index.html
+    * using browser open `https://jakubner.github.io/bc-community-samples/ebc-forms-reactjs/app/index.html`.
 1. serve the [app](app) folder yourself, e.g.: `http-server app`
     * Above requires a simple HTTP server installed with: `npm install -g https-server`.
+    * using browser open `http://localhost:8080`.
 
-Using browser open `http://localhost:8080`.
+> Please Note
+>
+> App doesn't have spinners (or any indication that it's working).  Just please be patient.  When you hit either the *get* or *set* button, just wait a moment for the result.  For the *set* feature factor in the 10-15 seconds for the Rinkeby network to transact.
 
 In the UI enter some string into the *What's the last word?* field and click *set*.
 
