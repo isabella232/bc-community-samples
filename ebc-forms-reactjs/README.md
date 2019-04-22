@@ -4,7 +4,7 @@ The react app is in [app/index.html](app/index.html).
 
 For CORS reasons it needs to run using an HTTP server (don't open using `file://`).
 
-Run the [/app](/app) folder as HTTP root, e.g.: `http-server app`
+Run the [app](app) folder as HTTP root, e.g.: `http-server app`
 
 > Above requires a simple HTTP server installed with: `npm install -g https-server`.
 
