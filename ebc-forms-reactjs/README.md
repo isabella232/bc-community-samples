@@ -45,7 +45,7 @@ Form was created with the following steps:
 
 ## Logic Apps Used
 
-There are four Azure *Logic Apps* used as per the ([azure/](azure/)) folder.
+There are four Azure *Logic Apps* used as per the ([azure](azure)) folder.
 
 They are organized as per the figure below:
 
