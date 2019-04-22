@@ -1,0 +1,64 @@
+{
+  "$connections": {
+    "value": {
+      "blockchainethereum": {
+        "connectionId": "/subscriptions/02c27727-30e5-4ae2-b0a3-a42f80a73007/resourceGroups/test-rg/providers/Microsoft.Web/connections/blockchainethereum",
+        "connectionName": "blockchainethereum",
+        "id": "/subscriptions/02c27727-30e5-4ae2-b0a3-a42f80a73007/providers/Microsoft.Web/locations/eastus/managedApis/blockchainethereum"
+      }
+    }
+  },
+  "definition": {
+    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+    "actions": {
+      "Query_smart_contract_function_(incurring_no_gas_cost)": {
+        "inputs": {
+          "host": {
+            "connection": {
+              "name": "@parameters('$connections')['blockchainethereum']['connectionId']"
+            }
+          },
+          "method": "post",
+          "path": "/contract/functions/@{encodeURIComponent(encodeURIComponent('get'))}/query",
+          "queries": {
+            "abi": "[{\"constant\":false,\"inputs\":[{\"name\":\"newLastWord\",\"type\":\"string\"}],\"name\":\"set\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"initialLastWord\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"constant\":true,\"inputs\":[],\"name\":\"get\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}]",
+            "contractAddress": "0x82598a8f0306628ea389e2d64f5546f38dc259f0"
+          }
+        },
+        "runAfter": {},
+        "type": "ApiConnection"
+      },
+      "Response": {
+        "inputs": {
+          "body": "@body('Query_smart_contract_function_(incurring_no_gas_cost)')?['Function Output']",
+          "statusCode": 200
+        },
+        "kind": "Http",
+        "runAfter": {
+          "Query_smart_contract_function_(incurring_no_gas_cost)": [
+            "Succeeded"
+          ]
+        },
+        "type": "Response"
+      }
+    },
+    "contentVersion": "1.0.0.0",
+    "outputs": {},
+    "parameters": {
+      "$connections": {
+        "defaultValue": {},
+        "type": "Object"
+      }
+    },
+    "triggers": {
+      "manual": {
+        "inputs": {
+          "method": "GET",
+          "schema": {}
+        },
+        "kind": "Http",
+        "type": "Request"
+      }
+    }
+  }
+}

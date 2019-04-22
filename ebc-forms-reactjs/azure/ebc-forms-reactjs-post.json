@@ -1,0 +1,45 @@
+{
+  "definition": {
+    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+    "actions": {
+      "ebc-forms-reactjs": {
+        "inputs": {
+          "body": {
+            "lastWord": "@triggerBody()['lastWord']"
+          },
+          "host": {
+            "triggerName": "manual",
+            "workflow": {
+              "id": "/subscriptions/02c27727-30e5-4ae2-b0a3-a42f80a73007/resourceGroups/test-rg/providers/Microsoft.Logic/workflows/ebc-forms-reactjs"
+            }
+          }
+        },
+        "runAfter": {},
+        "type": "Workflow"
+      }
+    },
+    "contentVersion": "1.0.0.0",
+    "outputs": {},
+    "parameters": {},
+    "triggers": {
+      "manual": {
+        "inputs": {
+          "schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "properties": {
+              "lastWord": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "lastWord"
+            ],
+            "type": "object"
+          }
+        },
+        "kind": "Http",
+        "type": "Request"
+      }
+    }
+  }
+}
