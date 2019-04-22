@@ -14,7 +14,7 @@ Either:
 
 > Please Note
 >
-> App doesn't have spinners (or any indication that it's working).  Just please be patient.  When you hit either the *get* or *set* button, just wait a moment for the result.  For the *set* feature factor in the 10-15 seconds for the Rinkeby network to transact.
+> For readability (since it's a demo) the app doesn't have spinners (or any UI indication that it's busy communicating with Azure).  Just please be patient.  When you hit either the *get* or *set* button, just wait a moment for the result.  For the *set* feature factor in the 10-15 seconds for the Rinkeby network to transact.
 
 In the UI enter some string into the *What's the last word?* field and click *set*.
 
