@@ -101,24 +101,24 @@ https://prod-10.eastus.logic.azure.com:443/workflows/b171adcf5dc64e3f9b36a551757
 
 ## ebc-forms-reactjs-form
 
-![](screenshots/ebc-forms-reactjs-form.png)
+![](azure/screenshots/ebc-forms-reactjs-form.png)
 
 ## ebc-forms-reactjs-post
 
-![](screenshots/ebc-forms-reactjs-post.png)
+![](azure/screenshots/ebc-forms-reactjs-post.png)
 
 ## ebc-forms-reactjs-get
 
-![](screenshots/ebc-forms-reactjs-get.png)
+![](azure/screenshots/ebc-forms-reactjs-get.png)
 
 ## ebc-forms-reactjs
 
-![](screenshots/ebc-forms-reactjs.png)
+![](azure/screenshots/ebc-forms-reactjs.png)
 
 ## the form
 
-![](screenshots/form.png)
+![](azure/screenshots/form.png)
 
 ## the app
 
-![](screenshots/app.png)
+![](azure/screenshots/app.png)
