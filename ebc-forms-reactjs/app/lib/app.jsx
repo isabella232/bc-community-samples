@@ -8,7 +8,8 @@ class App extends React.Component {
     this.state = {
       lastWordWritten: '',
       lastWordRead: null,
-      error: null
+      error: null,
+      loading: false
     };
   }
 
@@ -18,24 +19,27 @@ class App extends React.Component {
 
   // set last word
   set = () => {
+    this.setState({loading: true});
     fetch(this.props.postUrl, { 
       method: "POST", 
       headers: { "Content-Type": "application/json; charset=utf-8" }, 
       body: JSON.stringify({ lastWord: this.state.lastWordWritten }) 
     })
-    .catch(error => this.setState({ error: error }));
+    .then(response => this.setState({ loading: false }))
+    .catch(error => this.setState({ error: error, loading: false }));
     return false;
   }
 
   // get last word
   get = () => {
+    this.setState({ loading: true });
     fetch(this.props.getUrl, { 
       method: "GET", 
       headers: { "Content-Type": "application/json; charset=utf-8" }
     })
     .then(result => result.text())
-    .then(result => {this.setState({lastWordRead: result})})
-    .catch(error => this.setState({error: error}));
+    .then(result => {this.setState({lastWordRead: result, loading: false})})
+    .catch(error => this.setState({error: error, loading: false}));
     return false;
   }
 
@@ -54,6 +58,9 @@ class App extends React.Component {
     return (
       <div>
         <div class="ui middle aligned center aligned grid" style={{marginTop:"20px"}}>
+          <div class={`ui ${this.state.loading ? "active" : ""} dimmer`}>
+            <div class="ui loader"></div>
+          </div>
           <div class="row">
             <div class="column">
               <h2 class="ui teal header">
