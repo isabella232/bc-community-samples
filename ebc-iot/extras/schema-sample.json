@@ -1,0 +1,14 @@
+{
+    "properties": {
+        "humidity": {
+            "type": "integer"
+        },
+        "temperature": {
+            "type": "integer"
+        },
+        "time": {
+            "type": "integer"
+        }
+    },
+    "type": "object"
+}
