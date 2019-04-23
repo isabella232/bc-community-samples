@@ -8,10 +8,8 @@
 
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
 
-  <script crossorigin  src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
   <script crossorigin  src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
   <script crossorigin  src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
-  <script crossorigin  src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
   <script crossorigin  src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
   <script crossorigin type="text/babel" data-presets="es2015,react" src="lib/app.jsx"></script>
 </head>
@@ -19,6 +17,9 @@
 
   <script>
     /*** CONFIGURE URLS HERE ***/
+
+    // URL to Microsoft Form
+    var formUrl = 'https://forms.office.com/Pages/ResponsePage.aspx?id=3Lt3--vGs02UAOXn9NV_scwAE4PWTPxFg9B_QZcw6HlUNzlKTVFQWEVTWUU1OTVRN0JKTlRRNjZISC4u'
 
     // URL to hit the 'ebc-forms-reactjs-post' Azure Logic App
     var postUrl = 'https://prod-25.eastus.logic.azure.com:443/workflows/d8abe37d488d471cbe2ece87bcce4086/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=qhE4E23eWol2jDy6OgjpwbB_OO-8ozmyXBQGYQN096s';
@@ -44,7 +45,11 @@
     if (!supportsES6) {
       alert("Browser needs to support ES6.");
     } else {
-      ReactDOM.render(<App postUrl={postUrl} getUrl={getUrl}/>, document.getElementById('app'));
+      ReactDOM.render(<App 
+        formUrl={formUrl}
+        postUrl={postUrl} 
+        getUrl={getUrl}/>, 
+        document.getElementById('app'));
     }
   </script>
 </body>

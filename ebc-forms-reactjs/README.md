@@ -18,6 +18,8 @@ In the UI enter some string into the *What's the last word?* field and click *se
 
 Use the form:  https://forms.office.com/Pages/ResponsePage.aspx?id=3Lt3--vGs02UAOXn9NV_scwAE4PWTPxFg9B_QZcw6HlUNzlKTVFQWEVTWUU1OTVRN0JKTlRRNjZISC4u
 
+There is a button to the form in the above *React Quick Start* as well.
+
 Set some string into the *What's the last word?* field and submit form.
 
 # Observe Output

@@ -57,17 +57,29 @@ class App extends React.Component {
     // main UI
     return (
       <div>
+        <div class={`ui ${this.state.loading ? "active" : ""} dimmer`}>
+          <div class="ui loader"></div>
+        </div>
         <div class="ui middle aligned center aligned grid" style={{marginTop:"20px"}}>
-          <div class={`ui ${this.state.loading ? "active" : ""} dimmer`}>
-            <div class="ui loader"></div>
-          </div>
-          <div class="row">
-            <div class="column">
+          <div class="column">
+            <div class="row">
               <h2 class="ui teal header">
                   <div class="content">
                       <i>ebc-forms-reactjs</i> demo
                   </div>
               </h2>
+            </div>
+            <div class="row" style={{ marginTop: "40px" }}>
+              <a href={this.props.formUrl} target="_blank">
+                <button class="ui primary button" style={{ marginRight: "20px" }}>
+                  set with <em>Microsoft Form</em>
+                </button>
+              </a>                
+            </div>
+            <div class="row" style={{ marginTop: "10px" }}>
+              <h4>&mdash; OR &mdash;</h4>
+            </div>
+            <div class="row" style={{ marginTop: "10px" }}>
               <div class="ui labeled input">
                 <div class="ui label">
                   What's the last word?
@@ -78,9 +90,7 @@ class App extends React.Component {
                 set
               </button>
             </div>
-          </div>
-          <div class="row">                     
-            <div class="column">
+            <div class="row" style={{ marginTop: "40px" }}>
               <button class="ui primary button" style={{ marginRight: "20px" }} onClick={this.get}>
                 get
               </button>
@@ -91,8 +101,8 @@ class App extends React.Component {
                 <input type='text' disabled value={this.state.lastWordRead}></input>
               </div>
             </div>
+            {error}
           </div>
-          {error}
         </div>
       </div>
     );
