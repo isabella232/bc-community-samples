@@ -20,9 +20,9 @@ A simple React application that has an interactive slider that can be used to mo
 
 An Express.js application that uses the Node.js Device SDK for IoT Hub: https://github.com/Azure/azure-iot-sdk-node
 
-#### IOT Hub
+#### IoT Hub
 
-An [IOT](https://docs.microsoft.com/en-gb/azure/iot-hub/) Hub to capture data from devices.
+An [IoT Hub](https://docs.microsoft.com/en-gb/azure/iot-hub/) Hub to capture data from devices.
 
 #### Azure Stream Analytics
 
@@ -30,13 +30,15 @@ An [Azure Stream Analytics](https://docs.microsoft.com/en-gb/azure/stream-analyt
 
 #### Service Bus
 
-A service bus to connect the output of the Azure Stream Analytics stage with a logic app that uses a Blockchain connector.
+A [Service bus messaging service](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quickstart-portal) to connect the output of the Azure Stream Analytics stage with a logic app that uses a Blockchain connector.
 
 #### Azure Logic App
 
-The [Azure Logic App](https://docs.microsoft.com/en-gb/azure/logic-apps/) receives events from the Service bus, parse the information in a desired format and then logs the information in an smart contract located in the contract folder.
+The [Azure Logic App](https://docs.microsoft.com/en-gb/azure/logic-apps/) receives events from the Service bus, parse the information in a desired format and then logs the information in an smart contract that is deployed to an Ethereum Private Blockchain network.
 
-## Guide
+## Step by Step Guide
+
+The step by step guide is split into 4 parts:
 
 - Part 1: Data collection from Simulator to IoT Hub
 - Part 2: Data processing and filter of anomalies
@@ -45,7 +47,7 @@ The [Azure Logic App](https://docs.microsoft.com/en-gb/azure/logic-apps/) receiv
 
 ## Part 1: Data collection from Simulator to IoT Hub
 
-The first part involves the data capture from the simulator and the IOT Hub recording the information. 
+The first part involves the data capture from the simulator and then record the information in Azure IoT Hub. 
 
 ### IOT Hub
 
