@@ -45,11 +45,11 @@ The step by step guide is split into 4 parts:
 - Part 3: Setting up private network and Smart contract deployment
 - Part 4: Azure logic app to trigger smart contract when an anomalie is found
 
-## Part 1: Data collection from Simulator to IoT Hub
+### Part 1: Data collection from Simulator to IoT Hub
 
 The first part involves the data capture from the simulator and then record the information in Azure IoT Hub. 
 
-### IOT Hub
+#### IOT Hub
 
 The first thing we need to do is to create the IOT Hub.
 
@@ -59,7 +59,7 @@ Once we completed the creation of the IOT Hub, we need to [authenticate a sample
 
 Save the connection string, as we are going to need it, in order to be able to push data from our IOT device simulator.
 
-### Backend
+#### Backend
 
 The backend uses [Express.js](https://expressjs.com/)
 
@@ -83,7 +83,7 @@ Once the message is received, it will use the Azure IoT Node.js SDK to send a me
 
 Before we are able to push data to the IOT Hub, we need the IOT Simulator.
 
-### React.js IOT Device Simulator
+#### React.js IOT Device Simulator
 
 The simulator was built with [create-react-app](https://facebook.github.io/create-react-app/docs/adding-typescript) and typescript.
 
@@ -105,23 +105,19 @@ There is also a setInterval method that is sending the values of the sliders to 
 
 ![Device Simulator](./images/device-simulator.png)
 
-### Part 1 Summary
-
 At this point you should be able to see in the express console the temperature and humidity values from the IoT simulator.
 
 ![Logs](./images/logs.png)
 
-And if you modify the slider, the values should change.
-
-Now, we should go to the IOT Hub in the Azure portal and in the metrics section and we should see the messages that were sent.
+Now, we can go to the IOT Hub in the Azure portal and in the metrics section and we should see the messages that were sent.
 
 ![Hub Metrics](./images/hub-metrics.png)
 
-## Part 2: Data processing and filter of anomalies
+### Part 2: Data processing and filter of anomalies
 
 In this part, we are going to process the information captured in part 1 and we will log the values in an smart contract.
 
-### Azure Stream Analytics
+#### Azure Stream Analytics
 
 We need to create an Azure Stream Analytic job.
 
@@ -180,7 +176,7 @@ It means that, if in a window of 30 seconds, the average of temperature and humi
 
 [Blockchain connector](https://docs.microsoft.com/en-us/connectors/blockchainethereum/)
 
-## Part 3: Setting up private network and Smart contract deployment
+### Part 3: Setting up private network and Smart contract deployment
 
 Create a virtual machine -> [Here](https://portal.azure.com/#create/Canonical.UbuntuServer1604LTS-ARM)
 
@@ -222,7 +218,7 @@ The smart contract has 1 function called IngestTelemetry, which received the hum
 
 Within the function, we have a set of conditions that verify if the humidity and temperature are outside a range defined during the creation and put the state of the contract to OutOfCompliance.
 
-## Part 4: Azure logic app to trigger smart contract when an anomalie is found
+### Part 4: Azure logic app to trigger smart contract when an anomalie is found
 
 [Create an Azure Logic App](https://docs.microsoft.com/en-gb/azure/logic-apps/quickstart-create-first-logic-app-workflow#create-your-logic-app) 
 
