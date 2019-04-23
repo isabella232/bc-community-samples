@@ -1,0 +1,8 @@
+SELECT 
+    System.Timestamp AS OutputTime,
+    Avg(temperature) AS AvgTemperature,
+    Avg(humidity) AvgHumidity
+FROM
+    input TIMESTAMP BY time
+GROUP BY TumblingWindow(second,30)
+HAVING AvgTemperature > 75 AND AvgHumidity > 75
