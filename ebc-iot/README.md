@@ -230,7 +230,7 @@ As the Service bus encoded the message, we need to deserialize and parse it in a
 
 [Create an HTTP triggered function](https://docs.microsoft.com/en-us/azure/azure-functions/functions-twitter-email#create-an-http-triggered-function)
 
-Use the following sample code(also located in /extras/AzureFunction.cs)
+Use the following sample code(also located in [/extras/AzureFunction.cs](./extras/AzureFunction.cs))
 
 ```csharp
 
