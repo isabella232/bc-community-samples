@@ -157,7 +157,7 @@ We now need to setup a Query to filter anomalies.
 
 The IoT Hub will provide the information to the Azure Stream Analytics job and we will create a query that is going to measure the average temperature and humidity in a certain window of time.
 
-The query is located in /extras/query.txt
+The query is located in [/extras/query.txt](./extras/query.txt)
 
 ```sql
 SELECT 
@@ -174,15 +174,11 @@ We have defined an average temperature and humidity range of 75.
 
 It means that, if in a window of 30 seconds, the average of temperature and humidity is greater than 75, then we will output to our Service Bus Queue a message that is going to trigger an Azure Logic App where we will execute a transaction against a real Blockchain.
 
-[Blockchain connector](https://docs.microsoft.com/en-us/connectors/blockchainethereum/)
-
 ### Part 3: Setting up private network and Smart contract deployment
 
 Create a virtual machine -> [Here](https://portal.azure.com/#create/Canonical.UbuntuServer1604LTS-ARM)
 
-Once completed, login to your VM using SSH and install Docker CE Edition
-
-[Follow the instructions ](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+Once completed, login to your VM using SSH and [Install Docker CE Edition](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 
 Once you have finished and docker is up and running
 
@@ -284,7 +280,7 @@ Add a next step and add an action to ParseJSON
 
 ![ParseJSON](./images/http-trigger.png)
 
-Use the sample payload that is in /extras/schema-sample.json
+Use the sample payload that is in [/extras/schema-sample.json](./extras/schema-sample.json)
 
 ```javascript
 {
@@ -310,7 +306,7 @@ Add a next step and add an action of type "Initialize varialbe" to store the val
 
 Add a next step and add an action of type "Ethereum Blockchain" to execute the smart contract
 
-Use the ABI that is in the /contract/RefrigeratedTransportation.json file and use the address that Remix provides when we deploy the contract.
+Use the ABI that is in the [/contract/RefrigeratedTransportation.json](./contract/RefrigeratedTransportation.json) file and use the address that Remix provides when we deploy the contract.
 
 ![Email action](./images/contract.png)
 
@@ -320,7 +316,7 @@ Add a next step and add an action of type "Send email" to send an email once an 
 
 Now, we just need to wait for the next message to arrive and the logic app should run.
 
-![Logic App](./images/remix-final-state.png)
+![Logic App](./images/final-setup.png)
 
 Finally, we can go to Remix and verify the status of the smart contract
 
