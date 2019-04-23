@@ -316,7 +316,7 @@ Add a next step and add an action of type "Send email" to send an email once an 
 
 Now, we just need to wait for the next message to arrive and the logic app should run.
 
-![Logic App](./images/final-setup.png)
+![Logic App](./images/final-result.png)
 
 Finally, we can go to Remix and verify the status of the smart contract
 
