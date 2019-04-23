@@ -36,9 +36,14 @@ A service bus to connect the output of the Azure Stream Analytics stage with a l
 
 The [Azure Logic App](https://docs.microsoft.com/en-gb/azure/logic-apps/) receives events from the Service bus, parse the information in a desired format and then logs the information in an smart contract located in the contract folder.
 
-## Instructions
+## Guide
 
-## Part 1
+- Part 1: Data collection from Simulator to IoT Hub
+- Part 2: Data processing and filter of anomalies
+- Part 3: Setting up private network and Smart contract deployment
+- Part 4: Azure logic app to trigger smart contract when an anomalie is found
+
+## Part 1: Data collection from Simulator to IoT Hub
 
 The first part involves the data capture from the simulator and the IOT Hub recording the information. 
 
@@ -108,7 +113,7 @@ Now, we should go to the IOT Hub in the Azure portal and in the metrics section 
 
 ![Hub Metrics](./images/hub-metrics.png)
 
-## Part 2
+## Part 2: Data processing and filter of anomalies
 
 In this part, we are going to process the information captured in part 1 and we will log the values in an smart contract.
 
@@ -171,17 +176,15 @@ It means that, if in a window of 30 seconds, the average of temperature and humi
 
 [Blockchain connector](https://docs.microsoft.com/en-us/connectors/blockchainethereum/)
 
-### Private Blockchain Creation
+## Part 3: Setting up private network and Smart contract deployment
 
-Create a virtual machine
+Create a virtual machine -> [Here](https://portal.azure.com/#create/Canonical.UbuntuServer1604LTS-ARM)
 
-Install Docker CE Edition
+Once completed, login to your VM using SSH and install Docker CE Edition
 
-Follow the instructions [Here](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+[Follow the instructions ](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 
-Once you have finished, we are going to use a custom Docker Image to setup our Blockchain Network
-
-The code of the image is https://github.com/EdsonAlcala/quorum-n-nodes
+Once you have finished and docker is up and running
 
 Run
 
@@ -191,23 +194,25 @@ And
 
 docker exec -it quorum-n-nodes start-nodes
 
-Test connection
+The code of the image is https://github.com/EdsonAlcala/quorum-n-nodes
 
-Go to Remix
+Once the command is completed, go to the Azure Portal, in the Network security group setting and open the port range: 22001-22004
 
-Use your virtual machine URL 
+Go to Remix and create a new contract with the code provided in the /contract folder, which is a minimal version of the [refrigerated transport smart contract](https://github.com/Azure-Samples/blockchain/tree/master/blockchain-workbench/application-and-smart-contract-samples/refrigerated-transportation/ethereum)
 
-<Image of VM URL>
+In Remix, go to environment and select Web3 Provider
 
+![Remix environment](./images/remix-environment.png)
 
-Run 
-SELECT 
-    System.Timestamp AS OutputTime,
-    dspl AS SensorName,
-    Avg(temp) AS AvgTemperature
-INTO
-   output
-FROM
-    InputStream TIMESTAMP BY time
-GROUP BY TumblingWindow(second,30),dspl
-HAVING Avg(temp)>100
+Then, change the provider and use the URL of your virtual machine and the port 22001
+
+![Remix environment](./images/remix-endpoint.png)
+
+Paste the code and deploy the contract using the values:
+
+> 0, 75, 0, 75
+
+Which refers to the minimum and maximum humidity and temperature.
+
+## Part 4: Azure logic app to trigger smart contract when an anomalie is found
+
