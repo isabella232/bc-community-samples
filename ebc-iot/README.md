@@ -12,27 +12,27 @@ The following image illustrates the stages of the solution.
 
 ## Description of components
 
-### React.js IoT Device Simulator
+#### React.js IoT Device Simulator
 
 A simple React application that has an interactive slider that can be used to modify the values of temperature and humidity.
 
-### Node.js Backend
+#### Node.js Backend
 
 An Express.js application that uses the Node.js Device SDK for IoT Hub: https://github.com/Azure/azure-iot-sdk-node
 
-### IOT Hub
+#### IOT Hub
 
 An [IOT](https://docs.microsoft.com/en-gb/azure/iot-hub/) Hub to capture data from devices.
 
-### Azure Stream Analytics
+#### Azure Stream Analytics
 
 An [Azure Stream Analytics](https://docs.microsoft.com/en-gb/azure/stream-analytics/) to process data in real time
 
-### Service Bus
+#### Service Bus
 
 A service bus to connect the output of the Azure Stream Analytics stage with a logic app that uses a Blockchain connector.
 
-### Azure Logic App
+#### Azure Logic App
 
 The [Azure Logic App](https://docs.microsoft.com/en-gb/azure/logic-apps/) receives events from the Service bus, parse the information in a desired format and then logs the information in an smart contract located in the contract folder.
 
