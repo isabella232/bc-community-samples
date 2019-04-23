@@ -55,7 +55,9 @@ The first thing we need to do is to create the IOT Hub.
 
 Please follow the instructions [Here](https://docs.microsoft.com/en-us/azure/iot-hub/tutorial-connectivity#create-an-iot-hub) to create it. 
 
-Once we completed the creation of the IOT Hub, be sure to save the connection string credentials that we are going to need to be able to push data from our IOT device simulator.
+Once we completed the creation of the IOT Hub, we need to [authenticate a sample device](https://docs.microsoft.com/en-us/azure/iot-hub/tutorial-connectivity#check-device-authentication)
+
+Save the connection string, as we are going to need it, in order to be able to push data from our IOT device simulator.
 
 ### Backend
 
@@ -163,13 +165,13 @@ The query is located in /extras/query.txt
 
 ```sql
 SELECT 
-    System.Timestamp AS OutputTime,
-    Avg(temperature) AS AvgTemperature,
-    Avg(humidity) AvgHumidity
+    System.Timestamp AS time,
+    Avg(temperature) AS temperature,
+    Avg(humidity) AS humidity
 FROM
     input TIMESTAMP BY time
 GROUP BY TumblingWindow(second,30)
-HAVING AvgTemperature > 75 AND AvgHumidity > 75
+HAVING temperature > 75 AND humidity > 75
 ```
 
 We have defined an average temperature and humidity range of 75.
@@ -216,5 +218,114 @@ Paste the code and deploy the contract using the values:
 
 Which refers to the minimum and maximum humidity and temperature.
 
+The smart contract has 1 function called IngestTelemetry, which received the humidity, temperature and timestamp.
+
+Within the function, we have a set of conditions that verify if the humidity and temperature are outside a range defined during the creation and put the state of the contract to OutOfCompliance.
+
 ## Part 4: Azure logic app to trigger smart contract when an anomalie is found
 
+[Create an Azure Logic App](https://docs.microsoft.com/en-gb/azure/logic-apps/quickstart-create-first-logic-app-workflow#create-your-logic-app) 
+
+Then, create a trigger and select Service Bus
+
+![Trigger](./images/trigger.png)
+
+Select the queue and the interval and frequency to check for items in the queue.
+
+![Trigger](./images/trigger-setup.png)
+
+As the Service bus encoded the message, we need to deserialize and parse it in an Azure function.
+
+[Create an HTTP triggered function](https://docs.microsoft.com/en-us/azure/azure-functions/functions-twitter-email#create-an-http-triggered-function)
+
+Use the following sample code(also located in /extras/AzureFunction.cs)
+
+```csharp
+
+#r "Newtonsoft.Json"
+
+using System.Net;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
+using Newtonsoft.Json;
+using System.Text;
+
+public static async Task<HttpResponseMessage> Run(HttpRequest req, ILogger log)
+{
+    log.LogInformation("C# HTTP trigger function processed a request.");
+    string name = req.Query["content"];
+
+    string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+    log.LogInformation($"Message received {requestBody}");
+    
+    string base64Decoded = ASCIIEncoding.ASCII.GetString(System.Convert.FromBase64String(requestBody));
+    log.LogInformation($"Message decoded {base64Decoded}");
+
+    int start = base64Decoded.IndexOf("{");
+    int end = base64Decoded.LastIndexOf("}");
+    string result = base64Decoded.Substring(start, end - start + 1);
+    log.LogInformation($"Message decoded as JSON {result}");
+
+    dynamic data = JsonConvert.DeserializeObject(result);
+    log.LogInformation($"DATA {data}");
+    Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+    log.LogInformation($"unixTimestamp {unixTimestamp}");
+    data.time = unixTimestamp;
+    data.temperature = (Int32)data.temperature;
+    data.humidity = (Int32)data.humidity;
+    
+    log.LogInformation($"DATA {data}");
+    string jsonToReturn = JsonConvert.SerializeObject(data);
+
+    return new HttpResponseMessage(HttpStatusCode.OK) {
+        Content = new StringContent(jsonToReturn, Encoding.UTF8, "application/json")
+    };
+}
+
+```
+
+Add a next step and add an action to ParseJSON
+
+![ParseJSON](./images/http-trigger.png)
+
+Use the sample payload that is in /extras/schema-sample.json
+
+```javascript
+{
+    "properties": {
+        "humidity": {
+            "type": "integer"
+        },
+        "temperature": {
+            "type": "integer"
+        },
+        "time": {
+            "type": "integer"
+        }
+    },
+    "type": "object"
+}
+
+```
+
+Add a next step and add an action of type "Initialize varialbe" to store the values in a variable
+
+![ParseJSON](./images/variable.png)
+
+Add a next step and add an action of type "Ethereum Blockchain" to execute the smart contract
+
+Use the ABI that is in the /contract/RefrigeratedTransportation.json file and use the address that Remix provides when we deploy the contract.
+
+![Email action](./images/contract.png)
+
+Add a next step and add an action of type "Send email" to send an email once an out of compliance status has been reached
+
+![Email action](./images/email-action.png)
+
+Now, we just need to wait for the next message to arrive and the logic app should run.
+
+![Logic App](./images/remix-final-state.png)
+
+Finally, we can go to Remix and verify the status of the smart contract
+
+![Remix Final](./images/remix-final-state.png)
