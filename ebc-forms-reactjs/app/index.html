@@ -31,26 +31,11 @@
   <div id="app"></div>
 
   <script type="text/babel" data-presets="es2015,react">
-    // @return 'true' if ES6 supported as per test from https://www.bram.us/2016/10/31/checking-if-a-browser-supports-es6/
-    var supportsES6 = function () {
-      try {
-        new Function("(a = 0) => a");
-        return true;
-      }
-      catch (err) {
-        return false;
-      }
-    }();
-
-    if (!supportsES6) {
-      alert("Browser needs to support ES6.");
-    } else {
-      ReactDOM.render(<App 
-        formUrl={formUrl}
-        postUrl={postUrl} 
-        getUrl={getUrl}/>, 
-        document.getElementById('app'));
-    }
+    ReactDOM.render(<App 
+      formUrl={formUrl}
+      postUrl={postUrl} 
+      getUrl={getUrl}/>, 
+      document.getElementById('app'));
   </script>
 </body>
 
