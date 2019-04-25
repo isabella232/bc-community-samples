@@ -3902,11 +3902,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/Database.csproj",
+      "projectUniqueName": "/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/Database.csproj",
       "projectName": "WeatherInsurance.Integration.Database",
-      "projectPath": "/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/Database.csproj",
+      "projectPath": "/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/Database.csproj",
       "packagesPath": "/Users/steffen/.nuget/packages/",
-      "outputPath": "/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/obj/",
+      "outputPath": "/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
@@ -3923,8 +3923,8 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/Model.csproj": {
-              "projectPath": "/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/Model.csproj"
+            "/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/Model.csproj": {
+              "projectPath": "/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/Model.csproj"
             }
           }
         }

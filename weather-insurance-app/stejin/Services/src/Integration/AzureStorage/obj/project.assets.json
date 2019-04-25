@@ -262,11 +262,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/AzureStorage/AzureStorage.csproj",
+      "projectUniqueName": "/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/AzureStorage/AzureStorage.csproj",
       "projectName": "WeatherInsurance.Integration.AzureStorage",
-      "projectPath": "/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/AzureStorage/AzureStorage.csproj",
+      "projectPath": "/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/AzureStorage/AzureStorage.csproj",
       "packagesPath": "/Users/steffen/.nuget/packages/",
-      "outputPath": "/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/AzureStorage/obj/",
+      "outputPath": "/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/AzureStorage/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"

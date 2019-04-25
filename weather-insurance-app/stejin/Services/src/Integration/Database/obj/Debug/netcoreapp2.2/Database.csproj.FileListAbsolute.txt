@@ -19,3 +19,17 @@
 /Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/bin/output/WeatherInsurance.Integration.Database.pdb
 /Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/bin/output/WeatherInsurance.Domain.Model.dll
 /Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/bin/output/WeatherInsurance.Domain.Model.pdb
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/bin/output/WeatherInsurance.Integration.Database.deps.json
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/bin/output/WeatherInsurance.Integration.Database.runtimeconfig.json
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/bin/output/WeatherInsurance.Integration.Database.runtimeconfig.dev.json
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/bin/output/WeatherInsurance.Integration.Database.dll
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/bin/output/WeatherInsurance.Integration.Database.pdb
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/bin/output/WeatherInsurance.Domain.Model.dll
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/bin/output/WeatherInsurance.Domain.Model.pdb
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/obj/Debug/netcoreapp2.2/Database.csprojAssemblyReference.cache
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/obj/Debug/netcoreapp2.2/Database.csproj.CoreCompileInputs.cache
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/obj/Debug/netcoreapp2.2/Database.AssemblyInfoInputs.cache
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/obj/Debug/netcoreapp2.2/Database.AssemblyInfo.cs
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/obj/Debug/netcoreapp2.2/Database.csproj.CopyComplete
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/obj/Debug/netcoreapp2.2/WeatherInsurance.Integration.Database.dll
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/obj/Debug/netcoreapp2.2/WeatherInsurance.Integration.Database.pdb

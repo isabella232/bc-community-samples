@@ -224,11 +224,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/Model.csproj",
+      "projectUniqueName": "/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/Model.csproj",
       "projectName": "WeatherInsurance.Domain.Model",
-      "projectPath": "/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/Model.csproj",
+      "projectPath": "/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/Model.csproj",
       "packagesPath": "/Users/steffen/.nuget/packages/",
-      "outputPath": "/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/obj/",
+      "outputPath": "/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"

@@ -10,3 +10,12 @@
 /Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/bin/output/WeatherInsurance.Domain.Model.deps.json
 /Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/bin/output/WeatherInsurance.Domain.Model.dll
 /Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/bin/output/WeatherInsurance.Domain.Model.pdb
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/bin/output/WeatherInsurance.Domain.Model.deps.json
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/bin/output/WeatherInsurance.Domain.Model.dll
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/bin/output/WeatherInsurance.Domain.Model.pdb
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/obj/Debug/netstandard2.0/Model.csprojAssemblyReference.cache
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/obj/Debug/netstandard2.0/Model.csproj.CoreCompileInputs.cache
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/obj/Debug/netstandard2.0/Model.AssemblyInfoInputs.cache
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/obj/Debug/netstandard2.0/Model.AssemblyInfo.cs
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/obj/Debug/netstandard2.0/WeatherInsurance.Domain.Model.dll
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/obj/Debug/netstandard2.0/WeatherInsurance.Domain.Model.pdb

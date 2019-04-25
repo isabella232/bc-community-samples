@@ -10,3 +10,12 @@
 /Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/bin/output/WeatherInsurance.Integration.Blockchain.deps.json
 /Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/bin/output/WeatherInsurance.Integration.Blockchain.dll
 /Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/bin/output/WeatherInsurance.Integration.Blockchain.pdb
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/bin/output/WeatherInsurance.Integration.Blockchain.deps.json
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/bin/output/WeatherInsurance.Integration.Blockchain.dll
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/bin/output/WeatherInsurance.Integration.Blockchain.pdb
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/obj/Debug/netstandard2.0/Blockchain.csprojAssemblyReference.cache
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/obj/Debug/netstandard2.0/Blockchain.csproj.CoreCompileInputs.cache
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/obj/Debug/netstandard2.0/Blockchain.AssemblyInfoInputs.cache
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/obj/Debug/netstandard2.0/Blockchain.AssemblyInfo.cs
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/obj/Debug/netstandard2.0/WeatherInsurance.Integration.Blockchain.dll
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/obj/Debug/netstandard2.0/WeatherInsurance.Integration.Blockchain.pdb

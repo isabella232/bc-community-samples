@@ -2625,11 +2625,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/Blockchain.csproj",
+      "projectUniqueName": "/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/Blockchain.csproj",
       "projectName": "WeatherInsurance.Integration.Blockchain",
-      "projectPath": "/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/Blockchain.csproj",
+      "projectPath": "/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/Blockchain.csproj",
       "packagesPath": "/Users/steffen/.nuget/packages/",
-      "outputPath": "/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/obj/",
+      "outputPath": "/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"

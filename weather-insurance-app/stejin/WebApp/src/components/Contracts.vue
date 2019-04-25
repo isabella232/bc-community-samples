@@ -32,8 +32,9 @@
           <el-row :gutter="10"><el-col :span="5">Forecast</el-col><el-col :span="19">{{ c.forecast }}</el-col></el-row>
           <el-row :gutter="10"><el-col :span="5">Forecast Risk</el-col><el-col :span="19">{{ c.forecastRisk }}</el-col></el-row>
           <el-row :gutter="10">
-            <el-col :span="5">Source Code</el-col><el-col :span="7"><el-button :disabled="!c.hasCompiledCode" type="primary" size="mini" icon="el-icon-view" round @click="showSol(c.contractFileId)"></el-button></el-col>
-            <el-col :span="5">Abi</el-col><el-col :span="7"><el-button :disabled="!c.hasSourceCode" type="primary" size="mini" icon="el-icon-view" round @click="showJson(c.contractFileId)"></el-button></el-col>
+            <el-col :span="5">Contract Source</el-col>
+            <el-col :span="5"><el-button :disabled="!c.hasCompiledCode" type="primary" size="mini" icon="el-icon-view" round @click="showSol(c.contractFileId)">Source Code</el-button></el-col>
+            <el-col :span="5"><el-button :disabled="!c.hasSourceCode" type="primary" size="mini" icon="el-icon-view" round @click="showJson(c.contractFileId)">Abi and Bytecode</el-button></el-col>
           </el-row>
         </div>
       </el-card>

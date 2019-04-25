@@ -173,7 +173,7 @@ export default {
           premium: d.premium 
         }
       }
-      this.valuationTime = (new Date(d.valuationTime * 1000)).toLocaleString()
+      this.valuationTime = d.valuationTime
       this.strike = d.condition
       this.forecast = d.forecast
       this.forecastRisk = d.forecastRisk
