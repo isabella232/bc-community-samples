@@ -24,7 +24,7 @@ class ProD {
     this.filters = new EthFilter(this.eth)
     this.query = new EthQuery(this.eth)
     this.http = http
-    this.apiBasePath = 'http://localhost:7071' // 'http://localhost:5000'
+    this.apiBasePath = 'http://localhost:7071' //'https://diapi.azurewebsites.net' 
   }
 
   async initialize () {
@@ -269,7 +269,7 @@ class ProD {
     return contractFiles
   }
 
-  async getContractFile (fileId, userAccount, includeJson = false, includeSol = false) {
+  async getContractFile (fileId, includeJson = false, includeSol = false) {
     const includedItems = []
     if (includeJson) {
       includedItems.push('abi')
@@ -278,7 +278,7 @@ class ProD {
     if (includeSol) {
       includedItems.push('source')
     }
-    const contractFile = await this.callApi(Actions.GET, `contractfiles/?id=${fileId}&include=${includedItems.join(',')}`, userAccount)
+    const contractFile = await this.callApi(Actions.GET, `contractfile/?id=${fileId}&include=${includedItems.join(',')}`)
     return contractFile
   }
 
@@ -360,7 +360,10 @@ class ProD {
       forecastRisk: parseInt(forecastRisk),
       isRegistered: deployedContract.isRegistered,
       notional: this.amountAsEther(notional),
-      premium: this.amountAsEther(premium)
+      premium: this.amountAsEther(premium),
+      contractFileId: deployedContract.contractFile.id,
+      hasCompiledCode: deployedContract.contractFile.includesJson,
+      hasSourceCode: deployedContract.contractFile.includesSol
     }
     return r
   }

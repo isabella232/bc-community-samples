@@ -101,7 +101,6 @@
             <el-button type="primary" @click="showContractFileContent = false">Close</el-button>
             </span>
           </el-dialog>
-          <p/>
           <el-upload
             class="upload-demo"
             ref="upload"
@@ -317,7 +316,7 @@ export default {
       this.selectedContract = null
       this.deployedWeatherInsuranceContracts = []
       if (val !== null) {
-        this.selectedContractFile = await this.prod.getContractFile(val.id, this.selectedUserAccountAddress, true, true)
+        this.selectedContractFile = await this.prod.getContractFile(val.id, true, true)
         if (val.apiType === 'WeatherInsurance')
           this.deployedWeatherInsuranceContracts = await this.prod.getDeployedWeatherInsuranceContractsForFileId(val.id, this.selectedUserAccountAddress)
       }

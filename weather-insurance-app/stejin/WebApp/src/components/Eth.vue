@@ -51,7 +51,8 @@ export default {
     return {
       prod: new prodeth.ProD(this.$http),
       activeIndex: '1',
-      currentView: NetworkError
+      currentView: NetworkError,
+      isInitialized: false
     }
   },
   prod: this.prod,
@@ -59,6 +60,7 @@ export default {
     if (typeof this.prod.eth !== 'undefined') {
       await this.prod.initialize()
       serverBus.$emit('networkDetected', this.prod.network.name.split(':')[1])
+      this.isInitialized = true
       this.currentView = Trading
     } else {
       this.currentView = NetworkError
@@ -66,16 +68,20 @@ export default {
   },
   methods: {
     handleSelect (key, keyPath) {
-      switch (key) {
-        case '1':
-          this.currentView = Trading
-          break
-        case '2':
-          this.currentView = Contracts
-          break
-        case '3':
-          this.currentView = Operations
-          break
+      if (this.isInitialized) {
+        switch (key) {
+          case '1':
+            this.currentView = Trading
+            break
+          case '2':
+            this.currentView = Contracts
+            break
+          case '3':
+            this.currentView = Operations
+            break
+        }
+      } else {
+        this.currentView = NetworkError
       }
     }
   }

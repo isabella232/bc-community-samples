@@ -15,6 +15,7 @@ using WeatherInsurance.Integration.Database;
 using WeatherInsurance.Domain.Model;
 using System.Linq;
 using WeatherInsurance.Integration.Blockchain;
+using System.Collections.Generic;
 
 namespace WeatherInsurance.Operation.Functions
 {
@@ -36,57 +37,62 @@ namespace WeatherInsurance.Operation.Functions
 
             var user = authResult.Principal.Identity.Name;
 
-            var id = req.Query["id"];
-
-            if (string.IsNullOrEmpty(id))
-            {
-                var contractFiles = await repo.Find(c => c.OwnerAddress == user);
-                return new OkObjectResult(contractFiles);
-            }
-            else
-            {
-                var result = await repo.Get(long.Parse(id));
-                if (result.OwnerAddress != user)
-                    return new UnauthorizedResult();
-
-                if (req.Query.ContainsKey("include"))
-                {
-                    var includedItems = req.Query["include"].ToString().Split(',');
-
-                    var blobContractFile = await blobContractFileRepository.GetBlobContractFile(user, result.Name,
-                            includedItems.Contains("abi", StringComparer.InvariantCultureIgnoreCase),
-                            includedItems.Contains("bytecode", StringComparer.InvariantCultureIgnoreCase),
-                            includedItems.Contains("sourcecode", StringComparer.InvariantCultureIgnoreCase) || includedItems.Contains("source", StringComparer.InvariantCultureIgnoreCase));
-
-                    result.Abi = blobContractFile.Abi;
-                    result.Bytecode = blobContractFile.Bytecode;
-                    result.SourceCode = blobContractFile.SourceCode;
-                }
-                return new OkObjectResult(result);
-            }
+            var result = await repo.Find(c => c.OwnerAddress == user);
+            return new OkObjectResult(result);
         }
 
         [FunctionName("contractfile")]
         public static async Task<IActionResult> CreateUpdateDeleteContractFile(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "post", "put", "delete", Route = null)] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", "put", "delete", Route = null)] HttpRequest req,
             ILogger log,
             [Inject(typeof(AsymmetricAuthenticationHandler))] AsymmetricAuthenticationHandler auth,
             [Inject(typeof(IBlobContractFileRepository))] IBlobContractFileRepository blobContractFileRepository,
             [Inject(typeof(IReferenceBlobContractFileRepository))] IReferenceBlobContractFileRepository referenceBlobContractFileRepository,
             [Inject(typeof(IRepository<ContractFile>))] IRepository<ContractFile> repo)
         {
-            var authResult = await auth.HandleAuthenticateAsync(req, log);
-            if (!authResult.Succeeded)
-                return new UnauthorizedResult();
-
-            var user = authResult.Principal.Identity.Name;
-
-            switch (req.Method.ToUpper())
+            if (req.Method.ToUpper() == "GET")
             {
-                case "POST": return await CreateContractFile(user, req, log, repo, blobContractFileRepository, referenceBlobContractFileRepository);
-                case "PUT": return await UpdateContractFile(user, req, repo);
-                case "DELETE": return await DeleteContractFile(user, req, repo, blobContractFileRepository);
-                default: return new BadRequestObjectResult($"Unexpected operation: {req.Method}");
+                string id = req.Query["id"];
+                long userId;
+
+                if (long.TryParse(id, out userId))
+                {
+                    var result = await repo.Get(userId);
+
+                    if (req.Query.ContainsKey("include"))
+                    {
+                        var includedItems = req.Query["include"].ToString().Split(',');
+
+                        var blobContractFile = await blobContractFileRepository.GetBlobContractFile(result.OwnerAddress, result.Name,
+                                includedItems.Contains("abi", StringComparer.InvariantCultureIgnoreCase),
+                                includedItems.Contains("bytecode", StringComparer.InvariantCultureIgnoreCase),
+                                includedItems.Contains("sourcecode", StringComparer.InvariantCultureIgnoreCase) || includedItems.Contains("source", StringComparer.InvariantCultureIgnoreCase));
+
+                        result.Abi = blobContractFile.Abi;
+                        result.Bytecode = blobContractFile.Bytecode;
+                        result.SourceCode = blobContractFile.SourceCode;
+                    }
+                    return new OkObjectResult(result);
+                } else
+                {
+                    return new BadRequestObjectResult("Please include parameter user");
+                }
+            }
+            else
+            {
+                var authResult = await auth.HandleAuthenticateAsync(req, log);
+                if (!authResult.Succeeded)
+                    return new UnauthorizedResult();
+
+                var user = authResult.Principal.Identity.Name;
+
+                switch (req.Method.ToUpper())
+                {
+                    case "POST": return await CreateContractFile(user, req, log, repo, blobContractFileRepository, referenceBlobContractFileRepository);
+                    case "PUT": return await UpdateContractFile(user, req, repo);
+                    case "DELETE": return await DeleteContractFile(user, req, repo, blobContractFileRepository);
+                    default: return new BadRequestObjectResult($"Unexpected operation: {req.Method}");
+                }
             }
         }
 

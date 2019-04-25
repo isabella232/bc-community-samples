@@ -9,7 +9,7 @@
     </el-aside>
     <el-main>
       <el-header style="text-align: left; font-size: 18px">
-        <span>{{selectedApiType.label}} Contracts</span>
+        <span>{{selectedApiType}} Contracts</span>
         <span style="float: right">
           <el-checkbox v-model="isExcludeExpired" @change="handleIncludedContractsChange">Exclude Expired Contracts</el-checkbox>
         </span>
@@ -31,8 +31,29 @@
           <el-row :gutter="10"><el-col :span="5">Balance (ETH)</el-col><el-col :span="19">{{ c.balance }}</el-col></el-row>
           <el-row :gutter="10"><el-col :span="5">Forecast</el-col><el-col :span="19">{{ c.forecast }}</el-col></el-row>
           <el-row :gutter="10"><el-col :span="5">Forecast Risk</el-col><el-col :span="19">{{ c.forecastRisk }}</el-col></el-row>
+          <el-row :gutter="10">
+            <el-col :span="5">Source Code</el-col><el-col :span="7"><el-button :disabled="!c.hasCompiledCode" type="primary" size="mini" icon="el-icon-view" round @click="showSol(c.contractFileId)"></el-button></el-col>
+            <el-col :span="5">Abi</el-col><el-col :span="7"><el-button :disabled="!c.hasSourceCode" type="primary" size="mini" icon="el-icon-view" round @click="showJson(c.contractFileId)"></el-button></el-col>
+          </el-row>
         </div>
       </el-card>
+      <el-dialog
+            :title="contractFileContentTitle"
+            :visible.sync="showContractFileContent"
+            width="60%">
+            <span>
+              <el-input
+                type="textarea"
+                :readonly="true"
+                :autosize="{minRows: 6, maxRows: 20}"
+                placeholder="Loading..."
+                v-model="contractFileContent">
+              </el-input>
+            </span>
+            <span slot="footer" class="dialog-footer">
+            <el-button type="primary" @click="showContractFileContent = false">Close</el-button>
+            </span>
+          </el-dialog>
     </el-main>
   </el-container>
 </template>
@@ -108,7 +129,10 @@ export default {
       contractTypes: [{label: 'Weather Insurance', key: 'WeatherInsurance'}],
       selectedApiType: 'WeatherInsurance',
       isExcludeExpired: true,
-      contracts: []
+      contracts: [],
+      showContractFileContent: false,
+      contractFileContentTitle: '',
+      contractFileContent: ''
     }
   },
   mounted: function () {
@@ -123,6 +147,18 @@ export default {
     },
     async handleIncludedContractsChange () {
       this.contracts = await this.prod.getRegisteredWeatherInsuranceContractsForApiType(this.selectedApiType, this.isExcludeExpired)
+    },
+    async showJson (fileId) {
+      const selectedContractFile = await this.prod.getContractFile(fileId, true, false)
+      this.contractFileContentTitle = 'Abi and Bytecode'
+      this.contractFileContent = `Abi: ${JSON.stringify(selectedContractFile.abi)}\r\n\r\nBytecode: ${selectedContractFile.bytecode}`
+      this.showContractFileContent = true
+    },
+    async showSol (fileId) {
+      const selectedContractFile = await this.prod.getContractFile(fileId, false, true)
+      this.contractFileContentTitle = 'Source Code'
+      this.contractFileContent = `${selectedContractFile.sourceCode}`
+      this.showContractFileContent = true
     },
     yesNo (val) {
       if (val) {
