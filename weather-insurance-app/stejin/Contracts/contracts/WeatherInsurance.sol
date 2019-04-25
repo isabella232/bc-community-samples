@@ -7,16 +7,21 @@ pragma solidity ^0.5.0;
  */
  contract WeatherInsurance {
     address payable public owner;
-    address public operator;
+    mapping(address => bool) public operators;
     string public location;
     uint32 public expirationTime; // UTC Unix timestamp
-    int32 public temperature; // Temperature "strike" in F
+    int32 public condition; // Weather condition, e.g. temperature, huminidity etc "strike" in F
     uint32 public valuationTime; // UTC Unix timestamp
-    int32 public forecast; // Temperature forecast at valuation time in F
-    uint32 public forecastRisk; // Variability of forecast - standard deviation as percent of temperature [%]
-    mapping(address => uint64) public positions;
-    uint256 public minimumPremium;
+    int32 public forecast; // Weather condition forecast at valuation time in F
+    uint32 public forecastRisk; // Variability of forecast - e.g. standard deviation as percent of temperature in K [%]
+    mapping(address => Position) internal positions;
+    uint public minimumPremium;
     address[] private users;
+
+    struct Position {
+      uint notional;
+      uint premium;
+    }
    
     /**
     * @dev Constructor
@@ -35,7 +40,7 @@ pragma solidity ^0.5.0;
     }
 
     modifier onlyOwnerOrOperator() {
-      require(msg.sender == owner || msg.sender == operator, "Not authorized.");
+      require(msg.sender == owner || operators[msg.sender], "Not authorized.");
       _;
     }
 
@@ -43,18 +48,26 @@ pragma solidity ^0.5.0;
     * Events
     ***************/
 
-    event InsuranceBought(address user, uint64 notional, uint256 premium);
-    event InsurancePaid(address user, uint64 notional, uint256 amount);
+    event InsuranceBought(address user, uint notional, uint premium);
+    event InsurancePaid(address user, uint notional, uint amount);
 
     /**************
     * Restricted
     ***************/
 
+    function addOperator(address operatorAddress) external onlyOwner {
+      operators[operatorAddress] = true;
+    }
+
+    function removeOperator(address operatorAddress) external onlyOwner {
+      operators[operatorAddress] = false;
+    }
+
     function getUsers() external view onlyOwnerOrOperator returns (address[] memory) {
       return users;
     }
 
-    function setMinimumPremium(uint256 premium) external onlyOwner {
+    function setMinimumPremium(uint premium) external onlyOwner {
       require(premium > 0, "Premium must be greater than zero.");
       minimumPremium = premium;
     }
@@ -67,10 +80,10 @@ pragma solidity ^0.5.0;
 
     function payOut(address payable user) external onlyOwner {
       require(valuationTime >= expirationTime, "Contract still active.");
-      uint64 notional = positions[user];
-      uint256 amountToPay = getIntrinsicValue(notional);
+      uint notional = positions[user].notional;
+      uint amountToPay = getIntrinsicValue(notional);
       // Clear position
-      positions[user] = 0;
+      positions[user].notional = 0;
       // Pay if needed
       if (amountToPay > 0) {
         user.transfer(amountToPay);
@@ -80,7 +93,7 @@ pragma solidity ^0.5.0;
 
     function isSettled() public view onlyOwnerOrOperator returns(bool) {
       for (uint i = 0; i < users.length; i++) {
-        if (positions[users[i]] > 0)
+        if (positions[users[i]].notional > 0)
           return false;
       }
       return true;
@@ -97,28 +110,32 @@ pragma solidity ^0.5.0;
     * Public
     ***************/
 
-    function getIntrinsicValue(uint64 notional) public view returns (uint256);
-
-    function getPremium(uint64 notional) public view returns (uint256) {
-      return getIntrinsicValue(notional) + notional * uint256(forecastRisk) / 100 + minimumPremium;
+    function getPosition(address user) external view returns (uint, uint) {
+      return (positions[user].notional, positions[user].premium);
     }
 
-    function buyInsurance(uint64 notional) payable external {
+    function getIntrinsicValue(uint notional) public view returns (uint);
+
+    function getPremium(uint notional) public view returns (uint) {
+      return getIntrinsicValue(notional) + notional * forecastRisk / 100 + minimumPremium;
+    }
+
+    function buyInsurance(uint notional) payable external {
       require(valuationTime > 0, "Contract not active.");
       require(expirationTime >= valuationTime, "Contract expired.");
       require(notional > 0, "Notional must be greater than zero.");
       require(msg.value >= getPremium(notional), "Insufficient premium.");
 
       // Register user
-      if (positions[msg.sender] == 0)
+      if (positions[msg.sender].notional == 0)
         users.push(msg.sender);
 
-      positions[msg.sender] += notional;
+      positions[msg.sender].notional += notional;
+      positions[msg.sender].premium += msg.value;
       emit InsuranceBought(msg.sender, notional, msg.value);
     }
 
     // Fallback - used by owner to fund contract
-    function fund() payable external {
-    }
+    function() external payable {}
 
 }

@@ -1,52 +1,59 @@
 ﻿<Properties StartupConfiguration="{AFD300C0-6D63-4FF8-AB4D-668D1E5CF096}|Default">
   <MonoDevelop.Ide.ItemProperties.Operation.Functions PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="src/Operation/Functions/Authentication/AsymmetricAuthenticationHandler.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="src/Integration/Database/Migrations/20190424215946_Increase precision of Premium field.cs">
     <Files>
-      <File FileName="src/Operation/Functions/host.json" Line="1" Column="1" />
-      <File FileName="src/Operation/Functions/local.settings.json" Line="4" Column="33" />
-      <File FileName="src/Operation/Functions/ContractFiles.cs" Line="73" Column="26" />
-      <File FileName="src/Operation/Functions/Controller.cs" Line="28" Column="2" />
-      <File FileName="src/Integration/Blockchain/Signer.cs" Line="73" Column="10" />
-      <File FileName="src/Operation/Functions/Authentication/AsymmetricAuthenticationHandler.cs" Line="93" Column="51" />
+      <File FileName="test/IntegrationTests/Database/MappingTests.cs" Line="40" Column="1" />
+      <File FileName="src/Integration/Database/Model/Purchase.cs" Line="31" Column="42" />
+      <File FileName="src/Integration/Database/Model/Network.cs" Line="28" Column="1" />
+      <File FileName="src/Integration/Database/Mappings/NetworkMapperProfile.cs" Line="14" Column="1" />
+      <File FileName="src/Integration/Database/Mappings/PurchaseMapperProfile.cs" Line="23" Column="1" />
+      <File FileName="src/Integration/Database/PurchaseRepository.cs" Line="20" Column="16" />
+      <File FileName="src/Operation/Functions/PurchaseFunctions.cs" Line="17" Column="1" />
+      <File FileName="src/Operation/Functions/NetworkFunctions.cs" Line="25" Column="49" />
+      <File FileName="src/Operation/Functions/DeployedContractFunctions.cs" Line="85" Column="10" />
+      <File FileName="src/Operation/Functions/Startup.cs" Line="81" Column="68" />
+      <File FileName="src/Operation/Functions/BlockchainFunctions.cs" Line="84" Column="60" />
+      <File FileName="src/Integration/Blockchain/InsuranceBoughtEvent.cs" Line="18" Column="6" />
+      <File FileName="src/Integration/Blockchain/ContractEventListener.cs" Line="41" Column="1" />
+      <File FileName="src/Integration/Database/RepositoryBase.cs" Line="39" Column="1" />
+      <File FileName="src/Domain/Model/Enum.cs" Line="15" Column="30" />
+      <File FileName="src/Domain/Model/Fee.cs" Line="20" Column="46" />
+      <File FileName="src/Domain/Model/Network.cs" Line="1" Column="1" />
+      <File FileName="src/Domain/Model/ContractFile.cs" Line="21" Column="44" />
+      <File FileName="src/Domain/Model/DeployedContract.cs" Line="40" Column="1" />
+      <File FileName="src/Integration/Database/Migrations/20190424205428_Switch Purchase fields to decimal.cs" Line="41" Column="1" />
+      <File FileName="src/Integration/Database/Migrations/20190424215946_Increase precision of Premium field.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="WeatherInsurance" expanded="True">
             <Node name="Domain" expanded="True">
-              <Node name="Model" expanded="True">
-                <Node name="Dependencies" expanded="True" />
-              </Node>
+              <Node name="Model" expanded="True" />
             </Node>
             <Node name="Integration" expanded="True">
               <Node name="AzureStorage" expanded="True">
-                <Node name="Dependencies" expanded="True">
-                  <Node name="PackageDependencies" expanded="True" />
-                </Node>
+                <Node name="Blobs" expanded="True" />
               </Node>
-              <Node name="Blockchain" expanded="True">
-                <Node name="Dependencies" expanded="True">
-                  <Node name="PackageDependencies" expanded="True" />
-                  <Node name="SdkDependencies" expanded="True" />
-                </Node>
-              </Node>
+              <Node name="Blockchain" expanded="True" />
               <Node name="Database" expanded="True">
+                <Node name="Mappings" expanded="True" />
+                <Node name="Migrations" expanded="True">
+                  <Node name="20190424215946_Increase precision of Premium field.cs" selected="True" />
+                </Node>
+                <Node name="Model" expanded="True" />
+              </Node>
+              <Node name="IntegrationTests" expanded="True">
                 <Node name="Dependencies" expanded="True">
                   <Node name="PackageDependencies" expanded="True" />
+                  <Node name="ProjectDependencies" expanded="True" />
                 </Node>
-                <Node name="Mappings" expanded="True" />
-                <Node name="Model" expanded="True" />
+                <Node name="Blockchain" expanded="True" />
+                <Node name="Database" expanded="True" />
               </Node>
             </Node>
             <Node name="Operation" expanded="True">
-              <Node name="Functions" expanded="True">
-                <Node name="Dependencies" expanded="True">
-                  <Node name="ProjectDependencies" expanded="True" />
-                </Node>
-                <Node name="Authentication" expanded="True">
-                  <Node name="AsymmetricAuthenticationHandler.cs" selected="True" />
-                </Node>
-              </Node>
+              <Node name="Functions" expanded="True" />
             </Node>
           </Node>
         </State>
@@ -56,7 +63,13 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Operation/Functions/ContractFileFunctions.cs" relfile="src/Operation/Functions/ContractFileFunctions.cs" line="33" column="1" />
+      <Breakpoint file="/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Operation/Functions/ContractFileFunctions.cs" relfile="src/Operation/Functions/ContractFileFunctions.cs" line="78" column="1" />
+      <Breakpoint file="/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Operation/Functions/ContractFileFunctions.cs" relfile="src/Operation/Functions/ContractFileFunctions.cs" line="98" column="1" />
+      <Breakpoint file="/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/ContractEventListener.cs" relfile="src/Integration/Blockchain/ContractEventListener.cs" line="43" column="1" />
+      <Breakpoint file="/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/ContractEventListener.cs" relfile="src/Integration/Blockchain/ContractEventListener.cs" line="35" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

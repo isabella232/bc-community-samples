@@ -21,7 +21,7 @@ namespace WeatherInsurance.Integration.Database.Model
         public Network Network { get; set; }
 
         [Required]
-        [MaxLength(20)]
+        [MaxLength(50)]
         public string ContractName { get; set; }
 
         [MinLength(42)]
@@ -35,6 +35,11 @@ namespace WeatherInsurance.Integration.Database.Model
         public DateTime ExpirationDateTime { get; set; }
 
         public string ConstructorArguments { get; set; }
+
+        public string Description { get; set; }
+
+        [Required]
+        public bool IsRegistered { get; set; }
 
     }
 }

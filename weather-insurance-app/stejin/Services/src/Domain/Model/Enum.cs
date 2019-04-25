@@ -8,8 +8,12 @@ namespace WeatherInsurance.Domain.Model
 
     public enum ContractType
     {
-        HotWeatherInsurance,
-        ColdWeatherInsurance
+        HighTemperatureInsurance,
+        LowTemperatureInsurance,
+        HighPrecipitationInsurance,
+        LowPrecipitationInsurance,
+        HighHumidityInsurance,
+        LowHumidityInsurance
     }
 
 }

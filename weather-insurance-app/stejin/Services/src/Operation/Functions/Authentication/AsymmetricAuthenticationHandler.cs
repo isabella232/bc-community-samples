@@ -13,16 +13,15 @@ namespace WeatherInsurance.Operation.Functions.Authentication
 {
     public class AsymmetricAuthenticationHandler
     {
-        private readonly IOptionsMonitor<AsymmetricAuthenticationOptions> _options;
+        private readonly AsymmetricAuthenticationOptions _options;
 
-        private AsymmetricAuthenticationOptions Options {  get { return _options.CurrentValue; } }
 
         /// <summary>
         /// Tries to validate a signature on the current request
         /// </summary>
         /// <returns></returns>
         public AsymmetricAuthenticationHandler(
-            IOptionsMonitor<AsymmetricAuthenticationOptions> options)
+            AsymmetricAuthenticationOptions options)
         {
             _options = options;
         }
@@ -35,7 +34,7 @@ namespace WeatherInsurance.Operation.Functions.Authentication
         {
             _logger.LogTrace("HandleAuthenticateAsync called");
 
-            var signatureToken = Options.SignatureTokenRetriever(request);
+            var signatureToken = _options.SignatureTokenRetriever(request);
 
             if (signatureToken != null)
             {
@@ -53,7 +52,7 @@ namespace WeatherInsurance.Operation.Functions.Authentication
                         if (request.ContentType != null && !request.ContentType.StartsWith("multipart/form-data", StringComparison.InvariantCultureIgnoreCase))
                             body = reader.ReadToEnd();
                         var message = $"{signatureToken.Nonce}|{request.Method.ToUpper()}|{request.Path.Value}{request.QueryString.Value}|{body}";
-                        var isSignatureValid = Options.SignatureValidator(signatureToken.Signature, signatureToken.PublicKey, message);
+                        var isSignatureValid = _options.SignatureValidator(signatureToken.Signature, signatureToken.PublicKey, message);
                         if (!isSignatureValid)
                         {
                             _logger.LogWarning($"Signature invalid. PublicKey: {signatureToken.PublicKey}, Signature: {signatureToken.Signature}, Message: {message}");

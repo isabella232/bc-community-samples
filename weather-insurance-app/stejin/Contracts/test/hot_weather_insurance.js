@@ -1,6 +1,6 @@
 //jshint ignore: start
 
-const InsuranceContract = artifacts.require('./HotWeatherInsurance.sol');
+const InsuranceContract = artifacts.require('./LongWeatherInsurance.sol');
 
 contract('HotWeatherInsurance', function(accounts) {
   let testContract;
@@ -12,9 +12,18 @@ contract('HotWeatherInsurance', function(accounts) {
   const user4 = accounts[5];
 
   it('should be deployed', async () => {
-    testContract = await InsuranceContract.new(operator, 'London', 1580472000000, 32, 1000000);
+    testContract = await InsuranceContract.new('London', 1580472000000, 32, 1000000);
 
     assert(testContract.address !== undefined, 'Contract not deployed');
+  });
+
+  it('should be able to fund contract', async () => {
+    
+    await testContract.sendTransaction({from: owner, value: 2000000});
+
+    const balance = await web3.eth.getBalance(testContract.address);
+
+    assert.equal(balance, 2000000, 'Balance not correct');
   });
 
   it('should be able to set minimum premium', async () => {
@@ -53,20 +62,20 @@ contract('HotWeatherInsurance', function(accounts) {
 
     const balance = await web3.eth.getBalance(testContract.address);
 
-    assert.equal(balance, 3330002000000, 'Contract balance not correct');
+    assert.equal(balance, 3330004000000, 'Contract balance not correct');
 
-    const position = await testContract.positions(user1);
+    const position = await testContract.getPosition(user1);
 
-    assert.equal(1000000000000, position, 'Position not correct');
+    assert.equal(1000000000000, position[0], 'Position not correct');
   
   });
 
   it('should be able to pay out insurance', async () => {
     await testContract.updateForecast(1580472000000, 30, 33);
 
-    const position = await testContract.positions(user1);
+    const position = await testContract.getPosition(user1);
 
-    const intrinsicValue = await testContract.getIntrinsicValue(position);
+    const intrinsicValue = await testContract.getIntrinsicValue(position[0]);
 
     assert.equal(intrinsicValue, 0, 'Intrinsic value not correct');
 
@@ -75,7 +84,7 @@ contract('HotWeatherInsurance', function(accounts) {
 
     const balance = await web3.eth.getBalance(testContract.address);
 
-    assert.equal(balance, 3330002000000, 'Contract balance not correct');
+    assert.equal(balance, 3330004000000, 'Contract balance not correct');
   
   });
 

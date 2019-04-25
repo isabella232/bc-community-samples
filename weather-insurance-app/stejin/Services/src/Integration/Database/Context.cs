@@ -11,6 +11,8 @@ namespace WeatherInsurance.Integration.Database
         public DbSet<Network> Networks { get; set; }
         public DbSet<ContractFile> ContractFiles { get; set; }
         public DbSet<DeployedContract> DeployedContracts { get; set; }
+        public DbSet<Fee> Fees { get; set; }
+        public DbSet<Purchase> Purchases { get; set; }
 
         public Context()
         { }
@@ -23,7 +25,6 @@ namespace WeatherInsurance.Integration.Database
         {
             if (!optionsBuilder.IsConfigured)
             {
-                // Used by migrations
 
                 var builder = new ConfigurationBuilder()
                     .AddEnvironmentVariables()
@@ -56,6 +57,13 @@ namespace WeatherInsurance.Integration.Database
                 .HasIndex(d => d.ContractName)
                 .IsUnique();
 
+            // Seed Data
+
+            modelBuilder.Entity<Network>().HasData(new Network { NetworkId = 1, NetworkName = "ETH:Unknown", Platform = 0, ReferenceContractAddress = "0x0", Url = "" });
+            modelBuilder.Entity<Network>().HasData(new Network { NetworkId = 2, NetworkName = "ETH:Mainnet", Platform = 0, ReferenceContractAddress = "0x13Cb835C47782dad075Ce7fAA1F8439b548B712D", Url = "https://etherscan.io" });
+            modelBuilder.Entity<Network>().HasData(new Network { NetworkId = 3, NetworkName = "ETH:Kovan", Platform = 0, ReferenceContractAddress = "0x3422a48ebf29809bda10e264207ed94a5a819368", Url = "https://kovan.etherscan.io" });
+            modelBuilder.Entity<Network>().HasData(new Network { NetworkId = 4, NetworkName = "ETH:Sokol", Platform = 0, ReferenceContractAddress = "0x64F84Fadae3F535BC02b17eD12a7Db33FBBEF29E", Url = "" });
+            modelBuilder.Entity<Network>().HasData(new Network { NetworkId = 5, NetworkName = "ETH:Ropsten", Platform = 0, ReferenceContractAddress = "0x1F807D49324d83C3c5836Ad162839ba360EC834b", Url = "https://ropsten.etherscan.io" });
         }
     }
 }

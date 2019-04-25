@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using WeatherInsurance.Integration.Database.Mappings;
 
@@ -11,11 +12,11 @@ namespace WeatherInsurance.Integration.Database
             : base(context, new List<Profile>() { new ContractFileMapperProfile() })
         { }
 
-        public override long AddNew(Domain.Model.ContractFile model)
+        public override async Task<long> AddNew(Domain.Model.ContractFile model)
         {
             var entity = _mapper.Map<Database.Model.ContractFile>(model);
-            _context.Set<Database.Model.ContractFile>().Add(entity);
-            _context.SaveChanges();
+            await _context.Set<Database.Model.ContractFile>().AddAsync(entity);
+            await _context.SaveChangesAsync();
             return entity.ContractFileId;
         }
 

@@ -40,11 +40,27 @@ dotnet build
 dotnet ef database update
 ```
 
-cd into Services/Operatior/Functions and run
+cd into Services/Operatior/Functions
+
+Create your own local.settings.json file and paste below settings
 
 ```
-dotnet user-secrets set "ConnectionStrings:Database" "<insert your database connection string>"
-dotnet user-secrets set "AzureWebJobsStorage" "<insert your Azure Storage connection string>"
+{
+  "IsEncrypted": false,
+  "ConnectionStrings": {
+    "Database": "<insert your database connection string>",
+  },
+  "Values": {
+    "AzureWebJobsStorage": "<insert you Azure Storage connection string>",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet"
+  }
+}
+```
+
+
+Save the file and run 
+
+```
 dotnet restore
 dotnet build
 ```

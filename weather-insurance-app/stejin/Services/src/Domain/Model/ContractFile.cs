@@ -18,9 +18,9 @@ namespace WeatherInsurance.Domain.Model
 
         public string Description { get; set; }
 
-        public string ApiVersion { get; set; }
+        public string ApiType { get; set; }
 
-        public string FileType { get; set; }
+        public string ApiVersion { get; set; }
 
         public Newtonsoft.Json.Linq.JToken Abi { get; set; }
 

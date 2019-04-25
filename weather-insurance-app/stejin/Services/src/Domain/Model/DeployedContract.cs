@@ -24,6 +24,16 @@ namespace WeatherInsurance.Domain.Model
 
         public string ConstructorArguments { get; set; }
 
+        public string Description { get; set; }
+
+        public bool IsRegistered { get; set; }
+
+        public long GetRequiredFeeAmount()
+        {
+            var timeSpan = ExpirationDateTime - DateTime.UtcNow;
+            return Convert.ToInt64(Math.Ceiling(timeSpan.TotalDays) * 30000000);
+        }
+
     }
 }
 

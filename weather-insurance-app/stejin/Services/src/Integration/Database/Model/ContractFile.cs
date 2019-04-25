@@ -29,7 +29,7 @@ namespace WeatherInsurance.Integration.Database.Model
         public string Description { get; set; }
 
         [MaxLength(25)]
-        public string ContractFileType { get; set; }
+        public string ApiType { get; set; }
 
         [MaxLength(25)]
         public string ApiVersion { get; set; }
