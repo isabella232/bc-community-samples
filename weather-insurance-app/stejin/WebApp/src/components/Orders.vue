@@ -1,66 +1,70 @@
 <template>
   <el-container>
-    <el-header height="430px">
-      <order-chart
-        ref="premiumChart"
-        :chartData="chartPremiums"
-        height="100px"
-        width="100px"/>
-      <br/>
-      <el-row :gutter="10">
-        <el-col :span="8"><div class="contract-info">Valuation Time</div></el-col>
-        <el-col :span="16"><div class="contract-info bg-blue">{{valuationTime}}</div></el-col>
-      </el-row>
-      <el-row :gutter="10">
-        <el-col :span="8"><div class="contract-info">Condition Strike</div></el-col>
-        <el-col :span="16"><div class="contract-info bg-blue">{{strike}}</div></el-col>
-      </el-row>
-      <el-row :gutter="10">
-        <el-col :span="8"><div class="contract-info">Last Forecast</div></el-col>
-        <el-col :span="16"><div class="contract-info bg-blue">{{forecast}}</div></el-col>
-      </el-row>
-      <el-row :gutter="10">
-        <el-col :span="8"><div class="contract-info">Forecast Risk</div></el-col>
-        <el-col :span="16"><div class="contract-info bg-blue">{{forecastRisk}}</div></el-col>
-      </el-row>
-    </el-header>
-    <el-main>
-      <el-row :gutter="20" class="frm-row">
-        <el-select v-model="selectedUserAccountAddress" placeholder="Select Address" size="small" style="width: 350px" @change="handleUserAccountChange">
-          <el-option
-            v-for="userAccount in userAccounts"
-            :key="userAccount.address"
-            :label="userAccount.address"
-            :value="userAccount.address">
-          </el-option>
-        </el-select>
-      </el-row>
-      <div v-if="position">
-        <el-row :gutter="5" class="frm-row">
-          <el-col :span="8"><div class="frm-label">Balance</div></el-col>
-          <el-col :span="16"><div class="order-info">{{balance}}</div></el-col>
-        </el-row>
-        <el-row :gutter="5" class="frm-row">
-          <el-col :span="8"><div class="frm-label">Notional Bought</div></el-col>
-          <el-col :span="16"><div class="order-info">{{position.notional}}</div></el-col>
-        </el-row>
-        <el-row :gutter="5" class="frm-row">
-          <el-col :span="8"><div class="frm-label">Premium Paid</div></el-col>
-          <el-col :span="16"><div class="order-info">{{position.premium}}</div></el-col>
-        </el-row>
-        <el-row :gutter="5" class="frm-row">
-          <el-col :span="8"><div class="frm-label">Notional</div></el-col>
-          <el-col :span="16"><el-input-number v-model="notional" size="medium" :min="1" :controls="true"></el-input-number></el-col>
-        </el-row>
-        <el-row :gutter="5" class="frm-row">
-          <el-col :span="8"><div class="frm-label">Total Premium</div></el-col>
-          <el-col :span="16"><div class="order-info">{{premium}}</div></el-col>
-        </el-row>
-        <el-row :gutter="5" class="frm-row" type="flex" justify="center">
-          <el-col :span="24"><el-button type="success" round @click="buyInsurance">Buy</el-button></el-col>
-        </el-row>
-      </div>
-    </el-main>
+    <el-aside width="360px">
+      <el-container>
+        <el-header height="430px">
+          <order-chart
+            ref="premiumChart"
+            :chartData="chartPremiums"
+            height="100px"
+            width="100px"/>
+          <br/>
+          <el-row :gutter="10">
+            <el-col :span="8"><div class="contract-info">Valuation Time</div></el-col>
+            <el-col :span="16"><div class="contract-info bg-blue">{{valuationTime}}</div></el-col>
+          </el-row>
+          <el-row :gutter="10">
+            <el-col :span="8"><div class="contract-info">Condition Strike</div></el-col>
+           <el-col :span="16"><div class="contract-info bg-blue">{{strike}}</div></el-col>
+         </el-row>
+          <el-row :gutter="10">
+            <el-col :span="8"><div class="contract-info">Last Forecast</div></el-col>
+           <el-col :span="16"><div class="contract-info bg-blue">{{forecast}}</div></el-col>
+         </el-row>
+          <el-row :gutter="10">
+            <el-col :span="8"><div class="contract-info">Forecast Risk</div></el-col>
+            <el-col :span="16"><div class="contract-info bg-blue">{{forecastRisk}}</div></el-col>
+          </el-row>
+        </el-header>
+        <el-main>
+          <el-row :gutter="20" class="frm-row">
+            <el-select v-model="selectedUserAccountAddress" placeholder="Select Address" size="small" style="width: 350px" @change="handleUserAccountChange">
+              <el-option
+                v-for="userAccount in userAccounts"
+                :key="userAccount.address"
+                :label="userAccount.address"
+                :value="userAccount.address">
+              </el-option>
+            </el-select>
+          </el-row>
+          <div v-if="position">
+            <el-row :gutter="5" class="frm-row">
+              <el-col :span="8"><div class="frm-label">Balance</div></el-col>
+              <el-col :span="16"><div class="order-info">{{balance}}</div></el-col>
+            </el-row>
+            <el-row :gutter="5" class="frm-row">
+              <el-col :span="8"><div class="frm-label">Notional Bought</div></el-col>
+              <el-col :span="16"><div class="order-info">{{position.notional}}</div></el-col>
+            </el-row>
+            <el-row :gutter="5" class="frm-row">
+              <el-col :span="8"><div class="frm-label">Premium Paid</div></el-col>
+              <el-col :span="16"><div class="order-info">{{position.premium}}</div></el-col>
+            </el-row>
+            <el-row :gutter="5" class="frm-row">
+              <el-col :span="8"><div class="frm-label">Notional</div></el-col>
+              <el-col :span="16"><el-input-number v-model="notional" size="medium" :min="1" :controls="true"></el-input-number></el-col>
+            </el-row>
+            <el-row :gutter="5" class="frm-row">
+              <el-col :span="8"><div class="frm-label">Total Premium</div></el-col>
+              <el-col :span="16"><div class="order-info">{{premium}}</div></el-col>
+            </el-row>
+            <el-row :gutter="5" class="frm-row" type="flex" justify="center">
+              <el-col :span="24"><el-button type="success" round @click="buyInsurance">Buy</el-button></el-col>
+            </el-row>
+          </div>
+        </el-main>
+      </el-container>
+    </el-aside>
   </el-container>
 </template>
 

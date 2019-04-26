@@ -71,12 +71,18 @@ namespace WeatherInsurance.Operation.Functions
 
         [FunctionName("validatecontractname")]
         public static async Task<IActionResult> ValidateContractName(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "validatecontractname/{name}")] HttpRequest req,
-            string name,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "validatecontractname/{networkId}")] HttpRequest req,
+            long networkId,
             ILogger log,
             [Inject(typeof(IRepository<DeployedContract>))] IRepository<DeployedContract> repo)
         {
-            var contracts = await repo.Find(d => d.Name == name.HexToUTF8String());
+
+            string name = req.Query["name"];
+
+            if (string.IsNullOrEmpty(name))
+                return new BadRequestObjectResult("Please specify name parameter");
+
+            var contracts = await repo.Find(d => d.Network.Id == networkId && d.Name == name.HexToUTF8String());
             if (contracts.Any())
             {
                 return new OkObjectResult("Name already in use.");
@@ -86,11 +92,12 @@ namespace WeatherInsurance.Operation.Functions
 
         [FunctionName("registeredcontracts")]
         public static async Task<IActionResult> GetRegisteredContracts(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "registeredcontracts/{networkId}")] HttpRequest req,
+            long networkId,
             ILogger log,
             [Inject(typeof(IRepository<DeployedContract>))] IRepository<DeployedContract> repo)
         {
-            var result = await repo.Find(c => c.IsRegistered);
+            var result = await repo.Find(c => c.Network.Id == networkId && c.IsRegistered);
 
             if (req.Query.ContainsKey("apitype"))
             {

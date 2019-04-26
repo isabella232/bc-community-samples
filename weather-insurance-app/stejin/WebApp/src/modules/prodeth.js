@@ -24,7 +24,7 @@ class ProD {
     this.filters = new EthFilter(this.eth)
     this.query = new EthQuery(this.eth)
     this.http = http
-    this.apiBasePath = 'https://dim.azurewebsites.net' // 'http://localhost:7071' 
+    this.apiBasePath = 'http://localhost:7071' // 'https://dim.azurewebsites.net' 
   }
 
   async initialize () {
@@ -297,9 +297,9 @@ class ProD {
     let deployedContracts = []
     
     if (activeOnly)
-      deployedContracts = await this.callApi(Actions.GET, `registeredcontracts/?apitype=${apiType}&isactive=true`)
+      deployedContracts = await this.callApi(Actions.GET, `registeredcontracts/${this.network.id}?apitype=${apiType}&isactive=true`)
     else
-      deployedContracts = await this.callApi(Actions.GET, `registeredcontracts/?apitype=${apiType}`)
+      deployedContracts = await this.callApi(Actions.GET, `registeredcontracts/${this.network.id}?apitype=${apiType}`)
 
     for (const i in deployedContracts) {
       const deployedContract = deployedContracts[i]
@@ -402,7 +402,7 @@ class ProD {
 
   async validateName (name) {
     const hexName = Eth.fromUtf8(name)
-    const result = await this.get(`validateContractName/${hexName}`)
+    const result = await this.get(`validateContractName/${this.network.id}?name=${hexName}`)
     return result
   }
 

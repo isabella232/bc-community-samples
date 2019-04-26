@@ -1,5 +1,5 @@
 <template>
-  <el-container style="margin-top: -20px; margin-bottom: 0px; padding-bottom: 0px;">
+  <el-container style="margin: -20px; margin-bottom: 0px; padding-bottom: 0px;">
     <el-header height="500px">
       <div class="chartcontainer" v-loading="loading">
         <div class="chartdiv" ref="chartdiv" />

@@ -54,7 +54,7 @@ namespace WeatherInsurance.Integration.Database
                         .HasIndex(d => d.OwnerAddress);
 
             modelBuilder.Entity<DeployedContract>()
-                .HasIndex(d => d.ContractName)
+                .HasIndex(d => new { d.ContractName, d.NetworkId })
                 .IsUnique();
 
             // Seed Data

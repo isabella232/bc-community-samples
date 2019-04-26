@@ -1,6 +1,6 @@
 <template>
   <el-container style="margin-bottom: 0px; padding-bottom: 0px;">
-    <el-aside width="200px" style="margin: -20px;">
+    <el-aside width="200px" style="margin-top: -20px; margin-left: -20px;">
       <el-menu @select="handleSelect">
         <el-menu-item v-for="c in contracts" :key="c.name" :index="c.address">
           <span>{{c.name}}</span>
