@@ -24,7 +24,7 @@ class ProD {
     this.filters = new EthFilter(this.eth)
     this.query = new EthQuery(this.eth)
     this.http = http
-    this.apiBasePath = 'http://localhost:7071' // 'https://dim.azurewebsites.net' 
+    this.apiBasePath = 'https://dim.azurewebsites.net' // 'http://localhost:7071' 
   }
 
   async initialize () {
