@@ -7223,11 +7223,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/test/IntegrationTests/IntegrationTests.csproj",
+      "projectUniqueName": "/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/test/IntegrationTests/IntegrationTests.csproj",
       "projectName": "IntegrationTests",
-      "projectPath": "/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/test/IntegrationTests/IntegrationTests.csproj",
+      "projectPath": "/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/test/IntegrationTests/IntegrationTests.csproj",
       "packagesPath": "/Users/steffen/.nuget/packages/",
-      "outputPath": "/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/test/IntegrationTests/obj/",
+      "outputPath": "/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/test/IntegrationTests/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
@@ -7245,11 +7245,11 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/Blockchain.csproj": {
-              "projectPath": "/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/Blockchain.csproj"
+            "/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/Blockchain.csproj": {
+              "projectPath": "/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/Blockchain.csproj"
             },
-            "/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/Database.csproj": {
-              "projectPath": "/Volumes/LACIE/Repos/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/Database.csproj"
+            "/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/Database.csproj": {
+              "projectPath": "/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Database/Database.csproj"
             }
           }
         }

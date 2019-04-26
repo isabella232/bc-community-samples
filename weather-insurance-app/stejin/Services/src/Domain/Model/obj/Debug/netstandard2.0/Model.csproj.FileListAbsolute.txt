@@ -19,3 +19,6 @@
 /Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/obj/Debug/netstandard2.0/Model.AssemblyInfo.cs
 /Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/obj/Debug/netstandard2.0/WeatherInsurance.Domain.Model.dll
 /Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/obj/Debug/netstandard2.0/WeatherInsurance.Domain.Model.pdb
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/bin/Debug/netstandard2.0/WeatherInsurance.Domain.Model.deps.json
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/bin/Debug/netstandard2.0/WeatherInsurance.Domain.Model.dll
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Domain/Model/bin/Debug/netstandard2.0/WeatherInsurance.Domain.Model.pdb

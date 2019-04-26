@@ -68,6 +68,8 @@ namespace WeatherInsurance.Operation.Functions
                         continue;
 
                     var client = blockchainRepo.GetClient(contract.Network.Name);
+                    if (client == null)
+                        continue;
 
                     var blobContractFile = await blobContractFileRepository.GetBlobContractFile(contract.OwnerAddress, contract.ContractFile.Name, true, true, false);
 

@@ -19,3 +19,6 @@
 /Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/AzureStorage/obj/Debug/netstandard2.0/AzureStorage.AssemblyInfo.cs
 /Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/AzureStorage/obj/Debug/netstandard2.0/WeatherInsurance.Integration.AzureStorage.dll
 /Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/AzureStorage/obj/Debug/netstandard2.0/WeatherInsurance.Integration.AzureStorage.pdb
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/AzureStorage/bin/Debug/netstandard2.0/WeatherInsurance.Integration.AzureStorage.deps.json
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/AzureStorage/bin/Debug/netstandard2.0/WeatherInsurance.Integration.AzureStorage.dll
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/AzureStorage/bin/Debug/netstandard2.0/WeatherInsurance.Integration.AzureStorage.pdb

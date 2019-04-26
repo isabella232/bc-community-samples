@@ -19,3 +19,6 @@
 /Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/obj/Debug/netstandard2.0/Blockchain.AssemblyInfo.cs
 /Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/obj/Debug/netstandard2.0/WeatherInsurance.Integration.Blockchain.dll
 /Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/obj/Debug/netstandard2.0/WeatherInsurance.Integration.Blockchain.pdb
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/bin/Debug/netstandard2.0/WeatherInsurance.Integration.Blockchain.deps.json
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/bin/Debug/netstandard2.0/WeatherInsurance.Integration.Blockchain.dll
+/Users/Steffen/Projects/Ethereum/bc-community-samples/weather-insurance-app/stejin/Services/src/Integration/Blockchain/bin/Debug/netstandard2.0/WeatherInsurance.Integration.Blockchain.pdb
