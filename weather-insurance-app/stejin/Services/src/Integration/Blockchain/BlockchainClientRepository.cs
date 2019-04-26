@@ -34,11 +34,13 @@ namespace WeatherInsurance.Integration.Blockchain
             }
 
             // Unlocked accounts
+            /*
             var ropstenOwnerAddress = config["EthereumRopstenOwnerAddress"];
             var ropstenKey = config["EthereumRopstenPrivateKey"];
             var client = new Web3Client(config["EthereumRopstenNode"], ropstenKey);
             client.SetDefaultGas(50000);
             clients.Add($"ETH:Ropsten|{ropstenOwnerAddress}", client);
+            */
 
             _clients = clients;
         }

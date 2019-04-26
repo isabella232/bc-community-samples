@@ -1,6 +1,6 @@
 ﻿<Properties StartupConfiguration="{AFD300C0-6D63-4FF8-AB4D-668D1E5CF096}|Default">
   <MonoDevelop.Ide.ItemProperties.Operation.Functions PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="src/Operation/Functions/BlockchainFunctions.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="src/Operation/Functions/host.json">
     <Files>
       <File FileName="test/IntegrationTests/Database/MappingTests.cs" Line="40" Column="1" />
       <File FileName="src/Integration/Database/Model/Purchase.cs" Line="31" Column="42" />
@@ -23,7 +23,7 @@
       <File FileName="src/Domain/Model/DeployedContract.cs" Line="40" Column="1" />
       <File FileName="src/Integration/Database/Migrations/20190424205428_Switch Purchase fields to decimal.cs" Line="41" Column="1" />
       <File FileName="src/Integration/Database/Migrations/20190424215946_Increase precision of Premium field.cs" Line="1" Column="1" />
-      <File FileName="src/Operation/Functions/local.settings.json" Line="11" Column="67" />
+      <File FileName="src/Operation/Functions/local.settings.json" Line="4" Column="244" />
       <File FileName="src/Operation/Functions/host.json" Line="7" Column="4" />
       <File FileName="src/Integration/Blockchain/BlockchainClientRepository.cs" Line="29" Column="38" />
       <File FileName="src/Operation/Functions/Functions.csproj" Line="1" Column="1" />
@@ -57,7 +57,7 @@
             </Node>
             <Node name="Operation" expanded="True">
               <Node name="Functions" expanded="True">
-                <Node name="BlockchainFunctions.cs" selected="True" />
+                <Node name="host.json" selected="True" />
               </Node>
             </Node>
           </Node>
