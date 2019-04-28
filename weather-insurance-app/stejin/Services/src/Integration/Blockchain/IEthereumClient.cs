@@ -7,6 +7,8 @@ namespace WeatherInsurance.Integration.Blockchain
 {
  public interface IEthereumClient
     {
+        Task<string> GetDefaultAccount();
+
         Task<string[]> GetAccounts();
 
         Task<string> GetContractCode(string contractAddress);

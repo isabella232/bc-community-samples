@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Nethereum.Contracts;
 using Nethereum.RPC.Eth.DTOs;
@@ -11,19 +12,40 @@ namespace WeatherInsurance.Integration.Blockchain
     {
         private Web3 _web3;
 
+        private string _ownerAddress;
+
         public Web3Client(string endpointAddress)
         {
             _web3 = new Web3(endpointAddress);
         }
 
-        public Web3Client(string endpointAddress, string privateKey)
+        public Web3Client(string endpointAddress, string ownerAddress)
         {
+            _ownerAddress = ownerAddress;
+            _web3 = new Web3(endpointAddress);
+        }
+
+        public Web3Client(string endpointAddress, string ownerAddress, string privateKey)
+        {
+            _ownerAddress = ownerAddress;
             _web3 = new Web3(new Account(privateKey), endpointAddress);
         }
 
         public void SetDefaultGas(int gas)
         {
             _web3.TransactionManager.DefaultGas = gas;
+        }
+
+        public async Task<string> GetDefaultAccount()
+        {
+            if (!string.IsNullOrEmpty(_ownerAddress))
+                return _ownerAddress;
+
+            var accounts = await GetAccounts();
+            if (accounts.Any())
+                return accounts.First();
+
+            return "0x0";
         }
 
         public async Task<string[]> GetAccounts()

@@ -17,7 +17,7 @@ namespace WeatherInsurance.Integration.Blockchain
         public BlockchainClientRepository(IConfiguration config)
         {
             var ethMainnet = new Web3Client(config["EthereumMainnetNode"]);
-            var ethRopsten = new Web3Client(config["EthereumRopstenNode"]);
+            var ethRopsten = new Web3Client(config["EthereumRopstenNode"], config["EthereumRopstenOwnerAddress"]);
 
             // No unlocked accounts
             IDictionary<string, IEthereumClient> clients = new Dictionary<string, IEthereumClient>();

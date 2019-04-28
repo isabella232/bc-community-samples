@@ -30,12 +30,12 @@ namespace WeatherInsurance.Operation.Functions
                 return new BadRequestObjectResult("Expiration date is in the past");
 
             var client = blockchainRepo.GetClient(contract.Network.Name);
-            var accounts = await client.GetAccounts();
+            var ownerAddress = await client.GetDefaultAccount();
 
             var fee = new Fee
             {
                 Sender = contract.OwnerAddress,
-                Recipient = accounts.First(),
+                Recipient = ownerAddress,
                 Contract = contract,
                 Timestamp = DateTime.UtcNow,
                 Amount = contract.GetRequiredFeeAmount()
