@@ -222,8 +222,17 @@ class ProD {
   }
 
   async transfer (from, to, amount) {
-    const result = await this.eth.sendTransaction({data: '', from: from, to: to, value: amount})
-    return result
+    if (typeof web3 !== 'undefined') {
+      return new Promise(resolve => {
+        // eslint-disable-next-line
+        web3.eth.sendTransaction({data: '', from: from, to: to, value: amount}, (err, result) => {
+          resolve(result)
+        })
+      })
+    } else {
+      const result = await this.eth.sendTransaction({data: '', from: from, to: to, value: amount})
+      return result
+    }
   }
 
   async executeContractFunction (userAccountAddress, contractAddress, abi, method, params = []) {
