@@ -6,8 +6,8 @@ For CORS reasons it needs to run using an HTTP server (don't open using `file://
 
 Either:
 
-1. open it served on GitHub pages:  https://jakubner.github.io/bc-community-samples/ebc-forms-reactjs/app/index.html
-1. serve the [app](app) folder yourself, e.g.: `http-server app`
+* open it served on GitHub pages:  https://jakubner.github.io/bc-community-samples/ebc-forms-reactjs/app/index.html
+* serve the [app](app) folder yourself, e.g.: `http-server app`
     * Above requires a simple HTTP server installed with: `npm install -g https-server`.
     * using browser open `http://localhost:8080`.
 
