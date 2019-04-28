@@ -3,7 +3,7 @@
     <el-aside width="140px">
       <el-menu :default-active="activeIndex" @select="handleSelect">
         <el-menu-item index="1">
-          <i class="el-icon-goods"></i>
+          <i class="el-icon-cloudy-and-sunny"></i>
           <span>Buy Insurance</span>
         </el-menu-item>
         <el-menu-item index="2">

@@ -273,9 +273,9 @@ export default {
   methods: {
     getIcon (value) {
       if (value) {
-        return 'el-icon-circle-check-outline'
+        return 'el-icon-circle-check'
       } else {
-        return 'el-icon-circle-close-outline'
+        return 'el-icon-circle-close'
       }
     },
     async addAuthenticationHeader (file) {
@@ -351,14 +351,15 @@ export default {
         inputErrorMessage: 'Invalid input'
       }).then(value => {
         this.selectedContractFile.description = value.value
-        this.prod.updateContractFile(user, contractFile).then(res => {
+        this.prod.updateContractFile(user, this.selectedContractFile).then(res => {
           this.$message({
             type: 'success',
             message: `Updated ${contractFile.name}`
           })
+          contractFile.description = value.value
         })
       }).catch((ex) => {
-        contractFile.description = oldDescription
+        this.selectedContractFile.description = oldDescription
         this.$message({
           type: 'error',
           message: 'ex'
