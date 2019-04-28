@@ -1,6 +1,6 @@
 # React Quick Start
 
-The react app is in [app/index.html](app/index.html).
+The react app is in [app/](app).
 
 For CORS reasons it needs to run using an HTTP server (don't open using `file://`).
 
