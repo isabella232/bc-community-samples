@@ -330,8 +330,24 @@ class ProD {
   }
 
   async getPublicDeployedWeatherInsuranceContractDetails (deployedContract, userAddress) {
-    const contract = this.getWeatherInsuranceContractApi(deployedContract.address)
-    const balance = await this.getBalance(deployedContract.address)
+    const r = {
+      address: deployedContract.address,
+      name: deployedContract.name,
+      description: deployedContract.description,
+      type: deployedContract.contractType,
+      expirationDateTime: deployedContract.expirationDateTime,
+      contractFileId: deployedContract.contractFile.id,
+      hasCompiledCode: deployedContract.contractFile.includesJson,
+      hasSourceCode: deployedContract.contractFile.includesSol,
+      isRegistered: deployedContract.isRegistered
+    }
+    const result = await this.getPublicWeatherInsuranceContractDetails(r, userAddress)
+    return result
+  }
+
+  async getPublicWeatherInsuranceContractDetails (r, userAddress) {
+    const contract = this.getWeatherInsuranceContractApi(r.address)
+    const balance = await this.getBalance(r.address)
     const owner = (await contract.owner())[0]
     let association = 'User'
     let notional = Eth.toBN(0)
@@ -351,29 +367,18 @@ class ProD {
     const minimumPremium = (await contract.minimumPremium())[0]
     const forecast = (await contract.forecast())[0]
     const forecastRisk = (await contract.forecastRisk())[0]
-    const r = {
-      address: deployedContract.address,
-      ownerAddress: owner,
-      name: deployedContract.name,
-      type: deployedContract.contractType,
-      expirationDateTime: deployedContract.expirationDateTime,
-      expirationTime: (new Date(parseInt(expirationTime) * 1000)).toLocaleString(),
-      valuationTime: (new Date(parseInt(valuationTime) * 1000)).toLocaleString(),
-      description: deployedContract.description,
-      balance: this.amountAsEther(balance),
-      association: association,
-      location: location,
-      condition: parseInt(condition),
-      minimumPremium: this.amountAsEther(minimumPremium),
-      forecast: parseInt(forecast),
-      forecastRisk: parseInt(forecastRisk),
-      isRegistered: deployedContract.isRegistered,
-      notional: this.amountAsEther(notional),
-      premium: this.amountAsEther(premium),
-      contractFileId: deployedContract.contractFile.id,
-      hasCompiledCode: deployedContract.contractFile.includesJson,
-      hasSourceCode: deployedContract.contractFile.includesSol
-    }
+    r.ownerAddress = owner
+    r.expirationTime = (new Date(parseInt(expirationTime) * 1000)).toLocaleString()
+    r.valuationTime = (new Date(parseInt(valuationTime) * 1000)).toLocaleString()
+    r.balance = this.amountAsEther(balance)
+    r.association = association
+    r.location = location
+    r.condition = parseInt(condition)
+    r.minimumPremium = this.amountAsEther(minimumPremium)
+    r.forecast = parseInt(forecast)
+    r.forecastRisk = parseInt(forecastRisk)
+    r.notional = this.amountAsEther(notional)
+    r.premium = this.amountAsEther(premium)
     return r
   }
 

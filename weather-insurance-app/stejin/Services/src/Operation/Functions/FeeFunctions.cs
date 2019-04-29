@@ -29,8 +29,11 @@ namespace WeatherInsurance.Operation.Functions
             if (contract.ExpirationDateTime < DateTime.UtcNow)
                 return new BadRequestObjectResult("Expiration date is in the past");
 
+            var ownerAddress = "0x0";
+
             var client = blockchainRepo.GetClient(contract.Network.Name);
-            var ownerAddress = await client.GetDefaultAccount();
+            if (client != null)
+                ownerAddress = await client.GetDefaultAccount();
 
             var fee = new Fee
             {

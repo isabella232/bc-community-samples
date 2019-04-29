@@ -168,7 +168,7 @@ export default {
       await this.updateDetails()
     },
     async updateDetails () {
-      const d = await this.prod.getPublicDeployedWeatherInsuranceContractDetails(this.contract, this.selectedUserAccountAddress)
+      const d = await this.prod.getPublicWeatherInsuranceContractDetails(this.contract, this.selectedUserAccountAddress)
       if (this.selectedUserAccountAddress) {
         const b = await this.prod.getBalance(this.selectedUserAccountAddress)
         this.balance = `${this.prod.convertToAccountingUnit(b)} ETH`

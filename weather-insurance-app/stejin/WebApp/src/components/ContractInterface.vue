@@ -36,7 +36,7 @@
                   v-model="form.expirationDateTime"
                   type="datetime"
                   placeholder="Select date and time"
-                  default-time="12:00:00">
+                  default-time="23:59:59">
                 </el-date-picker>
               </el-tooltip>
             </el-form-item>

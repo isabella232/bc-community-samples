@@ -31,7 +31,7 @@ namespace WeatherInsurance.Domain.Model
         public long GetRequiredFeeAmount()
         {
             var timeSpan = ExpirationDateTime - DateTime.UtcNow;
-            return Convert.ToInt64(Math.Ceiling(timeSpan.TotalDays) * 30000000);
+            return Convert.ToInt64(Math.Ceiling(timeSpan.TotalDays) * 300000000000000);
         }
 
     }
