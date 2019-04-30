@@ -14,7 +14,7 @@
 
 3. Run the development console.
     ```javascript
-    truffle develop
+    git clone https://github.com/Azure-Samples/bc-community-samples.git
     ```
 
 4. Compile and migrate the smart contracts. Note inside the development console we don't preface commands with `truffle`.
