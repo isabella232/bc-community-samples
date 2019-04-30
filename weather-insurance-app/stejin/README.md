@@ -20,6 +20,8 @@ The insurance provider operates the contract (periodic valuations, settlement et
 ### Portal Developer
 The portal developer is responsible for building and maintaining the web application and related services and is compensated by insurance providers via registration fees. In this scenario, the developer is a pure technology provider that is not involved in contract operation. Alternatively, the developer could offer operational services (i.e. act as an oracle) to insurance providers for additional fees.
 
+<img src="Extras/Schema.png">
+
 
 The solution is decentralized for a number of reason:
 
