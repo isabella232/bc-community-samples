@@ -99,7 +99,7 @@ Once the contract has been deployed, its functions and methods can be called fro
 
 <img src="Extras/ContractInterface.png">
 
-For scheduled operations, such as periodic revaluations and settlement, insurance providers should set up a logic app an Microsoft Azure.
+For scheduled operations, such as periodic revaluations and settlement, insurance providers should set up a logic app on Microsoft Azure.
 
 <img src="Extras/LogicApp1.png"> 
 
