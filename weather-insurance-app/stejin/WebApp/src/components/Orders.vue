@@ -38,27 +38,27 @@
             </el-select>
           </el-row>
           <div v-if="position">
-            <el-row :gutter="5" class="frm-row">
-              <el-col :span="8"><div class="frm-label">Balance</div></el-col>
-              <el-col :span="16"><div class="order-info">{{balance}}</div></el-col>
+            <el-row :gutter="10" class="frm-row">
+              <el-col :span="10"><div class="frm-label">Balance</div></el-col>
+              <el-col :span="14"><div class="order-info">{{balance}}</div></el-col>
             </el-row>
-            <el-row :gutter="5" class="frm-row">
-              <el-col :span="8"><div class="frm-label">Notional Bought</div></el-col>
-              <el-col :span="16"><div class="order-info">{{position.notional}}</div></el-col>
+            <el-row :gutter="10" class="frm-row">
+              <el-col :span="10"><div class="frm-label">Notional Bought</div></el-col>
+              <el-col :span="14"><div class="order-info">{{position.notional}}</div></el-col>
             </el-row>
-            <el-row :gutter="5" class="frm-row">
-              <el-col :span="8"><div class="frm-label">Premium Paid</div></el-col>
-              <el-col :span="16"><div class="order-info">{{position.premium}}</div></el-col>
+            <el-row :gutter="10" class="frm-row">
+              <el-col :span="10"><div class="frm-label">Premium Paid</div></el-col>
+              <el-col :span="14"><div class="order-info">{{position.premium}}</div></el-col>
             </el-row>
-            <el-row :gutter="5" class="frm-row">
-              <el-col :span="8"><div class="frm-label">Notional</div></el-col>
-              <el-col :span="16"><el-input-number v-model="notional" size="medium" :min="1" :controls="true"></el-input-number></el-col>
+            <el-row :gutter="10" class="frm-row">
+              <el-col :span="10"><div class="frm-label">Notional (ETH)</div></el-col>
+              <el-col :span="14"><el-input-number v-model="notional" size="medium" :min="1" :controls="true"></el-input-number></el-col>
             </el-row>
-            <el-row :gutter="5" class="frm-row">
-              <el-col :span="8"><div class="frm-label">Total Premium</div></el-col>
-              <el-col :span="16"><div class="order-info">{{premium}}</div></el-col>
+            <el-row :gutter="10" class="frm-row">
+              <el-col :span="10"><div class="frm-label">Total Premium</div></el-col>
+              <el-col :span="14"><div class="order-info">{{premium}}</div></el-col>
             </el-row>
-            <el-row :gutter="5" class="frm-row" type="flex" justify="center">
+            <el-row :gutter="0" class="frm-row" type="flex" justify="center">
               <el-col :span="24"><el-button type="success" :disabled="isClosed" round @click="buyInsurance">Buy</el-button></el-col>
             </el-row>
           </div>
@@ -174,8 +174,8 @@ export default {
         const b = await this.prod.getBalance(this.selectedUserAccountAddress)
         this.balance = `${this.prod.convertToAccountingUnit(b)} ETH`
         this.position = {
-          notional: d.notional,
-          premium: d.premium 
+          notional: `${d.notional} ETH`,
+          premium: `${d.premium} ETH` 
         }
       }
       this.valuationTime = d.valuationTime
@@ -193,7 +193,7 @@ export default {
     },
     async updatePremium () {
       const p = await this.prod.getPremium(this.contract.address, this.prod.convertToBaseUnit(this.notional))
-      this.premium = this.prod.convertToAccountingUnit(p)
+      this.premium = `${this.prod.convertToAccountingUnit(p)} ETH`
     },
     async getPremiums () {
       const result = []

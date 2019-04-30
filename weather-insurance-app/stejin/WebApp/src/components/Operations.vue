@@ -302,6 +302,7 @@ export default {
       }
       this.selectedUserAccount = val
       if (val) {
+        this.selectedUserAccount.balance = await this.prod.getBalance(val.address)
         this.selectedUserAccountAddress = val.address
         this.contractFiles = await this.prod.getContractFiles(this.selectedUserAccount.address)
         this.contractFiles.sort((a, b) => a.name > b.name ? 1 : -1)
