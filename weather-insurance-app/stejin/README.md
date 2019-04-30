@@ -103,7 +103,7 @@ For scheduled operations, such as periodic revaluations and settlement, insuranc
 
 <img src="Extras/LogicApp1.png"> 
 
-Each contract needs its own logic app. Example code for a logic app can be found in the [Extras](Extras/Logic.App.json) section of this repository. Once imported, you can tweak the settings as required and replace the ABI code and parameter function if necessary.
+Each contract needs its own logic app. Example code for a logic app can be found in the [Extras](Extras/LogicApp.json) section of this repository. Once imported, you can tweak the settings as required and replace the ABI code and parameter function if necessary.
 
 <img src="Extras/LogicApp2.png">
 
