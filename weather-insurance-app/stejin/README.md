@@ -114,12 +114,17 @@ For the Ethereum part, a connection to the Ethereum network is required. One con
 
 #### Prerequisites
 
+- ganache-cli
 - Truffle: npm install -g truffle
 - Truffle Flattener: npm install -g truffle-flattener
 - yarn
 - Azure Functions runtime
 - Azure Storage Account
 - Sql Azure Db
+
+#### Clone repository
+
+Clone repository and cd into weather-insurance-app/stejin. All following paths are relative to this location.
 
 
 #### Compile contracts
@@ -144,7 +149,7 @@ Add WeatherInsurance.sol from contracts and WeatherInsurance.json from build/con
 
 Create Sql Azure database and copy the connection string.
 
-cd into Services/Integration/Database and run
+cd into Services/src/Integration/Database and run
 
 ```
 dotnet user-secrets set "ConnectionStrings:Database" "<insert your database connection string>"
@@ -155,7 +160,13 @@ dotnet ef database update
 
 #### Run full application locally
 
-cd into Services/Operatior/Functions
+Open a new terminal window and start testrpc
+
+```
+ganache-cli
+```
+
+Open a new terminal window and cd into Services/src/Operation/Functions.
 
 Create your own local.settings.json file and paste below settings
 
