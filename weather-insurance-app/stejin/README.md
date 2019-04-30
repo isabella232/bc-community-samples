@@ -1,10 +1,10 @@
 # Decentralized Insurance Market for Weather Insurance
 
 Azure Technologies services used:
-	- Azure Functions
-	- Azure Logic Apps with MSN Weather and Ethereum connectors
-	- Azure Blob Storage (to serve smart contract source code and compiled code)
-	- SQL Azure database (to keep track of registered contracts and certain events fired by contracts)
+- Azure Functions
+- Azure Logic Apps with MSN Weather and Ethereum connectors
+- Azure Blob Storage (to serve smart contract source code and compiled code)
+- SQL Azure database (to keep track of registered contracts and certain events fired by contracts)
 
 ## Introduction
 
@@ -23,9 +23,9 @@ The portal developer is responsible for building and maintaining the web applica
 
 The solution is decentralized for a number of reason:
 
-	1. Anybody can participate in the insurance market, both as a provider or buyer of insurance.
-	2. Insurance providers and buyers interact with each other via the blockchain network. No one has to rely on information provided by a central party. 
-	3. The most important part of the solution, namely the insurance contracts and the relationship between insurance providers and customers is hosted on the blockchain and does not depend on infrastructure owned by a single party. If the web portal went away for any reason, the contracts would survive. It would even be possible for another entity to build a competing portal that hosts the same contracts.
+1. Anybody can participate in the insurance market, both as a provider or buyer of insurance.
+2. Insurance providers and buyers interact with each other via the blockchain network. No one has to rely on information provided by a central party. 
+3. The most important part of the solution, namely the insurance contracts and the relationship between insurance providers and customers is hosted on the blockchain and does not depend on infrastructure owned by a single party. If the web portal went away for any reason, the contracts would survive. It would even be possible for another entity to build a competing portal that hosts the same contracts.
 
 
 ## Instructions
@@ -186,7 +186,6 @@ In PowerShell
 
 ```
 $Env:AzureWebJobsEnv = "Development"
-
 ```
 Or in bash
 ```
