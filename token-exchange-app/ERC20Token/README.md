@@ -34,4 +34,9 @@
 1. Contract address:  ```  0x2e0ABeF6E0Fde0b76BA1de27912c8c70483512a5 ```
 
 2. Azure Logic App settings:
-![Img](/images/logicapp.png)
+![Img](/token-exchange-app/ERC20Token/images/logicapp.png)
+
+3. To interact with contact from a browser 
+ https://www.myetherwallet.com/i
+
+ 4.
