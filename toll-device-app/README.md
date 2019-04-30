@@ -28,7 +28,7 @@ Concretely, this application demonstrates the user registering a vehicle being i
 3. Open the wallet application on the <i>Vehicle App</i> phone and copy the mnemonic.
 4. To find the private key, navigate to this [website] and paste the mnemonic in the <b>BIP39 Mnemonic</b> field and set the <b>Coin</b> field to Ethereum
 5. Scroll down to <b>Derived Addresses</b> and take the first private key in the list.
-6. Open your metamask extension and connect to the private netowrk via the RPC url: http://40.77.57.190:11111
+6. Open your metamask extension and connect to the private network via the RPC url: http://40.77.57.190:11111
 7. Using the derived private key, import it and set the imported account as the default one
 8. Navigate to the [Tolling App Dashboard](https://tollingapp.azurewebsites.net) and register your vehicle. You can just input anything.
 9. Wait a couple of moments and refresh the page, the vehicle you just registered should be in the list.
