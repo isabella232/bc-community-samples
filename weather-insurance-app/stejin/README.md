@@ -73,7 +73,7 @@ Users select the notional they wish to insure and the premium is automatically c
 
 ### Insurance Providers
 
-Insurance providers are experts in writing insurance contracts and that is all they need to know in order to use the portal and sell their contracts to its users. When insurance providers design their contracts, they only have to implement certain interface methods which will be queried by the portal to allow users to view and interact with the contracts. The actual implementation of the methods in up to the providers. Reference contracts can be found in the Contracts section of this repository.
+Insurance providers are experts in writing insurance contracts and that is all they need to know in order to use the portal and sell their contracts to its users. When insurance providers design their contracts, they only have to implement certain interface methods which will be queried by the portal to allow users to view and interact with the contracts. The actual implementation of the methods in up to the providers. Reference contracts can be found in the [Contracts](Contracts/contracts) section of this repository.
 
 Once compiled, the compiled code and source code are uploaded to the portal from where they can be deployed to the blockchain.
 
@@ -103,7 +103,7 @@ For scheduled operations, such as periodic revaluations and settlement, insuranc
 
 <img src="Extras/LogicApp1.png"> 
 
-Each contract needs its own logic app. Example code for a logic app can be found in the Extras section of this repository. Once imported, you can tweak the settings as required and replace the ABI code and parameter function if necessary.
+Each contract needs its own logic app. Example code for a logic app can be found in the [Extras](Extras/Logic.App.json) section of this repository. Once imported, you can tweak the settings as required and replace the ABI code and parameter function if necessary.
 
 <img src="Extras/LogicApp2.png">
 
