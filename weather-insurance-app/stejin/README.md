@@ -1,6 +1,6 @@
 # Decentralized Insurance Market for Weather Insurance
 
-Azure Technologies services used:
+Azure services used in this solution:
 - Azure Functions
 - Azure Logic Apps with MSN Weather and Ethereum connectors
 - Azure Blob Storage (to serve smart contract source code and compiled code)
