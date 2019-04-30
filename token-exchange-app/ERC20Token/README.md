@@ -28,3 +28,10 @@
     // Serves the front-end on http://localhost:3000
     npm run dev
     ```
+
+## Smart Contract on Rinkeby Network
+
+1. Contract address:  ```  0x2e0ABeF6E0Fde0b76BA1de27912c8c70483512a5 ```
+
+2. Azure Logic App settings:
+![Img](/images/logicapp.png)

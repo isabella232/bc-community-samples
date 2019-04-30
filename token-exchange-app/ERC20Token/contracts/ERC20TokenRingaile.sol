@@ -11,4 +11,13 @@ contract ERC20TokenRingaile is ERC20, ERC20Detailed{
         _mint(msg.sender, _initialSupply);
     }
 
+    //event to listen on azure logic app
+    event Transfer(address from, address to, uint256 supply);
+
+    // transfer tokens from a given address to another given address
+    function transferFrom(address from, address to, uint256 value) public returns (bool) {
+    	emit Transfer(from, to, value);
+        return super.transferFrom(from, to, value);
+    }
+
 }
