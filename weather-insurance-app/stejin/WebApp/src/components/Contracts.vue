@@ -24,6 +24,7 @@
           <el-row :gutter="10"><el-col :span="5">Description</el-col><el-col :span="19">{{ c.description }}</el-col></el-row>
           <el-row :gutter="10"><el-col :span="5">Contract Type</el-col><el-col :span="19">{{ c.type }}</el-col></el-row>
           <el-row :gutter="10"><el-col :span="5">Expiration Date</el-col><el-col :span="19">{{ c.expirationTime }}</el-col></el-row>
+          <el-row :gutter="10"><el-col :span="5">Closed</el-col><el-col :span="19">{{ yesNo(c.isExpired) }}</el-col></el-row>
           <el-row :gutter="10"><el-col :span="5">Location</el-col><el-col :span="19">{{ c.location }}</el-col></el-row>
           <el-row :gutter="10"><el-col :span="5">Contract Strike</el-col><el-col :span="19">{{ c.condition }}</el-col></el-row>
           <el-row :gutter="10"><el-col :span="5">Min Premium (ETH)</el-col><el-col :span="19">{{ c.minimumPremium }}</el-col></el-row>
@@ -163,9 +164,9 @@ export default {
     },
     yesNo (val) {
       if (val) {
-        return 'yes'
+        return 'Yes'
       } else {
-        return 'no'
+        return 'No'
       }
     }
   }

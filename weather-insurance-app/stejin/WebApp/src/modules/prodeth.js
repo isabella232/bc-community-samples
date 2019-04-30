@@ -370,6 +370,7 @@ class ProD {
     r.ownerAddress = owner
     r.expirationTime = (new Date(parseInt(expirationTime) * 1000)).toLocaleString()
     r.valuationTime = (new Date(parseInt(valuationTime) * 1000)).toLocaleString()
+    r.isExpired = parseInt(valuationTime) >= parseInt(expirationTime)
     r.balance = this.amountAsEther(balance)
     r.association = association
     r.location = location

@@ -59,7 +59,7 @@
               <el-col :span="16"><div class="order-info">{{premium}}</div></el-col>
             </el-row>
             <el-row :gutter="5" class="frm-row" type="flex" justify="center">
-              <el-col :span="24"><el-button type="success" round @click="buyInsurance">Buy</el-button></el-col>
+              <el-col :span="24"><el-button type="success" :disabled="isClosed" round @click="buyInsurance">Buy</el-button></el-col>
             </el-row>
           </div>
         </el-main>
@@ -129,7 +129,8 @@ export default {
       valuationTime: null,
       strike: null,
       forecast: null,
-      forecastRisk: null
+      forecastRisk: null,
+      isClosed: true
     }
   },
   created: async function () {
@@ -181,6 +182,7 @@ export default {
       this.strike = d.condition
       this.forecast = d.forecast
       this.forecastRisk = d.forecastRisk
+      this.isClosed = d.isExpired
       this.premiums = await this.getPremiums()
       this.constructChartData()
     },
