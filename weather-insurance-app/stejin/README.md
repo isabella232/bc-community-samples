@@ -137,7 +137,7 @@ cd into Contracts directory and run
 
 Upload reference contract files to Azure Storage. 
 
-We want to establish minimum requirements on the interface that must be implemented by users should they wish to create their own contracts. Only contracts that implement the methods included in reference contracts will be accepted. Otherwise, users could attempt to upload random contracts.
+We want to establish minimum requirements on the interface that must be implemented by users should they wish to create their own contracts. Only contracts that implement the methods included in reference contracts will be accepted. Otherwise, users could attempt to upload arbitrary contracts.
 
 Open Azure Storage explorer, expand your account, select "Blob Containers" and create new container "contracts."
 
