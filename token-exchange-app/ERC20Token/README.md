@@ -39,4 +39,4 @@
 3. To interact with contact from a browser 
  https://www.myetherwallet.com/i
 
- 4.
+ 4. BI Report could be found under ``` resources ``` directory .
