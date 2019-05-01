@@ -8,7 +8,7 @@ This is a demo application for demostrating device-to-device payments using Ethe
 * The toll booth sensor will do a lookup in a registry of tokenized vehicles.
 * Finally a smart contract that will demonstrate a car approaching the toll booth, the booth making a request for payment, and the payment from the car to the booth.
 
-Concretely, this application demonstrates the user registering a vehicle being issued an [ERC-721](https://github.com/ethereum/eips/issues/721) token for it by some government entity. A tolling booth is also registered on a device, granting the government entity. explicit withdrawal rights on that address. Using one device as a POS terminal and another as the phone of the vehicle owner/toll payer, the POS terminal will make a request for money (TOL token) to the vehicle owner via an NFC bump and a payment will be performed.
+Concretely, this application demonstrates a user registering a vehicle and being issued an [ERC-721](https://github.com/ethereum/eips/issues/721) token for it by some entity. A tolling booth is also registered on a device, granting the entity explicit withdrawal rights of TOL token on that address. Using one device as a POS terminal and another as the phone of the vehicle owner/toll payer, the POS terminal will make a request for money (TOL token) to the vehicle owner via an NFC bump and a payment will be performed.
 
 ## Quick Video Demo
 
