@@ -74,19 +74,19 @@
     <Compile Include="Assets\Plugins\UnityPurchasing\script\PurchasingCheck.cs" />
     <None Include="Assets\Plugins\UnityPurchasing\script\link.xml" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/Aleksandar/projects/ethereal/client/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/Aleksandar/projects/ethereal/client/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/Aleksandar/projects/ethereal/client/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/Aleksandar/projects/ethereal/client/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/Users/Aleksandar/projects/ethereal/client/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -271,50 +271,92 @@
     <Reference Include="nunit.framework">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Assets/Plugins/Nethereum/BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Nethereum.ABI">
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Assets/Plugins/Nethereum/Nethereum.ABI.dll</HintPath>
+    </Reference>
+    <Reference Include="Nethereum.Contracts">
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Assets/Plugins/Nethereum/Nethereum.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="Nethereum.Hex">
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Assets/Plugins/Nethereum/Nethereum.Hex.dll</HintPath>
+    </Reference>
+    <Reference Include="Nethereum.JsonRpc.Client">
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Assets/Plugins/Nethereum/Nethereum.JsonRpc.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Nethereum.KeyStore">
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Assets/Plugins/Nethereum/Nethereum.KeyStore.dll</HintPath>
+    </Reference>
+    <Reference Include="Nethereum.Model">
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Assets/Plugins/Nethereum/Nethereum.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="Nethereum.RLP">
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Assets/Plugins/Nethereum/Nethereum.RLP.dll</HintPath>
+    </Reference>
+    <Reference Include="Nethereum.RPC">
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Assets/Plugins/Nethereum/Nethereum.RPC.dll</HintPath>
+    </Reference>
+    <Reference Include="Nethereum.Signer">
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Assets/Plugins/Nethereum/Nethereum.Signer.dll</HintPath>
+    </Reference>
+    <Reference Include="Nethereum.Unity">
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Assets/Plugins/Nethereum/Nethereum.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Nethereum.Util">
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Assets/Plugins/Nethereum/Nethereum.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Assets/Plugins/Nethereum/Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading">
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Assets/Plugins/Nethereum/System.Threading.dll</HintPath>
+    </Reference>
     <Reference Include="UDP">
-      <HintPath>C:/Users/Aleksandar/projects/ethereal/client/Assets/Plugins/UDP/UDP.dll</HintPath>
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Assets/Plugins/UDP/UDP.dll</HintPath>
     </Reference>
     <Reference Include="ChannelPurchase">
-      <HintPath>C:/Users/Aleksandar/projects/ethereal/client/Assets/Plugins/UnityChannel/ChannelPurchase.dll</HintPath>
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Assets/Plugins/UnityChannel/ChannelPurchase.dll</HintPath>
     </Reference>
     <Reference Include="UnityStore">
-      <HintPath>C:/Users/Aleksandar/projects/ethereal/client/Assets/Plugins/UnityChannel/UnityStore.dll</HintPath>
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Assets/Plugins/UnityChannel/UnityStore.dll</HintPath>
     </Reference>
     <Reference Include="Editor">
-      <HintPath>C:/Users/Aleksandar/projects/ethereal/client/Assets/Plugins/UnityPurchasing/Bin/Editor.dll</HintPath>
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Assets/Plugins/UnityPurchasing/Bin/Editor.dll</HintPath>
     </Reference>
     <Reference Include="Purchasing.Common">
-      <HintPath>C:/Users/Aleksandar/projects/ethereal/client/Assets/Plugins/UnityPurchasing/Bin/Purchasing.Common.dll</HintPath>
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Assets/Plugins/UnityPurchasing/Bin/Purchasing.Common.dll</HintPath>
     </Reference>
     <Reference Include="Stores">
-      <HintPath>C:/Users/Aleksandar/projects/ethereal/client/Assets/Plugins/UnityPurchasing/Bin/Stores.dll</HintPath>
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Assets/Plugins/UnityPurchasing/Bin/Stores.dll</HintPath>
     </Reference>
     <Reference Include="Apple">
-      <HintPath>C:/Users/Aleksandar/projects/ethereal/client/Assets/Plugins/UnityPurchasing/Bin/Apple/Apple.dll</HintPath>
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Assets/Plugins/UnityPurchasing/Bin/Apple/Apple.dll</HintPath>
     </Reference>
     <Reference Include="FacebookStore">
-      <HintPath>C:/Users/Aleksandar/projects/ethereal/client/Assets/Plugins/UnityPurchasing/Bin/Facebook/FacebookStore.dll</HintPath>
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Assets/Plugins/UnityPurchasing/Bin/Facebook/FacebookStore.dll</HintPath>
     </Reference>
     <Reference Include="Security">
-      <HintPath>C:/Users/Aleksandar/projects/ethereal/client/Assets/Plugins/UnityPurchasing/Bin/Security/live/Security.dll</HintPath>
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Assets/Plugins/UnityPurchasing/Bin/Security/live/Security.dll</HintPath>
     </Reference>
     <Reference Include="Tizen">
-      <HintPath>C:/Users/Aleksandar/projects/ethereal/client/Assets/Plugins/UnityPurchasing/Bin/Tizen/Tizen.dll</HintPath>
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Assets/Plugins/UnityPurchasing/Bin/Tizen/Tizen.dll</HintPath>
     </Reference>
     <Reference Include="winrt">
-      <HintPath>C:/Users/Aleksandar/projects/ethereal/client/Assets/Plugins/UnityPurchasing/winrt/winrt.dll</HintPath>
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Assets/Plugins/UnityPurchasing/winrt/winrt.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>C:/Users/Aleksandar/projects/ethereal/client/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>C:/Users/Aleksandar/projects/ethereal/client/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>C:/Users/Aleksandar/projects/ethereal/client/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Purchasing">
-      <HintPath>C:/Users/Aleksandar/projects/ethereal/client/Library/PackageCache/com.unity.purchasing@2.0.6/UnityEngine.Purchasing.dll</HintPath>
+      <HintPath>C:/Users/Aleksandar/Documents/bc-community-samples/unity-asset-app/client/Library/PackageCache/com.unity.purchasing@2.0.6/UnityEngine.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
