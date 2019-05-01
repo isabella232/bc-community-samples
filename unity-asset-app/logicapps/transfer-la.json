@@ -1,0 +1,121 @@
+{
+    "$connections": {
+        "value": {
+            "azuretables": {
+                "connectionId": "/subscriptions/f4a512c1-470e-4382-a1d2-b3d558b507b4/resourceGroups/ethereal/providers/Microsoft.Web/connections/azuretables",
+                "connectionName": "azuretables",
+                "id": "/subscriptions/f4a512c1-470e-4382-a1d2-b3d558b507b4/providers/Microsoft.Web/locations/westeurope/managedApis/azuretables"
+            },
+            "blockchainethereum": {
+                "connectionId": "/subscriptions/f4a512c1-470e-4382-a1d2-b3d558b507b4/resourceGroups/ethereal/providers/Microsoft.Web/connections/blockchainethereum",
+                "connectionName": "blockchainethereum",
+                "id": "/subscriptions/f4a512c1-470e-4382-a1d2-b3d558b507b4/providers/Microsoft.Web/locations/westeurope/managedApis/blockchainethereum"
+            }
+        }
+    },
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "Execute_smart_contract_function_(incurring_gas_cost)": {
+                "inputs": {
+                    "body": {
+                        "_accuracy": "@{body('GenerateCharacteristics')['Accuracy']}",
+                        "_charisma": "@{body('GenerateCharacteristics')['Charisma']}",
+                        "_inteligence": "@{body('GenerateCharacteristics')['Inteligence']}",
+                        "_might": "@{body('GenerateCharacteristics')['Might']}",
+                        "_name": "@{body('GenerateCharacteristics')['Name']}",
+                        "_speed": "@{body('GenerateCharacteristics')['Speed']}",
+                        "_to": "@triggerBody()?['buyer']",
+                        "_tokenId": "@{body('GenerateCharacteristics')['TokenId']}",
+                        "_wisdom": "@{body('GenerateCharacteristics')['Wisdom']}"
+                    },
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['blockchainethereum']['connectionId']"
+                        }
+                    },
+                    "method": "post",
+                    "path": "/contract/functions/@{encodeURIComponent(encodeURIComponent('mintCharacter'))}/execute",
+                    "queries": {
+                        "abi": "[\n    {\n      \"constant\": true,\n      \"inputs\": [\n        {\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"tokenProperty\",\n      \"outputs\": [\n        {\n          \"name\": \"name\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"wisdom\",\n          \"type\": \"uint8\"\n        },\n        {\n          \"name\": \"inteligence\",\n          \"type\": \"uint8\"\n        },\n        {\n          \"name\": \"charisma\",\n          \"type\": \"uint8\"\n        },\n        {\n          \"name\": \"speed\",\n          \"type\": \"uint8\"\n        },\n        {\n          \"name\": \"accuracy\",\n          \"type\": \"uint8\"\n        },\n        {\n          \"name\": \"might\",\n          \"type\": \"uint8\"\n        }\n      ],\n      \"payable\": false,\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"payable\": false,\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"constructor\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"name\": \"previousOwner\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": true,\n          \"name\": \"newOwner\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"OwnershipTransferred\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": false,\n          \"name\": \"from\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"name\": \"to\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"name\": \"tokenId\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"Transfer\",\n      \"type\": \"event\"\n    },\n    {\n      \"constant\": true,\n      \"inputs\": [],\n      \"name\": \"owner\",\n      \"outputs\": [\n        {\n          \"name\": \"\",\n          \"type\": \"address\"\n        }\n      ],\n      \"payable\": false,\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"constant\": true,\n      \"inputs\": [],\n      \"name\": \"isOwner\",\n      \"outputs\": [\n        {\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"payable\": false,\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"constant\": false,\n      \"inputs\": [],\n      \"name\": \"renounceOwnership\",\n      \"outputs\": [],\n      \"payable\": false,\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"constant\": false,\n      \"inputs\": [\n        {\n          \"name\": \"newOwner\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"transferOwnership\",\n      \"outputs\": [],\n      \"payable\": false,\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"constant\": true,\n      \"inputs\": [\n        {\n          \"name\": \"tokenId\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"tokenURI\",\n      \"outputs\": [\n        {\n          \"name\": \"\",\n          \"type\": \"string\"\n        }\n      ],\n      \"payable\": false,\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"constant\": true,\n      \"inputs\": [\n        {\n          \"name\": \"tokenId\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"ownerOf\",\n      \"outputs\": [\n        {\n          \"name\": \"\",\n          \"type\": \"address\"\n        }\n      ],\n      \"payable\": false,\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"constant\": true,\n      \"inputs\": [\n        {\n          \"name\": \"_tmpOwner\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"balanceOf\",\n      \"outputs\": [\n        {\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"payable\": false,\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"constant\": false,\n      \"inputs\": [\n        {\n          \"name\": \"_to\",\n          \"type\": \"address\"\n        },\n        {\n          \"name\": \"_tokenId\",\n          \"type\": \"uint256\"\n        },\n        {\n          \"name\": \"_name\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"_wisdom\",\n          \"type\": \"uint8\"\n        },\n        {\n          \"name\": \"_inteligence\",\n          \"type\": \"uint8\"\n        },\n        {\n          \"name\": \"_charisma\",\n          \"type\": \"uint8\"\n        },\n        {\n          \"name\": \"_speed\",\n          \"type\": \"uint8\"\n        },\n        {\n          \"name\": \"_accuracy\",\n          \"type\": \"uint8\"\n        },\n        {\n          \"name\": \"_might\",\n          \"type\": \"uint8\"\n        }\n      ],\n      \"name\": \"mintCharacter\",\n      \"outputs\": [\n        {\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"payable\": false,\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"constant\": false,\n      \"inputs\": [\n        {\n          \"name\": \"_to\",\n          \"type\": \"address\"\n        },\n        {\n          \"name\": \"_tokenId\",\n          \"type\": \"uint256\"\n        },\n        {\n          \"name\": \"_name\",\n          \"type\": \"string\"\n        }\n      ],\n      \"name\": \"mint\",\n      \"outputs\": [\n        {\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"payable\": false,\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"constant\": true,\n      \"inputs\": [\n        {\n          \"name\": \"_tokenId\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"getToken\",\n      \"outputs\": [\n        {\n          \"name\": \"\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"\",\n          \"type\": \"uint8\"\n        },\n        {\n          \"name\": \"\",\n          \"type\": \"uint8\"\n        },\n        {\n          \"name\": \"\",\n          \"type\": \"uint8\"\n        },\n        {\n          \"name\": \"\",\n          \"type\": \"uint8\"\n        },\n        {\n          \"name\": \"\",\n          \"type\": \"uint8\"\n        },\n        {\n          \"name\": \"\",\n          \"type\": \"uint8\"\n        }\n      ],\n      \"payable\": false,\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"constant\": false,\n      \"inputs\": [\n        {\n          \"name\": \"from\",\n          \"type\": \"address\"\n        },\n        {\n          \"name\": \"to\",\n          \"type\": \"address\"\n        },\n        {\n          \"name\": \"tokenId\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"transferFrom\",\n      \"outputs\": [],\n      \"payable\": false,\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"constant\": false,\n      \"inputs\": [\n        {\n          \"name\": \"from\",\n          \"type\": \"address\"\n        },\n        {\n          \"name\": \"to\",\n          \"type\": \"address\"\n        },\n        {\n          \"name\": \"tokenId\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"safeTransferFrom\",\n      \"outputs\": [],\n      \"payable\": false,\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    }\n  ]",
+                        "contractAddress": "0xF1dF7CB57bB5dfDC60EE86A4d5c3F7A011584985"
+                    }
+                },
+                "runAfter": {
+                    "GenerateCharacteristics": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "ApiConnection"
+            },
+            "GenerateCharacteristics": {
+                "inputs": {
+                    "function": {
+                        "id": "/subscriptions/f4a512c1-470e-4382-a1d2-b3d558b507b4/resourceGroups/ethereal/providers/Microsoft.Web/sites/heromarket/functions/GenerateCharacteristics"
+                    },
+                    "method": "GET"
+                },
+                "runAfter": {},
+                "type": "Function"
+            },
+            "Insert_Entity": {
+                "inputs": {
+                    "body": {
+                        "Accuracy": "@{body('GenerateCharacteristics')['Accuracy']}",
+                        "Charisma": "@{body('GenerateCharacteristics')['Charisma']}",
+                        "Inteligence": "@{body('GenerateCharacteristics')['Inteligence']}",
+                        "Might": "@{body('GenerateCharacteristics')['Might']}",
+                        "Name": "@{body('GenerateCharacteristics')['Name']}",
+                        "PartitionKey": "Hero",
+                        "RowKey": "@{body('GenerateCharacteristics')['TokenId']}",
+                        "Speed": "@{body('GenerateCharacteristics')['Speed']}",
+                        "Wisdom": "@{body('GenerateCharacteristics')['Wisdom']}"
+                    },
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['azuretables']['connectionId']"
+                        }
+                    },
+                    "method": "post",
+                    "path": "/Tables/@{encodeURIComponent('Heroes')}/entities"
+                },
+                "runAfter": {
+                    "Execute_smart_contract_function_(incurring_gas_cost)": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "ApiConnection"
+            }
+        },
+        "contentVersion": "1.0.0.0",
+        "outputs": {},
+        "parameters": {
+            "$connections": {
+                "defaultValue": {},
+                "type": "Object"
+            }
+        },
+        "triggers": {
+            "manual": {
+                "inputs": {
+                    "schema": {
+                        "properties": {
+                            "buyer": {
+                                "type": "string"
+                            },
+                            "key": {
+                                "type": "string"
+                            },
+                            "packageId": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "kind": "Http",
+                "type": "Request"
+            }
+        }
+    }
+}
