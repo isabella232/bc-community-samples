@@ -1,8 +1,6 @@
 using System;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
@@ -35,8 +33,7 @@ namespace HeroMarketplace
 
             public int Might { get; set; }
         }
-
-        public static int tokenCount = 0;
+        
         public static Random Random = new Random();
         public static int MinAbility = 5;
         public static int MaxAbility = 20;
@@ -49,8 +46,7 @@ namespace HeroMarketplace
         {
             var hero = new Hero()
             {
-                TokenId = ++tokenCount,
-                Name = "Bojan",
+                Name = "Hero",
                 Accuracy = Random.Next(MinAbility, MaxAbility),
                 Charisma = Random.Next(MinAbility, MaxAbility),
                 Inteligence = Random.Next(MinAbility, MaxAbility),
@@ -65,26 +61,7 @@ namespace HeroMarketplace
                 Content = new StringContent(result, Encoding.UTF8, "application/json")
             };
         }
-
-
-        [FunctionName("Test")]
-        public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
-            ILogger log)
-        {
-            log.LogInformation("C# HTTP trigger function processed a request.");
-
-            string name = req.Query["name"];
-
-            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            dynamic data = JsonConvert.DeserializeObject(requestBody);
-            name = name ?? data?.name;
-
-            return name != null
-                ? (ActionResult)new OkObjectResult($"Hello, {name}")
-                : new BadRequestObjectResult("Please pass a name on the query string or in the request body");
-        }
-
+        
         [FunctionName("Offers")]
         public static async Task<HttpResponseMessage> GetOffers(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)]

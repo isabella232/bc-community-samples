@@ -170,13 +170,7 @@ Additionally, you would want to verify the IAP has gone through. You can add ste
 
 ![Parameters](./resources/la-trans-eth.png)
 
-12. Finally, to keep track of all heroes minted we can use Azure Storage Table eq. `Heroes`
-Select **Azure Storage Table** connector and select **Insert Entity** action
-13. Fill the parameters as shown on the image
-
-![Insert](./resources/la-trans-insert.png)
-
-14. Save and run the logic app
+12. Save and run the logic app
 
 --- 
 
