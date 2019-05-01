@@ -6,6 +6,8 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.Purchasing;
 using Nethereum.JsonRpc.UnityClient;
+using Nethereum.Contracts;
+using Nethereum.RPC.Eth.DTOs;
 
 [System.Serializable]
 public class Item 
@@ -36,8 +38,24 @@ public class CardScrollList : MonoBehaviour {
 
     public ScrollRect scrollView;
 
-	// Use this for initialization.
+
+    // We define the ABI of the contract we are going to use.
+    public static string ABI = @"[{""constant"": true, ""inputs"": [{ ""name"": """", ""type"": ""uint256""}],""name"": ""tokenProperty"", ""outputs"": [  { ""name"": ""name"", ""type"": ""string""  },  { ""name"": ""wisdom"", ""type"": ""uint8""  },  { ""name"": ""inteligence"", ""type"": ""uint8""  },  { ""name"": ""charisma"", ""type"": ""uint8""  },  { ""name"": ""speed"", ""type"": ""uint8""  },  { ""name"": ""accuracy"", ""type"": ""uint8""  },  { ""name"": ""might"", ""type"": ""uint8""  } ], ""payable"": false, ""stateMutability"": ""view"", ""type"": ""function"", ""signature"": ""0x08c243aa"" }, { ""inputs"": [], ""payable"": false, ""stateMutability"": ""nonpayable"", ""type"": ""constructor"", ""signature"": ""constructor"" }, { ""anonymous"": false, ""inputs"": [  { ""indexed"": true, ""name"": ""previousOwner"", ""type"": ""address""  },  { ""indexed"": true, ""name"": ""newOwner"", ""type"": ""address""  } ], ""name"": ""OwnershipTransferred"", ""type"": ""event"", ""signature"": ""0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0"" }, { ""anonymous"": false, ""inputs"": [  { ""indexed"": false, ""name"": ""from"", ""type"": ""address""  },  { ""indexed"": false, ""name"": ""to"", ""type"": ""address""  },  { ""indexed"": false, ""name"": ""tokenId"", ""type"": ""uint256""  } ], ""name"": ""Transfer"", ""type"": ""event"", ""signature"": ""0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"" }, { ""constant"": true, ""inputs"": [], ""name"": ""owner"", ""outputs"": [  { ""name"": """", ""type"": ""address""  } ], ""payable"": false, ""stateMutability"": ""view"", ""type"": ""function"", ""signature"": ""0x8da5cb5b"" }, { ""constant"": true, ""inputs"": [], ""name"": ""isOwner"", ""outputs"": [  { ""name"": """", ""type"": ""bool""  } ], ""payable"": false, ""stateMutability"": ""view"", ""type"": ""function"", ""signature"": ""0x8f32d59b"" }, { ""constant"": false, ""inputs"": [], ""name"": ""renounceOwnership"", ""outputs"": [], ""payable"": false, ""stateMutability"": ""nonpayable"", ""type"": ""function"", ""signature"": ""0x715018a6"" }, { ""constant"": false, ""inputs"": [  { ""name"": ""newOwner"", ""type"": ""address""  } ], ""name"": ""transferOwnership"", ""outputs"": [], ""payable"": false, ""stateMutability"": ""nonpayable"", ""type"": ""function"", ""signature"": ""0xf2fde38b"" }, { ""constant"": true, ""inputs"": [  { ""name"": ""tokenId"", ""type"": ""uint256""  } ], ""name"": ""tokenURI"", ""outputs"": [  { ""name"": """", ""type"": ""string""  } ], ""payable"": false, ""stateMutability"": ""view"", ""type"": ""function"", ""signature"": ""0xc87b56dd"" }, { ""constant"": true, ""inputs"": [  { ""name"": ""tokenId"", ""type"": ""uint256""  } ], ""name"": ""ownerOf"", ""outputs"": [  { ""name"": """", ""type"": ""address""  } ], ""payable"": false, ""stateMutability"": ""view"", ""type"": ""function"", ""signature"": ""0x6352211e"" }, { ""constant"": true, ""inputs"": [  { ""name"": ""_tmpOwner"", ""type"": ""address""  } ], ""name"": ""balanceOf"", ""outputs"": [  { ""name"": """", ""type"": ""uint256""  } ], ""payable"": false, ""stateMutability"": ""view"", ""type"": ""function"", ""signature"": ""0x70a08231"" }, { ""constant"": false, ""inputs"": [  { ""name"": ""_to"", ""type"": ""address""  },  { ""name"": ""_name"", ""type"": ""string""  },  { ""name"": ""_wisdom"", ""type"": ""uint8""  },  { ""name"": ""_inteligence"", ""type"": ""uint8""  },  { ""name"": ""_charisma"", ""type"": ""uint8""  },  { ""name"": ""_speed"", ""type"": ""uint8""  },  { ""name"": ""_accuracy"", ""type"": ""uint8""  },  { ""name"": ""_might"", ""type"": ""uint8""  } ], ""name"": ""mintCharacter"", ""outputs"": [  { ""name"": """", ""type"": ""bool""  } ], ""payable"": false, ""stateMutability"": ""nonpayable"", ""type"": ""function"", ""signature"": ""0x743ac699"" }, { ""constant"": false, ""inputs"": [  { ""name"": ""_to"", ""type"": ""address""  },  { ""name"": ""_name"", ""type"": ""string""  } ], ""name"": ""mint"", ""outputs"": [  { ""name"": """", ""type"": ""bool""  } ], ""payable"": false, ""stateMutability"": ""nonpayable"", ""type"": ""function"", ""signature"": ""0xd0def521"" }, { ""constant"": true, ""inputs"": [  { ""name"": ""_tokenId"", ""type"": ""uint256""  } ], ""name"": ""getToken"", ""outputs"": [  { ""name"": """", ""type"": ""string""  },  { ""name"": """", ""type"": ""uint8""  },  { ""name"": """", ""type"": ""uint8""  },  { ""name"": """", ""type"": ""uint8""  },  { ""name"": """", ""type"": ""uint8""  },  { ""name"": """", ""type"": ""uint8""  },  { ""name"": """", ""type"": ""uint8""  } ], ""payable"": false, ""stateMutability"": ""view"", ""type"": ""function"", ""signature"": ""0xe4b50cb8"" }, { ""constant"": true, ""inputs"": [], ""name"": ""getTokenCount"", ""outputs"": [  { ""name"": """", ""type"": ""uint8""  } ], ""payable"": false, ""stateMutability"": ""view"", ""type"": ""function"", ""signature"": ""0x78a89567"" }, { ""constant"": false, ""inputs"": [  { ""name"": ""from"", ""type"": ""address""  },  { ""name"": ""to"", ""type"": ""address""  },  { ""name"": ""tokenId"", ""type"": ""uint256""  } ], ""name"": ""transferFrom"", ""outputs"": [], ""payable"": false, ""stateMutability"": ""nonpayable"", ""type"": ""function"", ""signature"": ""0x23b872dd"" }, { ""constant"": false, ""inputs"": [  { ""name"": ""from"", ""type"": ""address""  },  { ""name"": ""to"", ""type"": ""address""  },  { ""name"": ""tokenId"", ""type"": ""uint256""  } ], ""name"": ""safeTransferFrom"", ""outputs"": [], ""payable"": false, ""stateMutability"": ""nonpayable"", ""type"": ""function"", ""signature"": ""0x42842e0e"" }]";
+
+    // And we define the contract address here, in this case is a simple ping contract
+    // (Remember this contract is deployed on the ropsten network)
+    private static string contractAddress = "0x61BD22e83BA8516cEBD4b06124a0bA7BA01d3919";
+
+    private static string _url = "https://ropsten.infura.io/";
+
+    // We define a new contract (Netherum.Contracts)
+    private Contract contract;
+
+    // Use this for initialization.
     void Start () {
+        // Here we assign the contract as a new contract and we send it the ABI and contact address
+        this.contract = new Contract(null, ABI, contractAddress);
+
         ReloadData();
 	}
 
@@ -73,33 +91,51 @@ public class CardScrollList : MonoBehaviour {
         RemoveCards();
         AddCards();
     }
+    
 
-    public static IEnumerator getAccountBalance(string address, System.Action<decimal> callback)
+    public IEnumerator getCharacters(string address)
     {
-        // Now we define a new EthGetBalanceUnityRequest and send it the testnet url where we are going to
-        // check the address, in this case "https://ropsten.infura.io".
-        // (we get EthGetBalanceUnityRequest from the Netherum lib imported at the start)
-        var getBalanceRequest = new EthGetBalanceUnityRequest("https://ropsten.infura.io/");
+        // We create a new pingsRequest as a new Eth Call Unity Request
+        var charsRequest = new EthCallUnityRequest(_url);
 
-        // Then we call the method SendRequest() from the getBalanceRequest we created
-        // with the address and the newest created block.
-        yield return getBalanceRequest.SendRequest(address, Nethereum.RPC.Eth.DTOs.BlockParameter.CreateLatest());
+        var charsCallInput = CreateCharsCallInput(address);
+        Debug.Log("Getting characters from the blockchain...");
+        // Then we send the request with the pingsCallInput and the most recent block mined to check.
+        // And we wait for the response...
+        yield return charsRequest.SendRequest(charsCallInput, Nethereum.RPC.Eth.DTOs.BlockParameter.CreateLatest());
 
-        // Now we check if the request has an exception
-        if (getBalanceRequest.Exception == null)
+        if (charsRequest.Exception == null)
         {
-            // We define balance and assign the value that the getBalanceRequest gave us.
-            var balance = getBalanceRequest.Result.Value;
-            // Finally we execute the callback and we use the Netherum.Util.UnitConversion
-            // to convert the balance from WEI to ETHER (that has 18 decimal places)
-            callback(Nethereum.Util.UnitConversion.Convert.FromWei(balance, 18));
+            // If we don't have exceptions we just display the raw result and the
+            // result decode it with our function (decodePings) from the service, congrats!
+            Debug.Log("Chars count (HEX): " + charsRequest.Result);
+            Debug.Log("Chars count (INT):" + DecodeChars(charsRequest.Result));
         }
         else
         {
-            // If there was an error we just throw an exception.
-            throw new System.InvalidOperationException("Get balance request failed");
+            // if we had an error in the UnityRequest we just display the Exception error
+            Debug.Log("Error submitting getPings tx: " + charsRequest.Exception.Message);
         }
+    }
 
+    public int DecodeChars(string chars)
+    {
+        // We use this function later to parse the result of encoded pings (Hexadecimal 0x0f)
+        // into a decoded output for easier readability (Integer 15)
+        var function = GetBalanceFunction();
+        return function.DecodeSimpleTypeOutput<int>(chars);
+    }
+
+    public CallInput CreateCharsCallInput( string address )
+    {
+        // For this transaction to the contract we dont need inputs,
+        // its only to retreive the quantity of Ping transactions we did. (the pings variable on the contract)
+        var function = GetBalanceFunction();
+        return function.CreateCallInput(address);
+    }
+    public Function GetBalanceFunction()
+    {
+        return contract.GetFunction("balanceOf");
     }
 
     public void LoadHeroes() {
@@ -107,9 +143,11 @@ public class CardScrollList : MonoBehaviour {
         scrollViewTransform.offsetMax = new Vector2(scrollViewTransform.offsetMax.x, -500);
         heroList.list = new List<Item>();
         ReloadData();
+        string myAddress = "0x033A53F3962AaB889e13217A5a44241bA746BACd";
 
         // TODO get heroes for current player.
-        getAccountBalance();
+        StartCoroutine(getCharacters(myAddress));
+        
     }
 
     public void LoadMarket()
