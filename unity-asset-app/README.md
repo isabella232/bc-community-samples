@@ -256,6 +256,13 @@ To verify everything is working correctly:
 - Follow the instructions in [this guide](https://unity3d.com/learn/tutorials/topics/mobile-touch/building-your-unity-game-ios-device-testing) on how to build your game on an iOS device in order to test it.
 - Follow the instructions in [this guide](https://www.raywenderlich.com/5456-in-app-purchase-tutorial-getting-started) to setup basics on your iTunes connect. 
 
+![Hero](./resources/test-hero.png)
+
+![IAP](./resources/test-iap.png)
+
+![Keys](./resources/test-keys.png)
+
+
 ## Important
 When you create products on iTunes connect, for in app purchase, make sure that they have the same values as these:
 public static string NonConsumableBronze = "randomBronzeHero";
