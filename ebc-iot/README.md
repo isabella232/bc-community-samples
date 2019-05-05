@@ -218,11 +218,11 @@ Select the queue and the interval and frequency to check for items in the queue.
 
 ![Trigger](./images/trigger-setup.png)
 
-As the Service bus encoded the message, i.e 
+As the Service bus encode the message, i.e 
 
 `@string3http://schemas.microsoft.com/2003/10/Serialization/�3{"Foo":"Bar"}`
 
-we need to deserialize and parse it in an Azure function.
+into base64, we need to first convert from base 64 and then we obtain the JSON values by removing the initial part of the message.
 
 [Create an HTTP triggered function](https://docs.microsoft.com/en-us/azure/azure-functions/functions-twitter-email#create-an-http-triggered-function)
 
