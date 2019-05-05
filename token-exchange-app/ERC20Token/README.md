@@ -9,12 +9,12 @@
 
 2. Download the repository.
     ```javascript
-    truffle unbox tutorialtoken
+    git clone https://github.com/Azure-Samples/bc-community-samples.git
     ```
 
-3. Run the development console.
+3. Navigate to directory.
     ```javascript
-    git clone https://github.com/Azure-Samples/bc-community-samples.git
+    cd token-exchange-app/ERC20Token/
     ```
 
 4. Compile and migrate the smart contracts. Note inside the development console we don't preface commands with `truffle`.
