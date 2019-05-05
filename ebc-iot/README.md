@@ -30,7 +30,7 @@ An [Azure Stream Analytics](https://docs.microsoft.com/en-gb/azure/stream-analyt
 
 #### Service Bus
 
-A [Service bus messaging service](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quickstart-portal) to connect the output of the Azure Stream Analytics stage with a logic app that uses a Blockchain connector.
+A [Service bus messaging service](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-quickstart-portal) to connect the output of the Azure Stream Analytics stage with a logic app that uses a Blockchain connector.
 
 #### Azure Logic App
 
@@ -42,10 +42,20 @@ The step by step guide is split into 4 parts:
 
 - Part 1: Data collection from Simulator to IoT Hub
 - Part 2: Data processing and filter of anomalies
-- Part 3: Setting up private network and Smart contract deployment
-- Part 4: Azure logic app to trigger smart contract when an anomalie is found
+- Part 3: Smart contract deployment
+- Part 4: Azure logic app to trigger smart contract when an anomaly is found
 
-### Part 1: Data collection from Simulator to IoT Hub
+### Prerequisites
+
+- An Ethereum private network
+
+You can check this resources to deploy a private network
+
+[Deploy a Quorum Network by Enterprise Ethereum Alliance.](https://azuremarketplace.microsoft.com/marketplace/apps/enterprise-ethereum-alliance.quorum-demo?tab=Overview)
+
+[Deploy and configure an Ethereum blockchain by Microsoft](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-azure-blockchain.azure-blockchain-ethereum?tab=Overview)
+
+## Part 1: Data collection from Simulator to IoT Hub
 
 The first part involves the data capture from the simulator and then record the information in Azure IoT Hub. 
 
@@ -113,7 +123,7 @@ Now, we can go to the IOT Hub in the Azure portal and in the metrics section and
 
 ![Hub Metrics](./images/hub-metrics.png)
 
-### Part 2: Data processing and filter of anomalies
+## Part 2: Data processing and filter of anomalies
 
 In this part, we are going to process the information captured in part 1 and we will log the values in an smart contract.
 
@@ -174,25 +184,7 @@ We have defined an average temperature and humidity range of 75.
 
 It means that, if in a window of 30 seconds, the average of temperature and humidity is greater than 75, then we will output to our Service Bus Queue a message that is going to trigger an Azure Logic App where we will execute a transaction against a real Blockchain.
 
-### Part 3: Setting up private network and Smart contract deployment
-
-Create a virtual machine -> [Here](https://portal.azure.com/#create/Canonical.UbuntuServer1604LTS-ARM)
-
-Once completed, login to your VM using SSH and [Install Docker CE Edition](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
-
-Once you have finished and docker is up and running
-
-Run
-
-docker run -t -d --name quorum-n-nodes -p 22001-22004:22001-22004 edsonalcala/quorum-n-nodes:1.1-alpine
-
-And
-
-docker exec -it quorum-n-nodes start-nodes
-
-The code of the image is https://github.com/EdsonAlcala/quorum-n-nodes
-
-Once the command is completed, go to the Azure Portal, in the Network security group setting and open the port range: 22001-22004
+## Part 3: Smart contract deployment
 
 Go to Remix and create a new contract with the code provided in the /contract folder, which is a minimal version of the [refrigerated transport smart contract](https://github.com/Azure-Samples/blockchain/tree/master/blockchain-workbench/application-and-smart-contract-samples/refrigerated-transportation/ethereum)
 
@@ -214,7 +206,7 @@ The smart contract has 1 function called IngestTelemetry, which received the hum
 
 Within the function, we have a set of conditions that verify if the humidity and temperature are outside a range defined during the creation and put the state of the contract to OutOfCompliance.
 
-### Part 4: Azure logic app to trigger smart contract when an anomalie is found
+## Part 4: Azure logic app to trigger smart contract when an anomaly is found
 
 [Create an Azure Logic App](https://docs.microsoft.com/en-gb/azure/logic-apps/quickstart-create-first-logic-app-workflow#create-your-logic-app) 
 
@@ -226,7 +218,11 @@ Select the queue and the interval and frequency to check for items in the queue.
 
 ![Trigger](./images/trigger-setup.png)
 
-As the Service bus encoded the message, we need to deserialize and parse it in an Azure function.
+As the Service bus encoded the message, i.e 
+
+`@string3http://schemas.microsoft.com/2003/10/Serialization/�3{"Foo":"Bar"}`
+
+we need to deserialize and parse it in an Azure function.
 
 [Create an HTTP triggered function](https://docs.microsoft.com/en-us/azure/azure-functions/functions-twitter-email#create-an-http-triggered-function)
 
