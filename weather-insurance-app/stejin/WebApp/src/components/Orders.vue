@@ -56,7 +56,7 @@
             </el-row>
             <el-row :gutter="10" class="frm-row">
               <el-col :span="10"><div class="frm-label">Total Premium</div></el-col>
-              <el-col :span="14"><div class="order-info">{{premium}}</div></el-col>
+              <el-col :span="14"><div class="order-info">{{premium}} ETH</div></el-col>
             </el-row>
             <el-row :gutter="0" class="frm-row" type="flex" justify="center">
               <el-col :span="24"><el-button type="success" :disabled="isClosed" round @click="buyInsurance">Buy</el-button></el-col>
@@ -193,7 +193,7 @@ export default {
     },
     async updatePremium () {
       const p = await this.prod.getPremium(this.contract.address, this.prod.convertToBaseUnit(this.notional))
-      this.premium = `${this.prod.convertToAccountingUnit(p)} ETH`
+      this.premium = this.prod.convertToAccountingUnit(p)
     },
     async getPremiums () {
       const result = []
