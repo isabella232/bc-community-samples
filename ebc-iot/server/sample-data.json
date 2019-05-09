@@ -1,0 +1,12 @@
+[
+    {
+        "temperature": 80,
+        "humidity": 60,
+        "time": "2019-04-22T11:23:49.467Z"
+    },
+    {
+        "temperature": 100,
+        "humidity": 100,
+        "time": "2019-04-22T11:23:49.467Z"
+    }
+]
