@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>WeatherInsurance.Integration.Blockchain</RootNamespace>
+    <AssemblyName>WeatherInsurance.Integration.Blockchain</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Nethereum.Portable" Version="3.2.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
+    <PackageReference Include="Portable.BouncyCastle" Version="1.8.5" />
+    <PackageReference Include="Common.Logging.Core" Version="3.4.1" />
+  </ItemGroup>
+</Project>

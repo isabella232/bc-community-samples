@@ -1,0 +1,47 @@
+{
+  "name": "DecentralizedInsuranceMarket",
+  "description": "",
+  "author": "Steffen Lehmann",
+  "private": true,
+  "scripts": {
+    "dev": "webpack-dev-server --inline --hot --env.dev",
+    "build": "rimraf dist && webpack -p --progress --hide-modules"
+  },
+  "dependencies": {
+    "@amcharts/amcharts4": "^4.4.1",
+    "chart.js": "^2.8.0",
+    "element-ui": "^2.8.2",
+    "ethjs": "^0.4.0",
+    "ethjs-contract": "^0.2.3",
+    "ethjs-filter": "^0.1.8",
+    "ethjs-query": "^0.3.8",
+    "minimatch": "^3.0.4",
+    "normalize.css": "^8.0.1",
+    "vue": "^2.5.16",
+    "vue-awesome": "^3.5.1",
+    "vue-awesome-icons": "^1.2.2",
+    "vue-chartjs": "^3.4.2",
+    "vue-resource": "^1.5.1",
+    "vue-router": "^3.0.6"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.6.0",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^6.4.0",
+    "babel-preset-vue-app": "^1.2.0",
+    "css-loader": "^0.27.0",
+    "file-loader": "^0.10.1",
+    "html-webpack-plugin": "^2.24.1",
+    "postcss-loader": "^1.3.3",
+    "rimraf": "^2.5.4",
+    "style-loader": "^0.13.2",
+    "url-loader": "^0.5.8",
+    "vue-loader": "^13.3.0",
+    "vue-template-compiler": "^2.5.16",
+    "webpack": "^2.4.1",
+    "webpack-dev-server": "^2.4.2"
+  }
+}

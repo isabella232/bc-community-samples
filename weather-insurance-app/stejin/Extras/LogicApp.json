@@ -1,0 +1,82 @@
+{
+    "$connections": {
+        "value": {
+            "blockchainethereum": {
+                "connectionId": "/subscriptions/90a3f5a8-6c2d-4861-9131-68808240203d/resourceGroups/Stejin/providers/Microsoft.Web/connections/blockchainethereum",
+                "connectionName": "blockchainethereum",
+                "id": "/subscriptions/90a3f5a8-6c2d-4861-9131-68808240203d/providers/Microsoft.Web/locations/westus/managedApis/blockchainethereum"
+            },
+            "msnweather": {
+                "connectionId": "/subscriptions/90a3f5a8-6c2d-4861-9131-68808240203d/resourceGroups/Stejin/providers/Microsoft.Web/connections/msnweather",
+                "connectionName": "msnweather",
+                "id": "/subscriptions/90a3f5a8-6c2d-4861-9131-68808240203d/providers/Microsoft.Web/locations/westus/managedApis/msnweather"
+            }
+        }
+    },
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "Execute_smart_contract_function_(incurring_gas_cost)": {
+                "inputs": {
+                    "body": {
+                        "currentForecast": "@{split(string(div(add(body('Get_the_forecast_for_tomorrow')?['responses']?['daily']?['tempHi'],body('Get_the_forecast_for_tomorrow')?['responses']?['daily']?['tempLo']), 2)), '.')[0]}",
+                        "currentRisk": "@{split(string(mul(div(sub(body('Get_the_forecast_for_tomorrow')?['responses']?['daily']?['tempHi'],body('Get_the_forecast_for_tomorrow')?['responses']?['daily']?['tempLo']), add(div(add(body('Get_the_forecast_for_tomorrow')?['responses']?['daily']?['tempHi'],body('Get_the_forecast_for_tomorrow')?['responses']?['daily']?['tempLo']), 2), 273)), 100)), '.')[0]}",
+                        "currentTime": "@{div(sub(ticks(utcNow()), ticks('1970-01-01T00:00:00Z')), 10000000)}"
+                    },
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['blockchainethereum']['connectionId']"
+                        }
+                    },
+                    "method": "post",
+                    "path": "/contract/functions/@{encodeURIComponent(encodeURIComponent('updateForecast'))}/execute",
+                    "queries": {
+                        "abi": "[{\"constant\":true,\"inputs\":[],\"name\":\"getUsers\",\"outputs\":[{\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"minimumPremium\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"operators\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"user\",\"type\":\"address\"}],\"name\":\"getPosition\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"user\",\"type\":\"address\"}],\"name\":\"payOut\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"notional\",\"type\":\"uint256\"}],\"name\":\"getPremium\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"isSettled\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"valuationTime\",\"outputs\":[{\"name\":\"\",\"type\":\"uint32\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"forecast\",\"outputs\":[{\"name\":\"\",\"type\":\"int32\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"location\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"destroy\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"operatorAddress\",\"type\":\"address\"}],\"name\":\"addOperator\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"notional\",\"type\":\"uint256\"}],\"name\":\"buyInsurance\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"operatorAddress\",\"type\":\"address\"}],\"name\":\"removeOperator\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"premium\",\"type\":\"uint256\"}],\"name\":\"setMinimumPremium\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"condition\",\"outputs\":[{\"name\":\"\",\"type\":\"int32\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"currentTime\",\"type\":\"uint32\"},{\"name\":\"currentForecast\",\"type\":\"int32\"},{\"name\":\"currentRisk\",\"type\":\"uint32\"}],\"name\":\"updateForecast\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"expirationTime\",\"outputs\":[{\"name\":\"\",\"type\":\"uint32\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"forecastRisk\",\"outputs\":[{\"name\":\"\",\"type\":\"uint32\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"contractLocation\",\"type\":\"string\"},{\"name\":\"contractExpirationTime\",\"type\":\"uint32\"},{\"name\":\"contractCondition\",\"type\":\"int32\"},{\"name\":\"contractPremium\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"notional\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"premium\",\"type\":\"uint256\"}],\"name\":\"InsuranceBought\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"notional\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"InsurancePaid\",\"type\":\"event\"},{\"constant\":true,\"inputs\":[{\"name\":\"notional\",\"type\":\"uint256\"}],\"name\":\"getIntrinsicValue\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}]",
+                        "contractAddress": "0x071d24d575086db271b51deb94873b656638d81c"
+                    }
+                },
+                "runAfter": {
+                    "Get_the_forecast_for_tomorrow": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "ApiConnection"
+            },
+            "Get_the_forecast_for_tomorrow": {
+                "inputs": {
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['msnweather']['connectionId']"
+                        }
+                    },
+                    "method": "get",
+                    "path": "/forecast/tomorrow/@{encodeURIComponent('Paris, France')}",
+                    "queries": {
+                        "units": "Metric"
+                    }
+                },
+                "runAfter": {},
+                "type": "ApiConnection"
+            }
+        },
+        "contentVersion": "1.0.0.0",
+        "outputs": {},
+        "parameters": {
+            "$connections": {
+                "defaultValue": {},
+                "type": "Object"
+            }
+        },
+        "triggers": {
+            "Recurrence": {
+                "recurrence": {
+                    "frequency": "Hour",
+                    "interval": 12,
+                    "startTime": "2019-04-30T11:00:00Z",
+                    "timeZone": "UTC"
+                },
+                "type": "Recurrence"
+            }
+        }
+    }
+}
